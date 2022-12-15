@@ -114,7 +114,8 @@ namespace JSONandSQL
                     }
                     else if (dialog == DialogResult.Cancel)
                     {
-                        return;
+                        Form4 tester = new Form4();
+                        tester.Show();
                     }
                 }
             }
