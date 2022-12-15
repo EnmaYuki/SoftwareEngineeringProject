@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Microsoft.Office.Interop.Excel;
 using MySql.Data.MySqlClient;
 using Excel = Microsoft.Office.Interop.Excel;
+using Newtonsoft.Json.Linq;
 
 
 namespace JSONandSQL
@@ -20,6 +23,8 @@ namespace JSONandSQL
         {
             InitializeComponent();
         }
+        private string collectionID = "638073a80e6a79321e555207";
+        private string APIkey = "$2b$10$l5EyYl0U3FvpMQULZaPjX.uPNB86iNFrnKVtTLDMLVu3DuDweIxHi";
 
         static string connectionString = "server=localhost;User Id=root;password=;Database=softwareengineera2; convert zero datetime=True";
         MySqlConnection connection = new MySqlConnection(connectionString);
@@ -112,7 +117,48 @@ namespace JSONandSQL
             mySqlCommand.Dispose();
             connection.Close();
             */
+            backup();
         }
 
+        private void backup()
+        {
+            WebResponse Response;
+            WebRequest myReq;
+            myReq = WebRequest.Create("https://api.jsonbin.io/v3/b");
+            myReq.Method = "POST";
+            myReq.ContentType = "application/json";
+
+            myReq.Headers.Add("X-Master-Key", APIkey);
+            myReq.Headers.Add("X-Bin-Name", "backupdata");
+            myReq.Headers.Add("X-Collection-Id", collectionID);
+            string backData = "{" + "\"" + "1" + "\"" + ":" + "\"" + "test|test|20221216005537" + "\"" + "," + "\" 2\"" + ":" + "\"" + " test|test|20221216005017" + "\"" + ", " + "\"3\"" + ":" + "\"" + "MUC508|sn21537561|20221215112415" + "\"}"; //Dummy Json
+
+            var data = Encoding.ASCII.GetBytes(backData);
+            myReq.ContentLength = data.Length;
+            using (var stream = myReq.GetRequestStream())
+            {
+                stream.Write(data, 0, data.Length);
+            }
+
+            try
+            {
+                Response = myReq.GetResponse();
+                MessageBox.Show("Success");
+            }
+            catch (WebException ex)
+            {
+                using (var stream = ex.Response.GetResponseStream())
+                {
+                    using (var reader = new StreamReader(stream))
+                    {
+                        string a = reader.ReadToEnd();
+                        MessageBox.Show(a);
+                        Console.WriteLine(reader.ReadToEnd());
+                    }
+                }
+            }
+
+
+        }
     }
 }

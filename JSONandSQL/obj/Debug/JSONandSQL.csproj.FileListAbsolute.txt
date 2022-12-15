@@ -58,3 +58,15 @@ C:\Users\User\Desktop\hkct\software-engineering\assignment\SoftwareA2\SoftwareEn
 C:\Users\User\Desktop\hkct\software-engineering\assignment\SoftwareA2\SoftwareEngineeringProject\JSONandSQL\obj\Debug\JSONandSQL.csproj.CopyComplete
 C:\Users\User\Desktop\hkct\software-engineering\assignment\SoftwareA2\SoftwareEngineeringProject\JSONandSQL\obj\Debug\JSONandSQL.exe
 C:\Users\User\Desktop\hkct\software-engineering\assignment\SoftwareA2\SoftwareEngineeringProject\JSONandSQL\obj\Debug\JSONandSQL.pdb
+C:\Users\Enma Yuki\Documents\Assignment\SoftwareA2\SoftwareEngineeringProject\JSONandSQL\obj\Debug\JSONandSQL.csproj.AssemblyReference.cache
+C:\Users\Enma Yuki\Documents\Assignment\SoftwareA2\SoftwareEngineeringProject\JSONandSQL\obj\Debug\JSONandSQL.csproj.SuggestedBindingRedirects.cache
+C:\Users\Enma Yuki\Documents\Assignment\SoftwareA2\SoftwareEngineeringProject\JSONandSQL\obj\Debug\JSONandSQL.csproj.ResolveComReference.cache
+C:\Users\Enma Yuki\Documents\Assignment\SoftwareA2\SoftwareEngineeringProject\JSONandSQL\obj\Debug\JSONandSQL.Form1.resources
+C:\Users\Enma Yuki\Documents\Assignment\SoftwareA2\SoftwareEngineeringProject\JSONandSQL\obj\Debug\JSONandSQL.Form2.resources
+C:\Users\Enma Yuki\Documents\Assignment\SoftwareA2\SoftwareEngineeringProject\JSONandSQL\obj\Debug\JSONandSQL.Form3.resources
+C:\Users\Enma Yuki\Documents\Assignment\SoftwareA2\SoftwareEngineeringProject\JSONandSQL\obj\Debug\JSONandSQL.Form4.resources
+C:\Users\Enma Yuki\Documents\Assignment\SoftwareA2\SoftwareEngineeringProject\JSONandSQL\obj\Debug\JSONandSQL.Properties.Resources.resources
+C:\Users\Enma Yuki\Documents\Assignment\SoftwareA2\SoftwareEngineeringProject\JSONandSQL\obj\Debug\JSONandSQL.csproj.GenerateResource.cache
+C:\Users\Enma Yuki\Documents\Assignment\SoftwareA2\SoftwareEngineeringProject\JSONandSQL\obj\Debug\JSONandSQL.csproj.CoreCompileInputs.cache
+C:\Users\Enma Yuki\Documents\Assignment\SoftwareA2\SoftwareEngineeringProject\JSONandSQL\obj\Debug\JSONandSQL.exe
+C:\Users\Enma Yuki\Documents\Assignment\SoftwareA2\SoftwareEngineeringProject\JSONandSQL\obj\Debug\JSONandSQL.pdb

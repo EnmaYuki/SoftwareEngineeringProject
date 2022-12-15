@@ -190,6 +190,7 @@ namespace JSONandSQL
             }
                 connection.Close();
         }
+
         private static void DisplaySqlErrors(SqlException exception)
         {
             for (int i = 0; i < exception.Errors.Count; i++)
@@ -246,7 +247,8 @@ namespace JSONandSQL
             tb_subject.Text = _name;
             mySqlCommand.Dispose();
             connection.Close();
-            /* verifiy student 
+            /* 
+            verifiy student 
             connection.Open();
             string data = "SELECT * FROM studentinfo , testjson WHERE ("+"\""+ tb_userID.Text + "\"" + "=studentinfo.student_id);  ";
             MySqlCommand cmd = new MySqlCommand(data, connection);
@@ -292,9 +294,6 @@ namespace JSONandSQL
             */
         }
 
-        private void tb_resultData_TextChanged(object sender, EventArgs e)
-        {
 
-        }
     }
 }

@@ -146,7 +146,6 @@
             this.tb_resultData.Name = "tb_resultData";
             this.tb_resultData.Size = new System.Drawing.Size(251, 108);
             this.tb_resultData.TabIndex = 18;
-            this.tb_resultData.TextChanged += new System.EventHandler(this.tb_resultData_TextChanged);
             // 
             // tb_result
             // 
