@@ -180,7 +180,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.tb_year);
             this.Name = "Form2";
-            this.Text = "Form2";
+            this.Text = "Add Subject";
             this.ResumeLayout(false);
             this.PerformLayout();
 
