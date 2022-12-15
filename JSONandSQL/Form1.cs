@@ -57,7 +57,7 @@ namespace JSONandSQL
             mySqlCommand.Dispose();
             connection.Close();
             */
-            string postData = "{" + "\"" + "data" + "\"" + ":" + "\"" + "1: test|test|20221216005537 2: test|test|20221216005017 3: MUC508|sn21537561|20221215112415" + "\"}"; //Dummy Json
+            string postData = "{" + "\"" + "data" + "\"" + ":" + "\"" +tb_result.Text+ "\"}"; //Dummy Json
             
             var data = Encoding.ASCII.GetBytes(postData);
             myReq.ContentLength = data.Length;
@@ -293,7 +293,10 @@ namespace JSONandSQL
             }
             */
         }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> parent of 6baceef (Merge pull request #1 from EnmaYuki/alex)
     }
 }

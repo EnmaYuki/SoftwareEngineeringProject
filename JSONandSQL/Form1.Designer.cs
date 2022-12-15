@@ -47,16 +47,16 @@
             // 
             // tb_subject
             // 
-            this.tb_subject.Location = new System.Drawing.Point(53, 38);
+            this.tb_subject.Location = new System.Drawing.Point(53, 35);
             this.tb_subject.Name = "tb_subject";
-            this.tb_subject.Size = new System.Drawing.Size(221, 20);
+            this.tb_subject.Size = new System.Drawing.Size(221, 22);
             this.tb_subject.TabIndex = 30;
             // 
             // btn_addJSONbin
             // 
-            this.btn_addJSONbin.Location = new System.Drawing.Point(231, 86);
+            this.btn_addJSONbin.Location = new System.Drawing.Point(231, 79);
             this.btn_addJSONbin.Name = "btn_addJSONbin";
-            this.btn_addJSONbin.Size = new System.Drawing.Size(117, 25);
+            this.btn_addJSONbin.Size = new System.Drawing.Size(117, 23);
             this.btn_addJSONbin.TabIndex = 29;
             this.btn_addJSONbin.Text = "Create JSON Bin";
             this.btn_addJSONbin.UseVisualStyleBackColor = true;
@@ -64,9 +64,9 @@
             // 
             // btn_getJSONbin
             // 
-            this.btn_getJSONbin.Location = new System.Drawing.Point(354, 86);
+            this.btn_getJSONbin.Location = new System.Drawing.Point(354, 79);
             this.btn_getJSONbin.Name = "btn_getJSONbin";
-            this.btn_getJSONbin.Size = new System.Drawing.Size(117, 25);
+            this.btn_getJSONbin.Size = new System.Drawing.Size(117, 23);
             this.btn_getJSONbin.TabIndex = 28;
             this.btn_getJSONbin.Text = "Get JSON collection";
             this.btn_getJSONbin.UseVisualStyleBackColor = true;
@@ -75,91 +75,91 @@
             // Bin_name
             // 
             this.Bin_name.AutoSize = true;
-            this.Bin_name.Location = new System.Drawing.Point(633, 114);
+            this.Bin_name.Location = new System.Drawing.Point(633, 105);
             this.Bin_name.Name = "Bin_name";
-            this.Bin_name.Size = new System.Drawing.Size(53, 13);
+            this.Bin_name.Size = new System.Drawing.Size(52, 12);
             this.Bin_name.TabIndex = 27;
             this.Bin_name.Text = "Bin Name";
             // 
             // Bin_data
             // 
             this.Bin_data.AutoSize = true;
-            this.Bin_data.Location = new System.Drawing.Point(389, 114);
+            this.Bin_data.Location = new System.Drawing.Point(389, 105);
             this.Bin_data.Name = "Bin_data";
-            this.Bin_data.Size = new System.Drawing.Size(48, 13);
+            this.Bin_data.Size = new System.Drawing.Size(46, 12);
             this.Bin_data.TabIndex = 26;
             this.Bin_data.Text = "Bin Data";
             // 
             // bin_key
             // 
             this.bin_key.AutoSize = true;
-            this.bin_key.Location = new System.Drawing.Point(123, 114);
+            this.bin_key.Location = new System.Drawing.Point(123, 105);
             this.bin_key.Name = "bin_key";
-            this.bin_key.Size = new System.Drawing.Size(36, 13);
+            this.bin_key.Size = new System.Drawing.Size(37, 12);
             this.bin_key.TabIndex = 25;
             this.bin_key.Text = "Bin ID";
             // 
             // lb_location
             // 
             this.lb_location.AutoSize = true;
-            this.lb_location.Location = new System.Drawing.Point(313, 41);
+            this.lb_location.Location = new System.Drawing.Point(313, 38);
             this.lb_location.Name = "lb_location";
-            this.lb_location.Size = new System.Drawing.Size(38, 13);
+            this.lb_location.Size = new System.Drawing.Size(35, 12);
             this.lb_location.TabIndex = 24;
             this.lb_location.Text = "Venue";
             // 
             // lb_subject
             // 
             this.lb_subject.AutoSize = true;
-            this.lb_subject.Location = new System.Drawing.Point(11, 41);
+            this.lb_subject.Location = new System.Drawing.Point(11, 38);
             this.lb_subject.Name = "lb_subject";
-            this.lb_subject.Size = new System.Drawing.Size(46, 13);
+            this.lb_subject.Size = new System.Drawing.Size(42, 12);
             this.lb_subject.TabIndex = 23;
             this.lb_subject.Text = "Subject:";
             // 
             // tb_userID
             // 
-            this.tb_userID.Location = new System.Drawing.Point(643, 38);
+            this.tb_userID.Location = new System.Drawing.Point(643, 35);
             this.tb_userID.Name = "tb_userID";
-            this.tb_userID.Size = new System.Drawing.Size(149, 20);
+            this.tb_userID.Size = new System.Drawing.Size(149, 22);
             this.tb_userID.TabIndex = 21;
             // 
             // tb_location
             // 
-            this.tb_location.Location = new System.Drawing.Point(351, 38);
+            this.tb_location.Location = new System.Drawing.Point(351, 35);
             this.tb_location.Name = "tb_location";
-            this.tb_location.Size = new System.Drawing.Size(180, 20);
+            this.tb_location.Size = new System.Drawing.Size(180, 22);
             this.tb_location.TabIndex = 20;
             // 
             // tb_resultKey
             // 
-            this.tb_resultKey.Location = new System.Drawing.Point(12, 130);
+            this.tb_resultKey.Location = new System.Drawing.Point(12, 120);
             this.tb_resultKey.Multiline = true;
             this.tb_resultKey.Name = "tb_resultKey";
-            this.tb_resultKey.Size = new System.Drawing.Size(262, 108);
+            this.tb_resultKey.Size = new System.Drawing.Size(262, 100);
             this.tb_resultKey.TabIndex = 19;
             // 
             // tb_resultData
             // 
-            this.tb_resultData.Location = new System.Drawing.Point(280, 130);
+            this.tb_resultData.Location = new System.Drawing.Point(280, 120);
             this.tb_resultData.Multiline = true;
             this.tb_resultData.Name = "tb_resultData";
-            this.tb_resultData.Size = new System.Drawing.Size(251, 108);
+            this.tb_resultData.Size = new System.Drawing.Size(251, 100);
             this.tb_resultData.TabIndex = 18;
             // 
             // tb_result
             // 
-            this.tb_result.Location = new System.Drawing.Point(537, 130);
+            this.tb_result.Location = new System.Drawing.Point(537, 120);
             this.tb_result.Multiline = true;
             this.tb_result.Name = "tb_result";
-            this.tb_result.Size = new System.Drawing.Size(251, 108);
+            this.tb_result.Size = new System.Drawing.Size(251, 100);
             this.tb_result.TabIndex = 17;
             // 
             // btn_toSQL
             // 
-            this.btn_toSQL.Location = new System.Drawing.Point(477, 86);
+            this.btn_toSQL.Location = new System.Drawing.Point(477, 79);
             this.btn_toSQL.Name = "btn_toSQL";
-            this.btn_toSQL.Size = new System.Drawing.Size(117, 25);
+            this.btn_toSQL.Size = new System.Drawing.Size(117, 23);
             this.btn_toSQL.TabIndex = 16;
             this.btn_toSQL.Text = "Insert into SQL";
             this.btn_toSQL.UseVisualStyleBackColor = true;
@@ -167,9 +167,9 @@
             // 
             // btn_excel
             // 
-            this.btn_excel.Location = new System.Drawing.Point(330, 245);
+            this.btn_excel.Location = new System.Drawing.Point(330, 226);
             this.btn_excel.Name = "btn_excel";
-            this.btn_excel.Size = new System.Drawing.Size(157, 25);
+            this.btn_excel.Size = new System.Drawing.Size(157, 23);
             this.btn_excel.TabIndex = 31;
             this.btn_excel.Text = "generate Report";
             this.btn_excel.UseVisualStyleBackColor = true;
@@ -178,17 +178,17 @@
             // lb_userID
             // 
             this.lb_userID.AutoSize = true;
-            this.lb_userID.Location = new System.Drawing.Point(579, 41);
+            this.lb_userID.Location = new System.Drawing.Point(579, 38);
             this.lb_userID.Name = "lb_userID";
-            this.lb_userID.Size = new System.Drawing.Size(61, 13);
+            this.lb_userID.Size = new System.Drawing.Size(58, 12);
             this.lb_userID.TabIndex = 32;
             this.lb_userID.Text = "Student_ID";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(804, 285);
+            this.ClientSize = new System.Drawing.Size(804, 263);
             this.Controls.Add(this.lb_userID);
             this.Controls.Add(this.btn_excel);
             this.Controls.Add(this.tb_subject);
