@@ -30,6 +30,7 @@ C:\Users\Enma Yuki\Documents\Assignment\SoftwareA2\JSONandSQL\bin\Debug\System.N
 C:\Users\Enma Yuki\Documents\Assignment\SoftwareA2\JSONandSQL\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\Enma Yuki\Documents\Assignment\SoftwareA2\JSONandSQL\bin\Debug\Zen.Barcode.Core.dll
 <<<<<<< HEAD
+<<<<<<< HEAD
 C:\Users\User\Desktop\hkct\software-engineering\assignment\SoftwareA2\SoftwareEngineeringProject\JSONandSQL\bin\Debug\JSONandSQL.exe.config
 C:\Users\User\Desktop\hkct\software-engineering\assignment\SoftwareA2\SoftwareEngineeringProject\JSONandSQL\bin\Debug\JSONandSQL.exe
 C:\Users\User\Desktop\hkct\software-engineering\assignment\SoftwareA2\SoftwareEngineeringProject\JSONandSQL\bin\Debug\JSONandSQL.pdb
@@ -71,5 +72,7 @@ C:\Users\Enma Yuki\Documents\Assignment\SoftwareA2\SoftwareEngineeringProject\JS
 C:\Users\Enma Yuki\Documents\Assignment\SoftwareA2\SoftwareEngineeringProject\JSONandSQL\obj\Debug\JSONandSQL.csproj.CoreCompileInputs.cache
 C:\Users\Enma Yuki\Documents\Assignment\SoftwareA2\SoftwareEngineeringProject\JSONandSQL\obj\Debug\JSONandSQL.exe
 C:\Users\Enma Yuki\Documents\Assignment\SoftwareA2\SoftwareEngineeringProject\JSONandSQL\obj\Debug\JSONandSQL.pdb
+=======
+>>>>>>> parent of 6baceef (Merge pull request #1 from EnmaYuki/alex)
 =======
 >>>>>>> parent of 6baceef (Merge pull request #1 from EnmaYuki/alex)

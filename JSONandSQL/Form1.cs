@@ -294,8 +294,11 @@ namespace JSONandSQL
             */
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> parent of 6baceef (Merge pull request #1 from EnmaYuki/alex)
 =======
 >>>>>>> parent of 6baceef (Merge pull request #1 from EnmaYuki/alex)
     }
