@@ -271,7 +271,7 @@ namespace JSONandSQL
 
         private void backup()
         {
-            if (tb_resultData.Text != null)
+            if (tb_resultData.Text != string.Empty)
             {
             WebResponse myResp;
             WebRequest myReq;
