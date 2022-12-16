@@ -84,7 +84,7 @@ namespace JSONandSQL
                     }
                 }
             }
-
+            myReq.Abort();
         }
         private void btn_getJSONbin_Click(object sender, EventArgs e)
         {
@@ -161,6 +161,7 @@ namespace JSONandSQL
 
         private void btn_toSQL_Click(object sender, EventArgs e)
         {
+            connection.Open();
             string backupformat = tb_result.Text.Replace("\r\n", "_");
             string trying = backupformat.Substring(0, backupformat.Length - 1);
             string[] attendrecord = trying.Split('_');
@@ -176,7 +177,7 @@ namespace JSONandSQL
 
             for (int i = 0; i < attendrecord.Length; i++)
             {
-            connection.Open();
+
                 string[] attenddata = attendrecord[i].Split('|');
                 if (i == 0 && i == attendrecord.Length - 1)
                 {
@@ -208,9 +209,9 @@ namespace JSONandSQL
                     DisplaySqlErrors(ex);
                 }
                 command.Dispose();
-            connection.Close();
                 deleteBin(attenddata[3]);
             }
+            connection.Close();
         }
         private static void DisplaySqlErrors(SqlException exception)
         {
@@ -251,6 +252,7 @@ namespace JSONandSQL
                 {
                     myResp = myReq.GetResponse();
                     MessageBox.Show("Delete Success");
+                myResp.Close();
                 }
                 catch (WebException ex)
                 {
@@ -264,10 +266,13 @@ namespace JSONandSQL
                         }
                     }
                 }
+            myReq.Abort();
         }
 
         private void backup()
         {
+            if (tb_resultData.Text != null)
+            {
             WebResponse myResp;
             WebRequest myReq;
             myReq = WebRequest.Create("https://api.jsonbin.io/v3/b");
@@ -334,6 +339,7 @@ namespace JSONandSQL
             {
                 myResp = myReq.GetResponse();
                 MessageBox.Show("Success");
+                myResp.Close();
             }
             catch (WebException ex)
             {
@@ -347,7 +353,12 @@ namespace JSONandSQL
                     }
                 }
             }
-
+            myReq.Abort();
+            }
+            else
+            {
+                MessageBox.Show("There is no data need to back up!", "Unneccessery back up!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
         private void btn_excel_Click(object sender, EventArgs e)
         {
