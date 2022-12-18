@@ -49,7 +49,7 @@
             // 
             this.tb_username.Location = new System.Drawing.Point(74, 29);
             this.tb_username.Name = "tb_username";
-            this.tb_username.Size = new System.Drawing.Size(144, 22);
+            this.tb_username.Size = new System.Drawing.Size(153, 22);
             this.tb_username.TabIndex = 1;
             // 
             // label2
@@ -81,18 +81,22 @@
             // 
             // btn_viewer
             // 
+            this.btn_viewer.BackColor = System.Drawing.Color.Transparent;
+            this.btn_viewer.BackgroundImage = global::JSONandSQL.Properties.Resources.eye;
+            this.btn_viewer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_viewer.ForeColor = System.Drawing.Color.Transparent;
             this.btn_viewer.Location = new System.Drawing.Point(192, 57);
             this.btn_viewer.Name = "btn_viewer";
-            this.btn_viewer.Size = new System.Drawing.Size(26, 23);
+            this.btn_viewer.Size = new System.Drawing.Size(35, 23);
             this.btn_viewer.TabIndex = 5;
-            this.btn_viewer.UseVisualStyleBackColor = true;
+            this.btn_viewer.UseVisualStyleBackColor = false;
             this.btn_viewer.Click += new System.EventHandler(this.btn_viewer_Click);
             // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(235, 146);
+            this.ClientSize = new System.Drawing.Size(249, 146);
             this.Controls.Add(this.btn_viewer);
             this.Controls.Add(this.btn_login);
             this.Controls.Add(this.tb_userID);
@@ -100,7 +104,7 @@
             this.Controls.Add(this.tb_username);
             this.Controls.Add(this.label1);
             this.Name = "Form3";
-            this.Text = "Form3";
+            this.Text = "Login";
             this.ResumeLayout(false);
             this.PerformLayout();
 

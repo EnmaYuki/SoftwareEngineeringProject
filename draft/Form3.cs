@@ -116,7 +116,8 @@ namespace JSONandSQL
                     DialogResult dialog = MessageBox.Show("Take attendance?", "Hello, " + studentreader["Student_Name"], MessageBoxButtons.OKCancel);
 
                     if (dialog == DialogResult.OK)
-                    { 
+                    {
+                        this.Hide();
                         var jsonandsql = new Form1();
                         jsonandsql.setStudent(studentreader["student_id"].ToString());
                         jsonandsql.Show();

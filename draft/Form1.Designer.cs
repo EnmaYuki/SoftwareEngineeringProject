@@ -44,7 +44,8 @@
             // 
             // btn_addJSONbin
             // 
-            this.btn_addJSONbin.Location = new System.Drawing.Point(231, 79);
+            this.btn_addJSONbin.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btn_addJSONbin.Location = new System.Drawing.Point(207, 61);
             this.btn_addJSONbin.Name = "btn_addJSONbin";
             this.btn_addJSONbin.Size = new System.Drawing.Size(117, 23);
             this.btn_addJSONbin.TabIndex = 29;
@@ -54,7 +55,8 @@
             // 
             // btn_getJSONbin
             // 
-            this.btn_getJSONbin.Location = new System.Drawing.Point(354, 79);
+            this.btn_getJSONbin.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btn_getJSONbin.Location = new System.Drawing.Point(370, 61);
             this.btn_getJSONbin.Name = "btn_getJSONbin";
             this.btn_getJSONbin.Size = new System.Drawing.Size(117, 23);
             this.btn_getJSONbin.TabIndex = 28;
@@ -65,44 +67,49 @@
             // Bin_name
             // 
             this.Bin_name.AutoSize = true;
-            this.Bin_name.Location = new System.Drawing.Point(633, 105);
+            this.Bin_name.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.Bin_name.Location = new System.Drawing.Point(631, 101);
             this.Bin_name.Name = "Bin_name";
-            this.Bin_name.Size = new System.Drawing.Size(52, 12);
+            this.Bin_name.Size = new System.Drawing.Size(70, 16);
             this.Bin_name.TabIndex = 27;
             this.Bin_name.Text = "Bin Name";
             // 
             // Bin_data
             // 
             this.Bin_data.AutoSize = true;
-            this.Bin_data.Location = new System.Drawing.Point(389, 105);
+            this.Bin_data.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.Bin_data.Location = new System.Drawing.Point(387, 101);
             this.Bin_data.Name = "Bin_data";
-            this.Bin_data.Size = new System.Drawing.Size(46, 12);
+            this.Bin_data.Size = new System.Drawing.Size(62, 16);
             this.Bin_data.TabIndex = 26;
             this.Bin_data.Text = "Bin Data";
             // 
             // bin_key
             // 
             this.bin_key.AutoSize = true;
-            this.bin_key.Location = new System.Drawing.Point(123, 105);
+            this.bin_key.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.bin_key.Location = new System.Drawing.Point(121, 101);
             this.bin_key.Name = "bin_key";
-            this.bin_key.Size = new System.Drawing.Size(37, 12);
+            this.bin_key.Size = new System.Drawing.Size(49, 16);
             this.bin_key.TabIndex = 25;
             this.bin_key.Text = "Bin ID";
             // 
             // lb_location
             // 
             this.lb_location.AutoSize = true;
-            this.lb_location.Location = new System.Drawing.Point(313, 38);
+            this.lb_location.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.lb_location.Location = new System.Drawing.Point(276, 15);
             this.lb_location.Name = "lb_location";
-            this.lb_location.Size = new System.Drawing.Size(35, 12);
+            this.lb_location.Size = new System.Drawing.Size(48, 16);
             this.lb_location.TabIndex = 24;
             this.lb_location.Text = "Venue";
             // 
             // tb_location
             // 
-            this.tb_location.Location = new System.Drawing.Point(351, 35);
+            this.tb_location.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.tb_location.Location = new System.Drawing.Point(330, 12);
             this.tb_location.Name = "tb_location";
-            this.tb_location.Size = new System.Drawing.Size(180, 22);
+            this.tb_location.Size = new System.Drawing.Size(180, 27);
             this.tb_location.TabIndex = 20;
             // 
             // tb_resultKey
@@ -131,7 +138,8 @@
             // 
             // btn_toSQL
             // 
-            this.btn_toSQL.Location = new System.Drawing.Point(477, 79);
+            this.btn_toSQL.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btn_toSQL.Location = new System.Drawing.Point(519, 61);
             this.btn_toSQL.Name = "btn_toSQL";
             this.btn_toSQL.Size = new System.Drawing.Size(117, 23);
             this.btn_toSQL.TabIndex = 16;
@@ -141,18 +149,19 @@
             // 
             // btn_excel
             // 
+            this.btn_excel.Font = new System.Drawing.Font("PMingLiU", 15F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
             this.btn_excel.Location = new System.Drawing.Point(330, 226);
             this.btn_excel.Name = "btn_excel";
-            this.btn_excel.Size = new System.Drawing.Size(157, 23);
+            this.btn_excel.Size = new System.Drawing.Size(157, 36);
             this.btn_excel.TabIndex = 31;
-            this.btn_excel.Text = "generate Report";
+            this.btn_excel.Text = "generate Excel";
             this.btn_excel.UseVisualStyleBackColor = true;
             this.btn_excel.Click += new System.EventHandler(this.btn_excel_Click);
             // 
             // btn_logout
             // 
             this.btn_logout.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btn_logout.Location = new System.Drawing.Point(647, 33);
+            this.btn_logout.Location = new System.Drawing.Point(702, 35);
             this.btn_logout.Name = "btn_logout";
             this.btn_logout.Size = new System.Drawing.Size(86, 35);
             this.btn_logout.TabIndex = 32;
@@ -179,7 +188,7 @@
             this.Controls.Add(this.tb_result);
             this.Controls.Add(this.btn_toSQL);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Attendance";
             this.ResumeLayout(false);
             this.PerformLayout();
 

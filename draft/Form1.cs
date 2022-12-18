@@ -76,11 +76,13 @@ namespace JSONandSQL
                     try
                     {
                         myResp = myReq.GetResponse();
-                        MessageBox.Show("Success");
+                        Console.WriteLine("Add Success");
+                        //MessageBox.Show("Add Success");
                     myResp.Close();
                     }
                     catch (WebException ex)
                     {
+                        MessageBox.Show("Add fail");
                         using (var stream = ex.Response.GetResponseStream())
                         {
                             using (var reader = new StreamReader(stream))
@@ -179,7 +181,7 @@ namespace JSONandSQL
             }
 
             Console.WriteLine("Finished!");
-            MessageBox.Show("Finished");
+            //MessageBox.Show("Finished");
             backUp();
         }
 
@@ -226,11 +228,13 @@ namespace JSONandSQL
                 try
                 {
                     command.ExecuteNonQuery();
-                    MessageBox.Show("Insert Success");
+                    Console.WriteLine("Insert Success");
+                    //MessageBox.Show("Insert Success");
                 }
                 catch (SqlException ex)
                 {
                     DisplaySqlErrors(ex);
+                    MessageBox.Show("Insert Fail");
                 }
                 command.Dispose();
                 deleteBin(attenddata[3]);
@@ -275,12 +279,14 @@ namespace JSONandSQL
                 try
                 {
                     myResp = myReq.GetResponse();
-                    MessageBox.Show("Delete Success");
+                Console.WriteLine("Delete Success");
+                //MessageBox.Show("Delete Success");
                     myResp.Close();
                 }
                 catch (WebException ex)
                 {
-                    using (var stream = ex.Response.GetResponseStream())
+                MessageBox.Show("Delete Fail");
+                using (var stream = ex.Response.GetResponseStream())
                     {
                         using (var reader = new StreamReader(stream))
                         {
@@ -302,11 +308,8 @@ namespace JSONandSQL
             myReq = WebRequest.Create("https://api.jsonbin.io/v3/b");
             myReq.Method = "POST";
             myReq.ContentType = "application/json";
-
             myReq.Headers.Add("X-Master-Key", APIkey);
-
             myReq.Headers.Add("X-Bin-Name", "backUp");
-            
             string backupformat=tb_resultData.Text.Replace("\r\n", "_");
             string backup=backupformat.Substring(0, backupformat.Length - 1);
             string[] datarecord= backup.Split('_');
@@ -315,8 +318,6 @@ namespace JSONandSQL
             string postDatamid = "\"" + ":" + "\"";
             string postDatatail = "\"" + "}";
             string postDatasplit = "\"";
-
-
             for(int i = 0; i < datarecord.Length; i++)
             {
                 string[] recorddata = datarecord[i].Split(':');
@@ -346,16 +347,17 @@ namespace JSONandSQL
             {
                 stream.Write(data, 0, data.Length);
             }
-
             try
             {
                 myResp = myReq.GetResponse();
-                MessageBox.Show("Success");
+                Console.WriteLine("Backup Success");
+                //MessageBox.Show("Backup Success");
                 myResp.Close();
             }
             catch (WebException ex)
             {
-                using (var stream = ex.Response.GetResponseStream())
+                    MessageBox.Show("Back up fail");
+                    using (var stream = ex.Response.GetResponseStream())
                 {
                     using (var reader = new StreamReader(stream))
                     {
@@ -380,9 +382,8 @@ namespace JSONandSQL
             MySqlDataReader datareader = cmd.ExecuteReader();
             var Excelapp = new Excel.Application();
             Excelapp.Visible = true;
-            Excel.Workbook workBook = Excelapp.Workbooks.Add();
-            Excel.Worksheet worksheet = Excelapp.ActiveSheet;
-
+            Workbook workBook = Excelapp.Workbooks.Add();
+            Worksheet worksheet = Excelapp.ActiveSheet;
             if (datareader.HasRows == true)
             {
                 worksheet.Name = "subject";
