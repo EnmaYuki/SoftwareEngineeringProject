@@ -184,7 +184,6 @@ namespace JSONandSQL
             //MessageBox.Show("Finished");
             backUp();
         }
-
         private void btn_toSQL_Click(object sender, EventArgs e)
         {
             connection.Open();
@@ -250,7 +249,6 @@ namespace JSONandSQL
             }
             Console.ReadLine();
         }
-
         private void deleteBin(string bin_id)
         {
             if(bin_id.Contains("\r\n")) 
@@ -298,7 +296,6 @@ namespace JSONandSQL
                 }
             myReq.Abort();
         }
-
         private void backUp()
         {
             if (tb_resultData.Text != String.Empty)
