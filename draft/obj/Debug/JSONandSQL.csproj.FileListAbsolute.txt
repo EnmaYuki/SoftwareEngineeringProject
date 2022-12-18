@@ -52,39 +52,9 @@ C:\Users\Enma Yuki\Documents\Assignment\SoftwareA2\draft\obj\Debug\JSONandSQL.cs
 C:\Users\Enma Yuki\Documents\Assignment\SoftwareA2\draft\obj\Debug\JSONandSQL.Form1.resources
 C:\Users\Enma Yuki\Documents\Assignment\SoftwareA2\draft\obj\Debug\JSONandSQL.Form2.resources
 C:\Users\Enma Yuki\Documents\Assignment\SoftwareA2\draft\obj\Debug\JSONandSQL.Form3.resources
-C:\Users\Enma Yuki\Documents\Assignment\SoftwareA2\draft\obj\Debug\JSONandSQL.Form4.resources
 C:\Users\Enma Yuki\Documents\Assignment\SoftwareA2\draft\obj\Debug\JSONandSQL.Properties.Resources.resources
 C:\Users\Enma Yuki\Documents\Assignment\SoftwareA2\draft\obj\Debug\JSONandSQL.csproj.GenerateResource.cache
 C:\Users\Enma Yuki\Documents\Assignment\SoftwareA2\draft\obj\Debug\JSONandSQL.csproj.CoreCompileInputs.cache
 C:\Users\Enma Yuki\Documents\Assignment\SoftwareA2\draft\obj\Debug\JSONandSQL.csproj.CopyComplete
 C:\Users\Enma Yuki\Documents\Assignment\SoftwareA2\draft\obj\Debug\JSONandSQL.exe
 C:\Users\Enma Yuki\Documents\Assignment\SoftwareA2\draft\obj\Debug\JSONandSQL.pdb
-C:\Users\User\Desktop\hkct\software-engineering\project\draft\bin\Debug\JSONandSQL.exe.config
-C:\Users\User\Desktop\hkct\software-engineering\project\draft\bin\Debug\JSONandSQL.exe
-C:\Users\User\Desktop\hkct\software-engineering\project\draft\bin\Debug\JSONandSQL.pdb
-C:\Users\User\Desktop\hkct\software-engineering\project\draft\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
-C:\Users\User\Desktop\hkct\software-engineering\project\draft\bin\Debug\Newtonsoft.Json.dll
-C:\Users\User\Desktop\hkct\software-engineering\project\draft\bin\Debug\System.Buffers.dll
-C:\Users\User\Desktop\hkct\software-engineering\project\draft\bin\Debug\System.Drawing.Common.dll
-C:\Users\User\Desktop\hkct\software-engineering\project\draft\bin\Debug\System.Memory.dll
-C:\Users\User\Desktop\hkct\software-engineering\project\draft\bin\Debug\System.Numerics.Vectors.dll
-C:\Users\User\Desktop\hkct\software-engineering\project\draft\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
-C:\Users\User\Desktop\hkct\software-engineering\project\draft\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
-C:\Users\User\Desktop\hkct\software-engineering\project\draft\bin\Debug\System.Buffers.xml
-C:\Users\User\Desktop\hkct\software-engineering\project\draft\bin\Debug\System.Drawing.Common.xml
-C:\Users\User\Desktop\hkct\software-engineering\project\draft\bin\Debug\System.Memory.xml
-C:\Users\User\Desktop\hkct\software-engineering\project\draft\bin\Debug\System.Numerics.Vectors.xml
-C:\Users\User\Desktop\hkct\software-engineering\project\draft\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
-C:\Users\User\Desktop\hkct\software-engineering\project\draft\obj\Debug\JSONandSQL.csproj.AssemblyReference.cache
-C:\Users\User\Desktop\hkct\software-engineering\project\draft\obj\Debug\JSONandSQL.csproj.SuggestedBindingRedirects.cache
-C:\Users\User\Desktop\hkct\software-engineering\project\draft\obj\Debug\JSONandSQL.csproj.ResolveComReference.cache
-C:\Users\User\Desktop\hkct\software-engineering\project\draft\obj\Debug\JSONandSQL.Form1.resources
-C:\Users\User\Desktop\hkct\software-engineering\project\draft\obj\Debug\JSONandSQL.Form2.resources
-C:\Users\User\Desktop\hkct\software-engineering\project\draft\obj\Debug\JSONandSQL.Form3.resources
-C:\Users\User\Desktop\hkct\software-engineering\project\draft\obj\Debug\JSONandSQL.Form4.resources
-C:\Users\User\Desktop\hkct\software-engineering\project\draft\obj\Debug\JSONandSQL.Properties.Resources.resources
-C:\Users\User\Desktop\hkct\software-engineering\project\draft\obj\Debug\JSONandSQL.csproj.GenerateResource.cache
-C:\Users\User\Desktop\hkct\software-engineering\project\draft\obj\Debug\JSONandSQL.csproj.CoreCompileInputs.cache
-C:\Users\User\Desktop\hkct\software-engineering\project\draft\obj\Debug\JSONandSQL.csproj.CopyComplete
-C:\Users\User\Desktop\hkct\software-engineering\project\draft\obj\Debug\JSONandSQL.exe
-C:\Users\User\Desktop\hkct\software-engineering\project\draft\obj\Debug\JSONandSQL.pdb

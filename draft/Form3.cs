@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
+using System.Globalization;
 using System.Linq;
+using System.Net;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.Office.Interop.Excel;
 using MySql.Data.MySqlClient;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
@@ -16,6 +19,11 @@ namespace JSONandSQL
     {
         static string connectionString = "server=localhost;User Id=root;password=;Database=softwareengineera2";
         MySqlConnection connection = new MySqlConnection(connectionString);
+
+        private string collectionID = "638073a80e6a79321e555207";
+        private string APIkey = "$2b$10$l5EyYl0U3FvpMQULZaPjX.uPNB86iNFrnKVtTLDMLVu3DuDweIxHi";
+
+        DateTime dateTime = DateTime.Now;
 
         public Form3()
         {
@@ -49,7 +57,7 @@ namespace JSONandSQL
                     string messagecaption = "Hello, " + reader["Greeting"] + " sir";
                     if (reader["teacher_id"].ToString().Contains("_H-"))
                     {
-                        DialogResult dialog = MessageBox.Show("Need to add subject? \n Press No for view jsonbin.",messagecaption , MessageBoxButtons.YesNoCancel);
+                        DialogResult dialog = MessageBox.Show("Need to add subject? \n Press No for view Excel.",messagecaption , MessageBoxButtons.YesNoCancel);
 
                         if (dialog == DialogResult.Yes)
                         {
@@ -63,12 +71,12 @@ namespace JSONandSQL
                         }
                         else if (dialog == DialogResult.Cancel)
                         {
-                            Application.Exit();
+                            return;
                         }
                     }
                     else
                     {
-                        DialogResult dialog = MessageBox.Show("View jsonbin?", messagecaption, MessageBoxButtons.OKCancel);
+                        DialogResult dialog = MessageBox.Show("View Excel?", messagecaption, MessageBoxButtons.OKCancel);
 
                         if (dialog == DialogResult.OK)
                         {
@@ -77,8 +85,7 @@ namespace JSONandSQL
                         }
                         else if (dialog == DialogResult.Cancel)
                         {
-                            Form4 tester = new Form4();
-                            tester.Show();
+                            return;
                         }
                     }
                 }
@@ -97,7 +104,7 @@ namespace JSONandSQL
         private void student()
         {
             connection.Open();
-            string checker = "SELECT student_id, Student_Name FROM `studentinfo` WHERE student_id =" + "\'" + tb_userID.Text + "\'"+ "or Student_Name =" + "\'" + tb_username.Text + "\'" + ";";
+            string checker = "SELECT student_id, Student_Name FROM `studentinfo` WHERE student_id = "+"\""+tb_userID.Text+"\""+" or Student_Name =" + "\'" + tb_username.Text + "\'" + ";";
             MySqlCommand cmd = new MySqlCommand(checker, connection);
             
             MySqlDataReader studentreader = cmd.ExecuteReader();
@@ -109,8 +116,9 @@ namespace JSONandSQL
                     DialogResult dialog = MessageBox.Show("Take attendance?", "Hello, " + studentreader["Student_Name"], MessageBoxButtons.OKCancel);
 
                     if (dialog == DialogResult.OK)
-                    {
-                        Form1 jsonandsql = new Form1();
+                    { 
+                        var jsonandsql = new Form1();
+                        jsonandsql.setStudent(studentreader["student_id"].ToString());
                         jsonandsql.Show();
                     }
                     else if (dialog == DialogResult.Cancel)

@@ -27,30 +27,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tb_subject = new System.Windows.Forms.TextBox();
             this.btn_addJSONbin = new System.Windows.Forms.Button();
             this.btn_getJSONbin = new System.Windows.Forms.Button();
             this.Bin_name = new System.Windows.Forms.Label();
             this.Bin_data = new System.Windows.Forms.Label();
             this.bin_key = new System.Windows.Forms.Label();
             this.lb_location = new System.Windows.Forms.Label();
-            this.lb_subject = new System.Windows.Forms.Label();
-            this.tb_userID = new System.Windows.Forms.TextBox();
             this.tb_location = new System.Windows.Forms.TextBox();
             this.tb_resultKey = new System.Windows.Forms.TextBox();
             this.tb_resultData = new System.Windows.Forms.TextBox();
             this.tb_result = new System.Windows.Forms.TextBox();
             this.btn_toSQL = new System.Windows.Forms.Button();
             this.btn_excel = new System.Windows.Forms.Button();
-            this.lb_userID = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // tb_subject
-            // 
-            this.tb_subject.Location = new System.Drawing.Point(53, 35);
-            this.tb_subject.Name = "tb_subject";
-            this.tb_subject.Size = new System.Drawing.Size(221, 22);
-            this.tb_subject.TabIndex = 30;
             // 
             // btn_addJSONbin
             // 
@@ -108,22 +97,6 @@
             this.lb_location.TabIndex = 24;
             this.lb_location.Text = "Venue";
             // 
-            // lb_subject
-            // 
-            this.lb_subject.AutoSize = true;
-            this.lb_subject.Location = new System.Drawing.Point(11, 38);
-            this.lb_subject.Name = "lb_subject";
-            this.lb_subject.Size = new System.Drawing.Size(42, 12);
-            this.lb_subject.TabIndex = 23;
-            this.lb_subject.Text = "Subject:";
-            // 
-            // tb_userID
-            // 
-            this.tb_userID.Location = new System.Drawing.Point(643, 35);
-            this.tb_userID.Name = "tb_userID";
-            this.tb_userID.Size = new System.Drawing.Size(149, 22);
-            this.tb_userID.TabIndex = 21;
-            // 
             // tb_location
             // 
             this.tb_location.Location = new System.Drawing.Point(351, 35);
@@ -175,31 +148,18 @@
             this.btn_excel.UseVisualStyleBackColor = true;
             this.btn_excel.Click += new System.EventHandler(this.btn_excel_Click);
             // 
-            // lb_userID
-            // 
-            this.lb_userID.AutoSize = true;
-            this.lb_userID.Location = new System.Drawing.Point(579, 38);
-            this.lb_userID.Name = "lb_userID";
-            this.lb_userID.Size = new System.Drawing.Size(58, 12);
-            this.lb_userID.TabIndex = 32;
-            this.lb_userID.Text = "Student_ID";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(804, 263);
-            this.Controls.Add(this.lb_userID);
             this.Controls.Add(this.btn_excel);
-            this.Controls.Add(this.tb_subject);
             this.Controls.Add(this.btn_addJSONbin);
             this.Controls.Add(this.btn_getJSONbin);
             this.Controls.Add(this.Bin_name);
             this.Controls.Add(this.Bin_data);
             this.Controls.Add(this.bin_key);
             this.Controls.Add(this.lb_location);
-            this.Controls.Add(this.lb_subject);
-            this.Controls.Add(this.tb_userID);
             this.Controls.Add(this.tb_location);
             this.Controls.Add(this.tb_resultKey);
             this.Controls.Add(this.tb_resultData);
@@ -213,23 +173,18 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox tb_subject;
         private System.Windows.Forms.Button btn_addJSONbin;
         private System.Windows.Forms.Button btn_getJSONbin;
         private System.Windows.Forms.Label Bin_name;
         private System.Windows.Forms.Label Bin_data;
         private System.Windows.Forms.Label bin_key;
         private System.Windows.Forms.Label lb_location;
-        private System.Windows.Forms.Label lb_subject;
-        private System.Windows.Forms.TextBox tb_userID;
         private System.Windows.Forms.TextBox tb_location;
         private System.Windows.Forms.TextBox tb_resultKey;
         private System.Windows.Forms.TextBox tb_resultData;
         private System.Windows.Forms.TextBox tb_result;
         private System.Windows.Forms.Button btn_toSQL;
         private System.Windows.Forms.Button btn_excel;
-        private System.Windows.Forms.Label lb_userID;
     }
 }
 

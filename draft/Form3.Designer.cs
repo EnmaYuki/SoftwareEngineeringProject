@@ -39,7 +39,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(188, 118);
+            this.label1.Location = new System.Drawing.Point(16, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 12);
             this.label1.TabIndex = 0;
@@ -47,7 +47,7 @@
             // 
             // tb_username
             // 
-            this.tb_username.Location = new System.Drawing.Point(246, 115);
+            this.tb_username.Location = new System.Drawing.Point(74, 29);
             this.tb_username.Name = "tb_username";
             this.tb_username.Size = new System.Drawing.Size(144, 22);
             this.tb_username.TabIndex = 1;
@@ -55,7 +55,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(188, 164);
+            this.label2.Location = new System.Drawing.Point(16, 61);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 12);
             this.label2.TabIndex = 2;
@@ -63,7 +63,7 @@
             // 
             // tb_userID
             // 
-            this.tb_userID.Location = new System.Drawing.Point(246, 161);
+            this.tb_userID.Location = new System.Drawing.Point(74, 58);
             this.tb_userID.Name = "tb_userID";
             this.tb_userID.PasswordChar = '?';
             this.tb_userID.Size = new System.Drawing.Size(119, 22);
@@ -71,7 +71,7 @@
             // 
             // btn_login
             // 
-            this.btn_login.Location = new System.Drawing.Point(209, 205);
+            this.btn_login.Location = new System.Drawing.Point(94, 99);
             this.btn_login.Name = "btn_login";
             this.btn_login.Size = new System.Drawing.Size(75, 23);
             this.btn_login.TabIndex = 4;
@@ -81,7 +81,7 @@
             // 
             // btn_viewer
             // 
-            this.btn_viewer.Location = new System.Drawing.Point(364, 160);
+            this.btn_viewer.Location = new System.Drawing.Point(192, 57);
             this.btn_viewer.Name = "btn_viewer";
             this.btn_viewer.Size = new System.Drawing.Size(26, 23);
             this.btn_viewer.TabIndex = 5;
@@ -92,7 +92,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(235, 146);
             this.Controls.Add(this.btn_viewer);
             this.Controls.Add(this.btn_login);
             this.Controls.Add(this.tb_userID);

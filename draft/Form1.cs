@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -16,6 +15,8 @@ using MySqlX.XDevAPI.Common;
 using System.Data.SqlClient;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Data.Common;
+using System.Runtime.InteropServices;
+using Microsoft.Office.Interop.Excel;
 
 namespace JSONandSQL
 {
@@ -34,57 +35,79 @@ namespace JSONandSQL
         private string APIkey = "$2b$10$l5EyYl0U3FvpMQULZaPjX.uPNB86iNFrnKVtTLDMLVu3DuDweIxHi";
 
         DateTime dateTime = DateTime.Now;
-
+        private string student_id;
+        public void setStudent(string thisstudent_id)
+        {
+            this.student_id=thisstudent_id;
+        }
+        public string getStudent()
+        {
+            return student_id;
+        }
         private void btn_addJSONbin_Click(object sender, EventArgs e)
         {
-
-            WebResponse myResp;
-            WebRequest myReq;
-            myReq = WebRequest.Create("https://api.jsonbin.io/v3/b");
-            myReq.Method = "POST";
-            myReq.ContentType = "application/json";
-
-            myReq.Headers.Add("X-Master-Key", APIkey);
-
-            myReq.Headers.Add("X-Bin-Name", tb_location.Text + "|" + tb_userID.Text + "|" + dateTime.ToString("yyyyMMddHHmmss") );
-            myReq.Headers.Add("X-Collection-Id", collectionID);
-
-            /*
-            connection.Open();
-            string coursesql = "SELECT subject.course_name from subject,testjson,studentinfo where subject.venue="+"\""+tb_location.Text+"\""+" and subject.Weekdays="+"weekday( "+ dateTime.ToString("yyyyMMddHHmmss") +")+1 and time(time("+ dateTime.ToString("yyyyMMddHHmmss") + ") - subject.start_time) < time(24) and (studentinfo.student_id="+"\""+tb_userID.Text+"\""+") and subject.SchoolYear=studentinfo.Year;";
-            MySqlCommand mySqlCommand =new MySqlCommand(coursesql,connection);
-            string _name = (string)mySqlCommand.ExecuteScalar();
-
-            mySqlCommand.Dispose();
-            connection.Close();
-            */
-            string postData = "{\"data\":" + "\"\"}"; //Dummy Json
-            
-            var data = Encoding.ASCII.GetBytes(postData);
-            myReq.ContentLength = data.Length;
-            using (var stream = myReq.GetRequestStream())
+            if (tb_location.Text != string.Empty)
             {
-                stream.Write(data, 0, data.Length);
-            }
-
-            try
-            {
-                myResp = myReq.GetResponse();
-                MessageBox.Show("Success");
-            }
-            catch (WebException ex)
-            {
-                using (var stream = ex.Response.GetResponseStream())
+                connection.Open();
+                string venuecheck = "select * from`subject` where " + "\"" +tb_location.Text+ "\"" + "=venue;";
+                MySqlCommand mySql= new MySqlCommand(venuecheck,connection);
+                MySqlDataReader sqlreader= mySql.ExecuteReader();
+                if (sqlreader.HasRows==true) 
                 {
-                    using (var reader = new StreamReader(stream))
+                    WebResponse myResp;
+                    WebRequest myReq;
+                    myReq = WebRequest.Create("https://api.jsonbin.io/v3/b");
+                    myReq.Method = "POST";
+                    myReq.ContentType = "application/json";
+
+                    myReq.Headers.Add("X-Master-Key", APIkey);
+
+                    myReq.Headers.Add("X-Bin-Name", tb_location.Text + "|" + getStudent().ToString() + "|" + dateTime.ToString("yyyyMMddHHmmss") );
+                    myReq.Headers.Add("X-Collection-Id", collectionID);
+                    string postData = "{\"data\":" + "\"\"}"; //Empty Json
+            
+                    var data = Encoding.ASCII.GetBytes(postData);
+                    myReq.ContentLength = data.Length;
+                    using (var stream = myReq.GetRequestStream())
                     {
-                        string a = reader.ReadToEnd();
-                        MessageBox.Show(a);
-                        Console.WriteLine(reader.ReadToEnd());
+                        stream.Write(data, 0, data.Length);
                     }
+
+                    try
+                    {
+                        myResp = myReq.GetResponse();
+                        MessageBox.Show("Success");
+                    myResp.Close();
+                    }
+                    catch (WebException ex)
+                    {
+                        using (var stream = ex.Response.GetResponseStream())
+                        {
+                            using (var reader = new StreamReader(stream))
+                            {
+                                string a = reader.ReadToEnd();
+                                MessageBox.Show(a);
+                                Console.WriteLine(reader.ReadToEnd());
+                            }
+                        }
+                    }
+                    myReq.Abort();
                 }
+                else
+                {
+                    sqlreader.Close();
+                    mySql.Dispose();
+                    connection.Close();
+                    MessageBox.Show("Please enter your lesson location correctly!");
+                }
+                sqlreader.Close();
+                mySql.Dispose();
+                connection.Close();
             }
-            myReq.Abort();
+            else
+            {
+                MessageBox.Show("Please enter your lesson location!");
+            }
         }
         private void btn_getJSONbin_Click(object sender, EventArgs e)
         {
@@ -151,20 +174,21 @@ namespace JSONandSQL
                 {
                     getData = true;
                 }
+                myResp.Close();
                 myReq.Abort();
             }
 
             Console.WriteLine("Finished!");
             MessageBox.Show("Finished");
-            backup();
+            backUp();
         }
 
         private void btn_toSQL_Click(object sender, EventArgs e)
         {
             connection.Open();
-            string backupformat = tb_result.Text.Replace("\r\n", "_");
-            string trying = backupformat.Substring(0, backupformat.Length - 1);
-            string[] attendrecord = trying.Split('_');
+            string attendformat = tb_result.Text.Replace("\r\n", "_");
+            string att = attendformat.Substring(0, attendformat.Length - 1);
+            string[] attendrecord = att.Split('_');
             string SQL = "";
             string sqlhead = "insert into `testjson` values";
             string valueshead = "("+"\"null\"" + "," + "\"";
@@ -252,7 +276,7 @@ namespace JSONandSQL
                 {
                     myResp = myReq.GetResponse();
                     MessageBox.Show("Delete Success");
-                myResp.Close();
+                    myResp.Close();
                 }
                 catch (WebException ex)
                 {
@@ -269,9 +293,9 @@ namespace JSONandSQL
             myReq.Abort();
         }
 
-        private void backup()
+        private void backUp()
         {
-            if (tb_resultData.Text != string.Empty)
+            if (tb_resultData.Text != String.Empty)
             {
             WebResponse myResp;
             WebRequest myReq;
@@ -282,20 +306,10 @@ namespace JSONandSQL
             myReq.Headers.Add("X-Master-Key", APIkey);
 
             myReq.Headers.Add("X-Bin-Name", "backUp");
-            //myReq.Headers.Add("X-Collection-Id", collectionID);
-
-            /*
-            connection.Open();
-            string coursesql = "SELECT subject.course_name from subject,testjson,studentinfo where subject.venue="+"\""+tb_location.Text+"\""+" and subject.Weekdays="+"weekday( "+ dateTime.ToString("yyyyMMddHHmmss") +")+1 and time(time("+ dateTime.ToString("yyyyMMddHHmmss") + ") - subject.start_time) < time(24) and (studentinfo.student_id="+"\""+tb_userID.Text+"\""+") and subject.SchoolYear=studentinfo.Year;";
-            MySqlCommand mySqlCommand =new MySqlCommand(coursesql,connection);
-            string _name = (string)mySqlCommand.ExecuteScalar();
-
-            mySqlCommand.Dispose();
-            connection.Close();
-            */
+            
             string backupformat=tb_resultData.Text.Replace("\r\n", "_");
-            string trying=backupformat.Substring(0, backupformat.Length - 1);
-            string[] datarecord= trying.Split('_');
+            string backup=backupformat.Substring(0, backupformat.Length - 1);
+            string[] datarecord= backup.Split('_');
             string postData = "";
             string postDatahead = "{" + "\"";
             string postDatamid = "\"" + ":" + "\"";
@@ -326,8 +340,6 @@ namespace JSONandSQL
                     }
                 }
             }
-            //string postData = "{" + "\"" + "data" + "\"" + ":" + "\"" + datarecord.Length + "\"}"; //Dummy Json
-
             var data = Encoding.ASCII.GetBytes(postData);
             myReq.ContentLength = data.Length;
             using (var stream = myReq.GetRequestStream())
@@ -363,58 +375,232 @@ namespace JSONandSQL
         private void btn_excel_Click(object sender, EventArgs e)
         {
             connection.Open();
-            string coursesql = "SELECT subject.course_name from subject,testjson,studentinfo where subject.venue="+"\""+tb_location.Text+"\""+" and subject.Weekdays="+"weekday( "+ dateTime.ToString("yyyyMMddHHmmss") +")+1 and (studentinfo.student_id="+"\""+tb_userID.Text+"\""+") and subject.SchoolYear=studentinfo.Year;";
-
-            //string coursesql = "SELECT subject.course_name from subject,testjson,studentinfo where subject.venue="+"\""+tb_location.Text+"\""+" and subject.Weekdays="+"weekday( "+ dateTime.ToString("yyyyMMddHHmmss") +")+1 and time(time("+ dateTime.ToString("yyyyMMddHHmmss") + ") - subject.start_time) <= time(1) and (studentinfo.student_id="+"\""+tb_userID.Text+"\""+") and subject.SchoolYear=studentinfo.Year;";
-            MySqlCommand mySqlCommand =new MySqlCommand(coursesql,connection);
-            string _name = (string)mySqlCommand.ExecuteScalar();
-            tb_subject.Text = _name;
-            mySqlCommand.Dispose();
-            connection.Close();
-            /* verifiy student 
-            connection.Open();
-            string data = "SELECT * FROM studentinfo , testjson WHERE ("+"\""+ tb_userID.Text + "\"" + "=studentinfo.student_id);  ";
-            MySqlCommand cmd = new MySqlCommand(data, connection);
+            string sql = "SELECT *,count(*) as ontime FROM `testjson`,`subject` WHERE  time(time(testjson.time) - subject.start_time) <= time(1) and testjson.weekday=subject.Weekdays;";
+            MySqlCommand cmd = new MySqlCommand(sql, connection);
             MySqlDataReader datareader = cmd.ExecuteReader();
             var Excelapp = new Excel.Application();
+            Excelapp.Visible = true;
+            Excel.Workbook workBook = Excelapp.Workbooks.Add();
+            Excel.Worksheet worksheet = Excelapp.ActiveSheet;
 
             if (datareader.HasRows == true)
             {
-                Excelapp.Visible = true;                   
-                Excel.Workbook workBook = Excelapp.Workbooks.Add();
-                Excel.Worksheet worksheet = Excelapp.ActiveSheet;
-                worksheet.Name = "test";
+                worksheet.Name = "subject";
                 var datarow = 2;
                 while (datareader.Read())
                 {
-                    worksheet.Cells[datarow, 1] = datareader["Student_Name"];
-                    worksheet.Cells[datarow, 2] = datareader["time"];
+                    worksheet.Cells[datarow, 1] = datareader["ontime"];
+                    worksheet.Cells[datarow, 2] = datareader["course_name"];
                 }
+                worksheet.Columns.AutoFit();
+                worksheet.Rows.AutoFit();
             }
             datareader.Close();
             cmd.Dispose();
-            connection.Close();
-
-            /*
-            object Nothing = System.Reflection.Missing.Value;
-            var app = new Microsoft.Office.Interop.Excel.Application();
-            app.Visible = true;
-            Microsoft.Office.Interop.Excel.Workbook workBook = app.Workbooks.Add(Nothing);
-            Microsoft.Office.Interop.Excel.Worksheet worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workBook.Sheets[1];
-            worksheet.Name = "WorkSheet";
-            // Write data
-            worksheet.Cells[1, 1] = "FileName";
-            worksheet.Cells[1, 2] = "FindString";
-            worksheet.Cells[1, 3] = "ReplaceString";
-            // Show save file dialog
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            Excel.Worksheet worksheet1 = workBook.Worksheets.Add();
+            worksheet1.Name = "Year1 Students";
+            string year1student = "Select student_id,Student_Name from `studentinfo` where year= 1;";
+            MySqlCommand y1cmd = new MySqlCommand(year1student, connection);
+            MySqlDataReader dataReader = y1cmd.ExecuteReader();
+            if (dataReader.HasRows == true)
             {
-                worksheet.SaveAs(saveFileDialog.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlNoChange, Type.Missing, Type.Missing, Type.Missing);
-                workBook.Close(false, Type.Missing, Type.Missing);
-                app.Quit();
+                var datarow = 2;
+                for (int i = 0; i < dataReader.FieldCount; i++)
+                {
+                    worksheet1.Cells[1, i + 1] = dataReader.GetName(i);
+                    while (dataReader.Read())
+                    {
+                        worksheet1.Cells[datarow, 1] = dataReader["student_id"];
+                        worksheet1.Cells[datarow, 2] = dataReader["student_Name"];
+                        datarow++;
+                    }
+                }
+                worksheet1.Columns.AutoFit();
+                worksheet1.Rows.AutoFit();
             }
-            */
+            dataReader.Close();
+            y1cmd.Dispose();
+            Excel.Worksheet worksheet2 = workBook.Worksheets.Add();
+            worksheet2.Name = "Year2 Students";
+            string year2student = "Select student_id,Student_Name from `studentinfo` where year= 2;";
+            MySqlCommand y2cmd = new MySqlCommand(year2student, connection);
+            MySqlDataReader data = y2cmd.ExecuteReader();
+            if (data.HasRows == true)
+            {
+                var datarow = 2;
+                for (int i = 0; i < data.FieldCount; i++)
+                {
+                    worksheet2.Cells[1, i + 1] = data.GetName(i);
+                    while (data.Read())
+                    {
+                        worksheet2.Cells[datarow, 1] = data["student_id"];
+                        worksheet2.Cells[datarow, 2] = data["student_Name"];
+                        datarow++;
+                    }
+                }
+                worksheet2.Columns.AutoFit();
+                worksheet2.Rows.AutoFit();
+            }
+            data.Close();
+            y2cmd.Dispose();
+            string coursesql = "SELECT subject.course_name from subject,testjson,studentinfo where subject.venue=" + "\"" + "MUC508" + "\"" + " and subject.Weekdays=" + "weekday( " + dateTime.ToString("yyyyMMddHHmmss") + ")+1 and time(time(" + dateTime.ToString("yyyyMMddHHmmss") + ") - subject.start_time) <= time(1) and (studentinfo.student_id=testjson.student) and subject.SchoolYear=studentinfo.Year;";
+            MySqlCommand mySqlCommand = new MySqlCommand(coursesql, connection);
+            string _name = (string)mySqlCommand.ExecuteScalar();
+            mySqlCommand.Dispose();
+
+            connection.Close();
+            workBook.SaveAs(Environment.CurrentDirectory + @"\courseReport.xlsx");
+            Marshal.ReleaseComObject(Excelapp.Workbooks);
+        //Excelapp.Quit();
         }
     }
 }
+
+/*
+
+//INSERT INTO `rawdata` (`id`, `userID`, `dateStamp`, `scanQR`, `location`) VALUES (NULL, 'hkct001', '20211216140501', '001', NULL);
+
+        private void button2_Click_1(object sender, EventArgs e)
+{
+    string connectorString = "server=localhost;User Id=root;password=";
+    MySqlConnection myConnnect = new MySqlConnection(connectorString);
+    myConnnect.Open();
+    MySqlCommand myCmd = new MySqlCommand("CREATE DATABASE IF NOT EXISTS db1", myConnnect);
+    myCmd.ExecuteNonQuery();
+    myCmd.Dispose();
+    myConnnect.Close();
+    connectorString = "server=localhost;User Id=root;password=;Database=db1";
+    myConnnect = new MySqlConnection(connectorString);
+    myConnnect.Open();
+    String create = "CREATE TABLE IF NOT EXISTS `db1`.`attendance` ( `ID` INT NOT NULL AUTO_INCREMENT , `studentID` VARCHAR(255) NOT NULL , `time` VARCHAR(255) NOT NULL , `room` VARCHAR(255) NOT NULL , PRIMARY KEY (`ID`))";
+    myCmd = new MySqlCommand(create, myConnnect);
+    myCmd.ExecuteNonQuery();
+    myCmd.Dispose();
+    myConnnect.Close();
+    String SQL = "";
+    SQL = "SELECT `attendance`.`ID`,`reference`.`name`,`reference`.`groupAB`,`attendance`.`time`,`attendance`.`room` FROM `attendance`,`reference` WHERE `attendance`.`studentID` = `reference`.`studentID` AND `attendance`.`time` LIKE '" + getdate.Value.Date.ToString("yyyyMM") + "%' ORDER BY `attendance`.`ID`";
+    myConnnect.Open();
+    myCmd = new MySqlCommand(SQL, myConnnect);
+    MySqlDataReader data = myCmd.ExecuteReader();
+    int read = 0;
+    //String result = "";
+    Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+    if (excel == null) { MessageBox.Show("Excel not found"); return; }
+    Workbook workbook1 = excel.Workbooks.Add();
+    workbook1.Worksheets.Add();
+    Worksheet worksheet1 = workbook1.Worksheets.get_Item(1);
+    Worksheet worksheet2 = workbook1.Worksheets.get_Item(2);
+    worksheet1.Name = "raw_data";
+    worksheet2.Name = "attendance";
+    worksheet1.Cells[1, 1] = "ID";
+    worksheet1.Cells[1, 2] = "name";
+    worksheet1.Cells[1, 3] = "group";
+    worksheet1.Cells[1, 4] = "time";
+    worksheet1.Cells[1, 5] = "room";
+    int i = 2;
+
+    while (data.Read())
+    {
+        //MessageBox.Show(data["id"] + ". studentID = " + data["studentID"] +" time = " + data["time"]+" room = " + data["room"]);
+        //result += data["id"] + ". studentID = " + data["studentID"] + " time = " + data["time"] + " room = " + data["room"] + "\n";
+        read++;
+        worksheet1.Cells[i, 1] = data["id"];
+        worksheet1.Cells[i, 2] = data["name"];
+        worksheet1.Cells[i, 3] = data["groupAB"];
+        worksheet1.Cells[i, 4] = DateTime.ParseExact(data["time"].ToString(), "yyyyMMddHHmmss", new CultureInfo("fr-FR"));
+        worksheet1.Cells[i, 5] = data["room"];
+        i++;
+    }
+    if (read == 0)
+    {
+        MessageBox.Show("Data not found");
+    }
+    else
+    {
+        data.Close();
+        myCmd.Dispose();
+
+        SQL = "SELECT `time` FROM `class` WHERE `time` LIKE '" + getdate.Value.Date.ToString("yyyyMM") + "%'";
+        myCmd = new MySqlCommand(SQL, myConnnect);
+        data = myCmd.ExecuteReader();
+        int j = 2;
+        List<String> date = new List<string>();
+        while (data.Read())
+        {
+            date.Add(data["time"].ToString());
+            worksheet2.Cells[1, j] = DateTime.ParseExact(data["time"].ToString(), "yyyyMMdd", new CultureInfo("fr-FR")).ToString("yyyy/MM/dd");
+            j++;
+        }
+        data.Close();
+        myCmd.Dispose();
+        SQL = "SELECT `name` FROM `reference`";
+        myCmd = new MySqlCommand(SQL, myConnnect);
+        data = myCmd.ExecuteReader();
+        int k = 2;
+        List<String> name = new List<string>();
+        while (data.Read())
+        {
+            worksheet2.Cells[k, 1] = data["name"];
+            name.Add(data["name"].ToString());
+            k++;
+        }
+        data.Close();
+        myCmd.Dispose();
+        int d = 0;
+        int n = 0;
+        for (; d < date.Count(); d++)
+        {
+            n = 0;
+            for (; n < name.Count(); n++)
+            {
+                SQL = "SELECT `reference`.`name`,`attendance`.`time`,`attendance`.`room` FROM `attendance`,`reference`,`class` WHERE DAYOFYEAR(`attendance`.`time`) = DAYOFYEAR(`class`.`time`) AND DAYOFYEAR(`class`.`time`) = DAYOFYEAR('" + date[d] + "') AND `attendance`.`room` = `class`.`room` AND `attendance`.`studentID` = `reference`.`studentID` AND `reference`.`name` = '" + name[n] + "'";
+                myCmd = new MySqlCommand(SQL, myConnnect);
+                data = myCmd.ExecuteReader();
+                if (data.Read() == true)
+                {
+                    worksheet2.Cells[n + 2, d + 2] = "v";
+                }
+                myCmd.Dispose();
+                data.Dispose();
+                data.Close();
+            }
+        }
+        worksheet2.Cells[1, d + 2] = "attendance_rate";
+        n = 0;
+        char R = 'B';
+        char R2 = R;
+        for (int z = 0; z < d - 1; z++)
+        {
+            R2++;
+        }
+        for (; n < name.Count(); n++)
+        {
+            R = 'B';
+            worksheet2.Cells[n + 2, d + 2] = "=(COUNTA(" + R + (n + 2) + ":" + R2 + (n + 2) + ")/COUNTA(" + R + "1:" + R2 + "1))*100";
+            R++;
+        }
+
+        //MessageBox.Show(result);
+        workbook1.SaveAs(Environment.CurrentDirectory + @"\Report_generated_at_" + DateTime.Now.ToString("yyyyMMdd") + ".xlsx");
+        MessageBox.Show("Excel generated");
+    }
+    Range range1 = worksheet1.UsedRange;
+    Range range2 = worksheet2.UsedRange;
+
+    Marshal.ReleaseComObject(worksheet1);
+    Marshal.ReleaseComObject(worksheet2);
+    Marshal.ReleaseComObject(range1);
+    workbook1.Close(false);
+    Marshal.ReleaseComObject(workbook1);
+    Marshal.ReleaseComObject(excel.Workbooks);
+    excel.Quit();
+    Marshal.ReleaseComObject(excel);
+    data.Close();
+    myCmd.Dispose();
+    myConnnect.Close();
+    GC.Collect();
+    GC.WaitForPendingFinalizers();
+}
+    }
+}
+*/
