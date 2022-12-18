@@ -453,6 +453,13 @@ namespace JSONandSQL
             Marshal.ReleaseComObject(Excelapp.Workbooks);
         //Excelapp.Quit();
         }
+
+        private void btn_logout_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Form3 login = new Form3();
+            login.Show();
+        }
     }
 }
 

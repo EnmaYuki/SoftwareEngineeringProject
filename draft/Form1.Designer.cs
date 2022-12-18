@@ -39,6 +39,7 @@
             this.tb_result = new System.Windows.Forms.TextBox();
             this.btn_toSQL = new System.Windows.Forms.Button();
             this.btn_excel = new System.Windows.Forms.Button();
+            this.btn_logout = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btn_addJSONbin
@@ -148,11 +149,23 @@
             this.btn_excel.UseVisualStyleBackColor = true;
             this.btn_excel.Click += new System.EventHandler(this.btn_excel_Click);
             // 
+            // btn_logout
+            // 
+            this.btn_logout.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.btn_logout.Location = new System.Drawing.Point(647, 33);
+            this.btn_logout.Name = "btn_logout";
+            this.btn_logout.Size = new System.Drawing.Size(86, 35);
+            this.btn_logout.TabIndex = 32;
+            this.btn_logout.Text = "logout";
+            this.btn_logout.UseVisualStyleBackColor = true;
+            this.btn_logout.Click += new System.EventHandler(this.btn_logout_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(804, 263);
+            this.Controls.Add(this.btn_logout);
             this.Controls.Add(this.btn_excel);
             this.Controls.Add(this.btn_addJSONbin);
             this.Controls.Add(this.btn_getJSONbin);
@@ -185,6 +198,7 @@
         private System.Windows.Forms.TextBox tb_result;
         private System.Windows.Forms.Button btn_toSQL;
         private System.Windows.Forms.Button btn_excel;
+        private System.Windows.Forms.Button btn_logout;
     }
 }
 
