@@ -17,6 +17,7 @@ using Excel = Microsoft.Office.Interop.Excel;
 using System.Data.Common;
 using System.Runtime.InteropServices;
 using Microsoft.Office.Interop.Excel;
+using System.Numerics;
 
 namespace JSONandSQL
 {
@@ -38,21 +39,36 @@ namespace JSONandSQL
         private string student_id;
         public void setStudent(string thisstudent_id)
         {
-            this.student_id=thisstudent_id;
+            this.student_id = thisstudent_id;
         }
         public string getStudent()
         {
             return student_id;
         }
+        //Select studentinfo.student_id,studentinfo.Student_Name,time(testjson.time) as time,subject.start_time, time(testjson.time-subject.start_time) as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and testjson.time BETWEEN "19:00:00" AND "01:00:00";
         private void btn_addJSONbin_Click(object sender, EventArgs e)
         {
-            if (tb_location.Text != string.Empty)
+            /*
+            if (cb_studentyear.SelectedItem.ToString() == "1")
+            {
+            }
+            else if (cb_hour.SelectedItem.ToString() == "2")
+            {
+            }
+            else if (level_picker.SelectedItem.ToString() == "Hard")
+            {
+            }
+            player = tb_name.Text + " (" + level_picker.SelectedItem.ToString() + ")";
+            playerS = player;
+            Hide();
+            */
+            if (cb_hour.SelectedItem.ToString() != string.Empty)
             {
                 connection.Open();
-                string venuecheck = "select * from`subject` where " + "\"" +tb_location.Text+ "\"" + "=venue;";
-                MySqlCommand mySql= new MySqlCommand(venuecheck,connection);
-                MySqlDataReader sqlreader= mySql.ExecuteReader();
-                if (sqlreader.HasRows==true) 
+                string venuecheck = "select * from`subject` where " + "\"" + cb_courseid.SelectedItem.ToString() + "\"" + "=id;";
+                MySqlCommand mySql = new MySqlCommand(venuecheck, connection);
+                MySqlDataReader sqlreader = mySql.ExecuteReader();
+                if (sqlreader.HasRows == true)
                 {
                     WebResponse myResp;
                     WebRequest myReq;
@@ -62,10 +78,10 @@ namespace JSONandSQL
 
                     myReq.Headers.Add("X-Master-Key", APIkey);
 
-                    myReq.Headers.Add("X-Bin-Name", tb_location.Text + "|" + getStudent().ToString() + "|" + dateTime.ToString("yyyyMMddHHmmss") );
+                    myReq.Headers.Add("X-Bin-Name", cb_courseid.SelectedItem.ToString() + "|" + getStudent().ToString() + "|" + dateTime.ToString("yyyyMMdd"+cb_hour.SelectedItem.ToString()+"mmss"));
                     myReq.Headers.Add("X-Collection-Id", collectionID);
                     string postData = "{\"data\":" + "\"\"}"; //Empty Json
-            
+
                     var data = Encoding.ASCII.GetBytes(postData);
                     myReq.ContentLength = data.Length;
                     using (var stream = myReq.GetRequestStream())
@@ -78,7 +94,7 @@ namespace JSONandSQL
                         myResp = myReq.GetResponse();
                         Console.WriteLine("Add Success");
                         //MessageBox.Show("Add Success");
-                    myResp.Close();
+                        myResp.Close();
                     }
                     catch (WebException ex)
                     {
@@ -152,7 +168,7 @@ namespace JSONandSQL
                             count += 1;
                             String[] s = item.ToString().Split('"');
                             Console.WriteLine(count + loopCount * 10 + ": " + s[3]);
-                            tb_result.Text +="|" + s[3] + Environment.NewLine;// add bin id
+                            tb_result.Text += "|" + s[3] + Environment.NewLine;// add bin id
                             tb_resultKey.Text += count + loopCount * 10 + ": " + s[3] + Environment.NewLine;
                             lastRecordID = s[3];
                         }
@@ -162,7 +178,7 @@ namespace JSONandSQL
                             var s = item.ToString().Split('"');
                             Console.WriteLine(count + loopCount * 10 + 1 + ": " + s[5]); // name = charles@hkua.org|202108311730|001|22.121213,114.123456
                             tb_resultData.Text += count + loopCount * 10 + 1 + ": " + s[5] + Environment.NewLine;
-                            tb_result.Text +=s[5];
+                            tb_result.Text += s[5];
                         }
                     }
                 }
@@ -191,8 +207,8 @@ namespace JSONandSQL
             string att = attendformat.Substring(0, attendformat.Length - 1);
             string[] attendrecord = att.Split('_');
             string SQL = "";
-            string sqlhead = "insert into `testjson` values";
-            string valueshead = "("+"\"null\"" + "," + "\"";
+            string sqlhead = "insert into testjson (student,weekday,time,Venue) values";
+            string valueshead = "(" + "\"";
             string valuesmidend = "\"" + ",";
             string valuesmidstart = "," + "\"";
             string valuesmid = "\"" + "," + "\"";
@@ -206,7 +222,7 @@ namespace JSONandSQL
                 string[] attenddata = attendrecord[i].Split('|');
                 if (i == 0 && i == attendrecord.Length - 1)
                 {
-                    SQL = sqlhead + valueshead + attenddata[1]+ valuesmidend+ "weekday(\"" + attenddata[2] + "\")+1" + valuesmidstart+ attenddata[2]+ valuesmid + attenddata[0] + valuesend + sqltail;
+                    SQL = sqlhead + valueshead + attenddata[1] + valuesmidend + "weekday(\"" + attenddata[2] + "\")+1" + valuesmidstart + attenddata[2] + valuesmid + attenddata[0] + valuesend + sqltail;
                 }
                 else
                 {
@@ -251,9 +267,9 @@ namespace JSONandSQL
         }
         private void deleteBin(string bin_id)
         {
-            if(bin_id.Contains("\r\n")) 
+            if (bin_id.Contains("\r\n"))
             {
-                bin_id=bin_id.Replace("\r\n"," ").Trim();
+                bin_id = bin_id.Replace("\r\n", " ").Trim();
             }
             else if (bin_id.Contains("\r"))
             {
@@ -267,94 +283,24 @@ namespace JSONandSQL
             {
                 bin_id = bin_id.Trim();
             }
-                WebResponse myResp;
-                WebRequest myReq;
-                myReq = WebRequest.Create("https://api.jsonbin.io/v3/b/" +bin_id);
-                myReq.Method = "DELETE";
-                myReq.ContentType = "application/json";
-                myReq.Headers.Add("X-Master-Key", APIkey);
-
-                try
-                {
-                    myResp = myReq.GetResponse();
-                Console.WriteLine("Delete Success");
-                //MessageBox.Show("Delete Success");
-                    myResp.Close();
-                }
-                catch (WebException ex)
-                {
-                MessageBox.Show("Delete Fail");
-                using (var stream = ex.Response.GetResponseStream())
-                    {
-                        using (var reader = new StreamReader(stream))
-                        {
-                            string a = reader.ReadToEnd();
-                            MessageBox.Show(a);
-                            Console.WriteLine(reader.ReadToEnd());
-                        }
-                    }
-                }
-            myReq.Abort();
-        }
-        private void backUp()
-        {
-            if (tb_resultData.Text != String.Empty)
-            {
             WebResponse myResp;
             WebRequest myReq;
-            myReq = WebRequest.Create("https://api.jsonbin.io/v3/b");
-            myReq.Method = "POST";
+            myReq = WebRequest.Create("https://api.jsonbin.io/v3/b/" + bin_id);
+            myReq.Method = "DELETE";
             myReq.ContentType = "application/json";
             myReq.Headers.Add("X-Master-Key", APIkey);
-            myReq.Headers.Add("X-Bin-Name", "backUp");
-            string backupformat=tb_resultData.Text.Replace("\r\n", "_");
-            string backup=backupformat.Substring(0, backupformat.Length - 1);
-            string[] datarecord= backup.Split('_');
-            string postData = "";
-            string postDatahead = "{" + "\"";
-            string postDatamid = "\"" + ":" + "\"";
-            string postDatatail = "\"" + "}";
-            string postDatasplit = "\"";
-            for(int i = 0; i < datarecord.Length; i++)
-            {
-                string[] recorddata = datarecord[i].Split(':');
-                if (i == 0 && i == datarecord.Length - 1)
-                {
-                    postData = postDatahead + recorddata[0] + postDatamid + recorddata[1].Trim() + postDatatail;
-                }
-                else
-                {
-                    if (i==0 && i != datarecord.Length - 1) 
-                    {
-                        postData =postDatahead + recorddata[0] + postDatamid + recorddata[1].Trim()+postDatasplit;
-                    }
-                    else if (i == datarecord.Length - 1)
-                    {
-                        postData+=","+ postDatasplit+recorddata[0] + postDatamid + recorddata[1].Trim() + postDatatail;
-                    }
-                    else 
-                    {
-                        postData += "," + postDatasplit + recorddata[0] + postDatamid + recorddata[1].Trim() + postDatasplit;
-                    }
-                }
-            }
-            var data = Encoding.ASCII.GetBytes(postData);
-            myReq.ContentLength = data.Length;
-            using (var stream = myReq.GetRequestStream())
-            {
-                stream.Write(data, 0, data.Length);
-            }
+
             try
             {
                 myResp = myReq.GetResponse();
-                Console.WriteLine("Backup Success");
-                //MessageBox.Show("Backup Success");
+                Console.WriteLine("Delete Success");
+                //MessageBox.Show("Delete Success");
                 myResp.Close();
             }
             catch (WebException ex)
             {
-                    MessageBox.Show("Back up fail");
-                    using (var stream = ex.Response.GetResponseStream())
+                MessageBox.Show("Delete Fail");
+                using (var stream = ex.Response.GetResponseStream())
                 {
                     using (var reader = new StreamReader(stream))
                     {
@@ -365,6 +311,76 @@ namespace JSONandSQL
                 }
             }
             myReq.Abort();
+        }
+        private void backUp()
+        {
+            if (tb_resultData.Text != String.Empty)
+            {
+                WebResponse myResp;
+                WebRequest myReq;
+                myReq = WebRequest.Create("https://api.jsonbin.io/v3/b");
+                myReq.Method = "POST";
+                myReq.ContentType = "application/json";
+                myReq.Headers.Add("X-Master-Key", APIkey);
+                myReq.Headers.Add("X-Bin-Name", "backUp");
+                string backupformat = tb_resultData.Text.Replace("\r\n", "_");
+                string backup = backupformat.Substring(0, backupformat.Length - 1);
+                string[] datarecord = backup.Split('_');
+                string postData = "";
+                string postDatahead = "{" + "\"";
+                string postDatamid = "\"" + ":" + "\"";
+                string postDatatail = "\"" + "}";
+                string postDatasplit = "\"";
+                for (int i = 0; i < datarecord.Length; i++)
+                {
+                    string[] recorddata = datarecord[i].Split(':');
+                    if (i == 0 && i == datarecord.Length - 1)
+                    {
+                        postData = postDatahead + recorddata[0] + postDatamid + recorddata[1].Trim() + postDatatail;
+                    }
+                    else
+                    {
+                        if (i == 0 && i != datarecord.Length - 1)
+                        {
+                            postData = postDatahead + recorddata[0] + postDatamid + recorddata[1].Trim() + postDatasplit;
+                        }
+                        else if (i == datarecord.Length - 1)
+                        {
+                            postData += "," + postDatasplit + recorddata[0] + postDatamid + recorddata[1].Trim() + postDatatail;
+                        }
+                        else
+                        {
+                            postData += "," + postDatasplit + recorddata[0] + postDatamid + recorddata[1].Trim() + postDatasplit;
+                        }
+                    }
+                }
+                var data = Encoding.ASCII.GetBytes(postData);
+                myReq.ContentLength = data.Length;
+                using (var stream = myReq.GetRequestStream())
+                {
+                    stream.Write(data, 0, data.Length);
+                }
+                try
+                {
+                    myResp = myReq.GetResponse();
+                    Console.WriteLine("Backup Success");
+                    //MessageBox.Show("Backup Success");
+                    myResp.Close();
+                }
+                catch (WebException ex)
+                {
+                    MessageBox.Show("Back up fail");
+                    using (var stream = ex.Response.GetResponseStream())
+                    {
+                        using (var reader = new StreamReader(stream))
+                        {
+                            string a = reader.ReadToEnd();
+                            MessageBox.Show(a);
+                            Console.WriteLine(reader.ReadToEnd());
+                        }
+                    }
+                }
+                myReq.Abort();
             }
             else
             {
@@ -374,7 +390,8 @@ namespace JSONandSQL
         private void btn_excel_Click(object sender, EventArgs e)
         {
             connection.Open();
-            string sql = "SELECT *,count(*) as ontime FROM `testjson`,`subject` WHERE  time(time(testjson.time) - subject.start_time) <= time(1) and testjson.weekday=subject.Weekdays;";
+            // string sql = "SELECT *,count(*) as ontime FROM `testjson`,`subject` WHERE  time(time(testjson.time) - subject.start_time) <= time(1) and testjson.weekday=subject.Weekdays;";
+            string sql = "Select count(student_id) as total from studentinfo where year= 1;";
             MySqlCommand cmd = new MySqlCommand(sql, connection);
             MySqlDataReader datareader = cmd.ExecuteReader();
             var Excelapp = new Excel.Application();
@@ -387,8 +404,7 @@ namespace JSONandSQL
                 var datarow = 2;
                 while (datareader.Read())
                 {
-                    worksheet.Cells[datarow, 1] = datareader["ontime"];
-                    worksheet.Cells[datarow, 2] = datareader["course_name"];
+                    worksheet.Cells[datarow, 1] = datareader["total"];
                 }
                 worksheet.Columns.AutoFit();
                 worksheet.Rows.AutoFit();
@@ -413,6 +429,7 @@ namespace JSONandSQL
                         datarow++;
                     }
                 }
+                //do sth here for year 1 sheet
                 worksheet1.Columns.AutoFit();
                 worksheet1.Rows.AutoFit();
             }
@@ -420,9 +437,12 @@ namespace JSONandSQL
             y1cmd.Dispose();
             Excel.Worksheet worksheet2 = workBook.Worksheets.Add();
             worksheet2.Name = "Year2 Students";
-            string year2student = "Select student_id,Student_Name from `studentinfo` where year= 2;";
+            //string year2student = "Select student_id,Student_Name from `studentinfo` where year= 2;";
+
+            string year2student = "Select studentinfo.student_id,studentinfo.Student_Name,time(testjson.time) as time,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id;";
             MySqlCommand y2cmd = new MySqlCommand(year2student, connection);
             MySqlDataReader data = y2cmd.ExecuteReader();
+            int y2sn = 0;
             if (data.HasRows == true)
             {
                 var datarow = 2;
@@ -433,23 +453,36 @@ namespace JSONandSQL
                     {
                         worksheet2.Cells[datarow, 1] = data["student_id"];
                         worksheet2.Cells[datarow, 2] = data["student_Name"];
+                        worksheet2.Cells[datarow, 3] = data["time"].ToString();
+                        worksheet2.Cells[datarow, 4] = data["start_time"].ToString();
+                        int cdc = Int32.Parse(data["timer"].ToString());
+                        if (cdc < 0) { worksheet2.Cells[datarow, 5] = "OnTime"; }
+                        else { worksheet2.Cells[datarow, 5] = "Late"; }
                         datarow++;
+                        y2sn++;
                     }
                 }
+                //do sth here  year 2 sheet
+
                 worksheet2.Columns.AutoFit();
                 worksheet2.Rows.AutoFit();
             }
+            worksheet2.Cells[y2sn + 5, 1] = "Total student number";
+            worksheet2.Cells[y2sn + 5, 2] = y2sn;
+            y2sn = 0;
+            worksheet2.Columns.AutoFit();
+            worksheet2.Rows.AutoFit();
             data.Close();
             y2cmd.Dispose();
-            string coursesql = "SELECT subject.course_name from subject,testjson,studentinfo where subject.venue=" + "\"" + "MUC508" + "\"" + " and subject.Weekdays=" + "weekday( " + dateTime.ToString("yyyyMMddHHmmss") + ")+1 and time(time(" + dateTime.ToString("yyyyMMddHHmmss") + ") - subject.start_time) <= time(1) and (studentinfo.student_id=testjson.student) and subject.SchoolYear=studentinfo.Year;";
-            MySqlCommand mySqlCommand = new MySqlCommand(coursesql, connection);
-            string _name = (string)mySqlCommand.ExecuteScalar();
-            mySqlCommand.Dispose();
+            //string coursesql = "SELECT subject.course_name from subject,testjson,studentinfo where subject.venue=" + "\"" + "MUC508" + "\"" + " and subject.Weekdays=" + "weekday( " + dateTime.ToString("yyyyMMddHHmmss") + ")+1 and time(time(" + dateTime.ToString("yyyyMMddHHmmss") + ") - subject.start_time) <= time(1) and (studentinfo.student_id=testjson.student) and subject.SchoolYear=studentinfo.Year;";
+            //MySqlCommand mySqlCommand = new MySqlCommand(coursesql, connection);
+            // string _name = (string)mySqlCommand.ExecuteScalar();
+            //mySqlCommand.Dispose();
 
             connection.Close();
             workBook.SaveAs(Environment.CurrentDirectory + @"\courseReport.xlsx");
             Marshal.ReleaseComObject(Excelapp.Workbooks);
-        //Excelapp.Quit();
+            //Excelapp.Quit();
         }
 
         private void btn_logout_Click(object sender, EventArgs e)
