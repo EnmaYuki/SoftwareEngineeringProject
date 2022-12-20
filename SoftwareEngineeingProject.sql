@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 16, 2022 at 08:58 AM
+-- Generation Time: Dec 20, 2022 at 10:33 AM
 -- Server version: 8.0.27
 -- PHP Version: 7.4.26
 
@@ -20,7 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `softwareengineera2`
 --
-CREATE DATABASE IF NOT EXISTS `softwareengineera2` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE DATABASE IF NOT EXISTS `softwareengineera2` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
 USE `softwareengineera2`;
 
 -- --------------------------------------------------------
@@ -33,7 +33,7 @@ DROP TABLE IF EXISTS `attendance`;
 CREATE TABLE IF NOT EXISTS `attendance` (
   `id` int NOT NULL AUTO_INCREMENT,
   `Date` date NOT NULL,
-  `course_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `course_name` varchar(255) NOT NULL,
   `Number_of_student` int DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=142 DEFAULT CHARSET=utf8mb3;
@@ -166,28 +166,59 @@ INSERT INTO `attendance` (`id`, `Date`, `course_name`, `Number_of_student`) VALU
 -- --------------------------------------------------------
 
 --
--- Table structure for table `daytable`
+-- Table structure for table `lessons`
 --
 
-DROP TABLE IF EXISTS `daytable`;
-CREATE TABLE IF NOT EXISTS `daytable` (
-  `WeekDay_ID` int NOT NULL AUTO_INCREMENT,
-  `Day_Name` varchar(10) NOT NULL,
-  PRIMARY KEY (`WeekDay_ID`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
+DROP TABLE IF EXISTS `lessons`;
+CREATE TABLE IF NOT EXISTS `lessons` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `Lesson` int NOT NULL,
+  `Date` date NOT NULL,
+  `courseId` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=37 DEFAULT CHARSET=utf8mb3;
 
 --
--- Dumping data for table `daytable`
+-- Dumping data for table `lessons`
 --
 
-INSERT INTO `daytable` (`WeekDay_ID`, `Day_Name`) VALUES
-(1, 'Monday'),
-(2, 'Tuesday'),
-(3, 'Wednesday'),
-(4, 'Thursday'),
-(5, 'Friday'),
-(6, 'Saturday'),
-(7, 'Sunday');
+INSERT INTO `lessons` (`id`, `Lesson`, `Date`, `courseId`) VALUES
+(1, 1, '2022-12-18', 2),
+(2, 1, '2022-12-08', 3),
+(3, 1, '2022-12-20', 1),
+(4, 1, '2022-12-20', 6),
+(5, 1, '2022-12-14', 4),
+(6, 1, '2022-12-14', 5),
+(7, 2, '2022-12-19', 2),
+(8, 2, '2022-12-09', 3),
+(9, 2, '2022-12-21', 1),
+(10, 2, '2022-12-21', 6),
+(11, 2, '2022-12-15', 4),
+(12, 2, '2022-12-15', 5),
+(13, 3, '2022-12-20', 2),
+(14, 3, '2022-12-10', 3),
+(15, 3, '2022-12-22', 1),
+(16, 3, '2022-12-22', 6),
+(17, 3, '2022-12-16', 4),
+(18, 3, '2022-12-16', 5),
+(19, 4, '2022-12-21', 2),
+(20, 4, '2022-12-11', 3),
+(21, 4, '2022-12-23', 1),
+(22, 4, '2022-12-23', 6),
+(23, 4, '2022-12-17', 4),
+(24, 4, '2022-12-17', 5),
+(25, 5, '2022-12-22', 2),
+(26, 5, '2022-12-12', 3),
+(27, 5, '2022-12-24', 1),
+(28, 5, '2022-12-24', 6),
+(29, 5, '2022-12-18', 4),
+(30, 5, '2022-12-18', 5),
+(31, 6, '2022-12-23', 2),
+(32, 6, '2022-12-13', 3),
+(33, 6, '2022-12-25', 1),
+(34, 6, '2022-12-25', 6),
+(35, 6, '2022-12-19', 4),
+(36, 6, '2022-12-19', 5);
 
 -- --------------------------------------------------------
 
@@ -198,7 +229,7 @@ INSERT INTO `daytable` (`WeekDay_ID`, `Day_Name`) VALUES
 DROP TABLE IF EXISTS `studentinfo`;
 CREATE TABLE IF NOT EXISTS `studentinfo` (
   `student_id` varchar(10) NOT NULL,
-  `Student_Name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Student_Name` varchar(255) NOT NULL,
   `Year` int NOT NULL,
   PRIMARY KEY (`student_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
@@ -208,49 +239,18 @@ CREATE TABLE IF NOT EXISTS `studentinfo` (
 --
 
 INSERT INTO `studentinfo` (`student_id`, `Student_Name`, `Year`) VALUES
-('sn22710143', 'Chan Tai Ming', 1),
-('sn19910144', 'Fung Ming Tai', 1),
-('sn20201189', 'Yuen Lok Ming', 1),
-('sn21899387', 'Lo Dong Lok', 1),
-('sn19342046', 'Lam Doe Jong', 1),
-('sn23769351', 'So Yan Ying', 1),
-('sn22465786', 'Ye Tsz Tsz', 1),
-('sn19810143', 'Cheuk Fung Yuk', 2),
-('sn21540473', 'Kwok Yiu Man', 2),
-('sn20807626', 'Lai Joe Wing', 2),
-('sn21537561', 'Lam Yin Ying Elayne', 2),
-('sn21536159', 'Lau Wing Yan', 2),
-('sn20574118', 'Lee Hiu Ling', 2),
-('sn20812542', 'Lee Hiu Ling', 2),
-('sn20575893', 'Leung Fat Leung', 2),
-('sn20816825', 'Luqman Hamza', 2),
-('sn21539989', 'Mak Ka Yan', 2),
-('sn20813128', 'Ng Chi Ho', 1),
-('sn20819514', 'Ng Ka Ho', 2),
-('sn11075836', 'Ng Yik Lok', 2),
-('sn21562477', 'Sin Ho Yeung', 2),
-('sn21544318', 'So Man Ching', 2),
-('sn20820040', 'To Tsz Yeung', 2),
-('sn20814209', 'Wang Dong Yang', 2),
-('sn21530648', 'Wang Ho Nin', 1),
-('sn21544376', 'Wong Lok Tin', 1),
-('sn21561403', 'Wong Sau Hang', 2),
-('sn20819481', 'Yan Wai Kwok', 2),
-('sn20812641', 'Ye Ping', 2),
-('sn20811495', 'Yuen Chi Ming', 2),
-('sn23568397', 'Lee Ming Ming', 1),
-('sn24393451', 'Mok Ka Yi', 1),
-('sn19548123', 'Mui Mei Kwun', 1),
-('sn21563892', 'Cheung Ming Lok', 1),
-('sn21563920', 'Bai Tin Ming', 1),
-('sn22329501', 'Wong Yat Hei', 1),
-('sn21497021', 'Ng Cheung Yat', 1),
-('sn22092965', 'Lee Ming Shun', 1),
-('sn23504739', 'Yong Tsz Tang', 1),
-('sn22568740', 'Tang Tsz Heng', 1),
-('sn21894574', 'Ho Yu Tin', 1),
-('sn20566982', 'Kwan Tin Sau', 1),
-('sn20665453', 'Wong Yau San', 1);
+('s101', 'Ink', 1),
+('s102', 'Jet', 1),
+('s103', 'Kit', 1),
+('s201', 'Ark', 2),
+('s202', 'Blue', 2),
+('s203', 'Cyan', 2),
+('s204', 'Dark', 2),
+('s205', 'Elf', 2),
+('s104', 'Light', 1),
+('s206', 'Fire', 2),
+('s207', 'Grey', 2),
+('s208', 'Hatred', 2);
 
 -- --------------------------------------------------------
 
@@ -261,36 +261,23 @@ INSERT INTO `studentinfo` (`student_id`, `Student_Name`, `Year`) VALUES
 DROP TABLE IF EXISTS `subject`;
 CREATE TABLE IF NOT EXISTS `subject` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `SchoolYear` int NOT NULL,
-  `course_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `venue` varchar(6) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `Weekdays` int NOT NULL,
+  `course_name` varchar(255) NOT NULL,
   `start_time` time NOT NULL,
   `class size` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb3;
 
 --
 -- Dumping data for table `subject`
 --
 
-INSERT INTO `subject` (`id`, `SchoolYear`, `course_name`, `venue`, `Weekdays`, `start_time`, `class size`) VALUES
-(1, 2, 'Final Year Project', 'MUC508', 4, '10:30:00', 20),
-(2, 2, 'Ionic', 'MUC508', 5, '10:00:00', 20),
-(3, 2, '2D Game Development', 'MUC305', 4, '14:30:00', 20),
-(4, 1, '3D Game Development', 'MUC508', 4, '10:00:00', 25),
-(5, 1, 'Networking', 'MUC508', 6, '14:00:00', 25),
-(6, 1, 'Web Development', 'MUC508', 6, '10:00:00', 25),
-(7, 1, 'Java', 'MUC508', 2, '10:00:00', 25),
-(8, 1, 'OOAD', 'MUC508', 3, '14:00:00', 25),
-(9, 1, 'Database', 'MUC508', 3, '10:00:00', 25),
-(10, 2, 'Android Development', 'MUC305', 6, '14:00:00', 20),
-(11, 2, 'IOS Development', 'MUC209', 5, '14:30:00', 20),
-(12, 2, 'Python', 'MUC505', 6, '10:00:00', 20),
-(13, 2, 'Software Engineering', 'MUC305', 5, '13:30:00', 20),
-(14, 1, 'Mathetatics', 'MUC202', 2, '14:30:00', 25),
-(15, 1, 'English tutorial', 'MUC103', 1, '14:00:00', 25),
-(18, 2, 'English tutorial', 'MUC202', 3, '10:00:00', 20);
+INSERT INTO `subject` (`id`, `course_name`, `start_time`, `class size`) VALUES
+(1, 'Unity', '22:30:00', 8),
+(2, 'ionic', '22:30:00', 8),
+(3, 'CSharp', '22:30:00', 8),
+(4, 'Python', '22:30:00', 8),
+(5, 'Java', '22:30:00', 8),
+(6, 'SQL', '22:30:00', 8);
 
 -- --------------------------------------------------------
 
@@ -301,7 +288,7 @@ INSERT INTO `subject` (`id`, `SchoolYear`, `course_name`, `venue`, `Weekdays`, `
 DROP TABLE IF EXISTS `teacherinfo`;
 CREATE TABLE IF NOT EXISTS `teacherinfo` (
   `teacher_id` varchar(8) NOT NULL,
-  `Teacher_Name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `Teacher_Name` varchar(255) NOT NULL,
   `Greeting` varchar(255) NOT NULL,
   PRIMARY KEY (`teacher_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
@@ -327,11 +314,62 @@ DROP TABLE IF EXISTS `testjson`;
 CREATE TABLE IF NOT EXISTS `testjson` (
   `id` int NOT NULL AUTO_INCREMENT,
   `student` varchar(255) NOT NULL,
-  `weekday` int NOT NULL,
   `time` timestamp NOT NULL,
-  `Venue` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `CourseId` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb3;
+) ENGINE=MyISAM AUTO_INCREMENT=289 DEFAULT CHARSET=utf8mb3;
+
+--
+-- Dumping data for table `testjson`
+--
+
+INSERT INTO `testjson` (`id`, `student`, `time`, `CourseId`) VALUES
+(1, 's201', '2022-12-18 14:33:42', '2'),
+(2, 's202', '2022-12-18 10:34:48', '2'),
+(3, 's203', '2022-12-18 11:52:16', '2'),
+(4, 's204', '2022-12-18 15:51:31', '2'),
+(5, 's205', '2022-12-18 12:34:48', '2'),
+(6, 's206', '2022-12-18 14:23:48', '2'),
+(7, 's207', '2022-12-18 14:23:48', '2'),
+(8, 's208', '2022-12-18 14:33:55', '2'),
+(249, 's202', '2022-12-19 14:33:42', '2'),
+(250, 's201', '2022-12-19 10:34:48', '2'),
+(251, 's203', '2022-12-19 11:52:16', '2'),
+(252, 's205', '2022-12-19 15:51:31', '2'),
+(253, 's204', '2022-12-19 12:34:48', '2'),
+(255, 's207', '2022-12-19 14:23:48', '2'),
+(256, 's208', '2022-12-19 14:33:55', '2'),
+(257, 's201', '2022-12-20 14:33:42', '2'),
+(258, 's202', '2022-12-20 11:34:48', '2'),
+(259, 's203', '2022-12-20 11:52:16', '2'),
+(261, 's205', '2022-12-20 12:34:48', '2'),
+(262, 's206', '2022-12-20 14:23:48', '2'),
+(263, 's207', '2022-12-20 14:23:48', '2'),
+(264, 's208', '2022-12-20 14:33:55', '2'),
+(265, 's201', '2022-12-21 14:33:42', '2'),
+(266, 's202', '2022-12-21 14:50:39', '2'),
+(267, 's203', '2022-12-21 11:52:16', '2'),
+(268, 's204', '2022-12-21 15:51:31', '2'),
+(269, 's205', '2022-12-21 12:34:48', '2'),
+(270, 's206', '2022-12-21 14:23:48', '2'),
+(271, 's207', '2022-12-21 14:23:48', '2'),
+(272, 's208', '2022-12-21 14:33:55', '2'),
+(273, 's202', '2022-12-22 14:33:42', '2'),
+(274, 's201', '2022-12-22 10:34:48', '2'),
+(275, 's203', '2022-12-22 11:52:16', '2'),
+(276, 's205', '2022-12-22 15:51:31', '2'),
+(277, 's204', '2022-12-22 12:34:48', '2'),
+(278, 's206', '2022-12-22 14:23:48', '2'),
+(279, 's207', '2022-12-22 14:23:48', '2'),
+(280, 's208', '2022-12-22 14:33:55', '2'),
+(281, 's201', '2022-12-23 14:33:42', '2'),
+(282, 's202', '2022-12-23 11:34:48', '2'),
+(283, 's203', '2022-12-23 11:52:16', '2'),
+(284, 's204', '2022-12-23 12:51:31', '2'),
+(285, 's205', '2022-12-23 12:34:48', '2'),
+(286, 's206', '2022-12-23 14:23:48', '2'),
+(287, 's207', '2022-12-23 14:23:48', '2'),
+(288, 's208', '2022-12-23 14:33:55', '2');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

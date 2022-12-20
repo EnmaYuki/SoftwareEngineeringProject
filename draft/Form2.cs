@@ -22,6 +22,7 @@ namespace JSONandSQL
         MySqlConnection connection = new MySqlConnection(connectionString);
         private void btn_sql_Click(object sender, EventArgs e)
         {
+            /*
             connection.Open();
             string insertion = "INSERT INTO `subject` values (\"null\"" + "," + "\"" + tb_year.Text + "\"" + "," + "\"" + tb_course.Text + "\"" + "," + "\"" + tb_venue.Text + "\"" + "," + "\"" +tb_weekdays.Text+ "\"" + "," + "\"" + tb_starttime.Text+"\"" + "," + "\"" + tb_size.Text + "\""+");";
             MySqlCommand insertcommand = new MySqlCommand(insertion, connection);
@@ -45,6 +46,7 @@ namespace JSONandSQL
                 MessageBox.Show("Please enter the course information.");
             }
             connection.Close();
+            */
         }
         static void DisplaySqlErrors(SqlException exception)
         {
@@ -54,6 +56,7 @@ namespace JSONandSQL
                     "Error: " + exception.Errors[i].ToString() + "\n");
             }
             Console.ReadLine();
+            
         }
 
         private void btn_back_Click(object sender, EventArgs e)
