@@ -19,6 +19,7 @@ using System.Runtime.InteropServices;
 using Microsoft.Office.Interop.Excel;
 using System.Numerics;
 using System.Security.AccessControl;
+using System.Collections;
 
 namespace JSONandSQL
 {
@@ -36,13 +37,188 @@ namespace JSONandSQL
         private string APIkey = "$2b$10$l5EyYl0U3FvpMQULZaPjX.uPNB86iNFrnKVtTLDMLVu3DuDweIxHi";
         
         private DateTime dateTime;
+
         public List<string> studentList = new List<string>();
 
-        public void setcustomdt(string Y,string M,string D,string H,string m)
+        public void setcustomdt(string H, string m)
         {
-            string customize = Y+"-"+M+"-"+D+" "+H+":"+m+":00";
-            this.dateTime= DateTime.Parse(customize);
+            string Y, M, D="";
+                Y = "2022";
+                M = "12";
+                switch (cb_lesson.SelectedItem.ToString())
+                {
+                    case "1":
+                        {
+                            if (((cb_courseid.SelectedItem.ToString() == "2" || cb_courseid.SelectedItem.ToString() == "3") && cb_studentyear.SelectedItem.ToString() == "All")|| (cb_courseid.SelectedItem.ToString() == "2" && cb_studentyear.SelectedItem.ToString()=="2") || (cb_courseid.SelectedItem.ToString() == "3" &&cb_studentyear.SelectedItem.ToString()=="1") )
+                            {
+                                D = "08";
+                            }
+                            else if ((cb_courseid.SelectedItem.ToString() == "5" && (cb_studentyear.SelectedItem.ToString() == "All" ||cb_studentyear.SelectedItem.ToString( )=="1")) || cb_courseid.SelectedItem.ToString() == "4" )
+                            {
+                                D = "14";
+                            }
+                            else if ((cb_courseid.SelectedItem.ToString() == "1" || cb_courseid.SelectedItem.ToString() == "6") && (cb_studentyear.SelectedItem.ToString() == "All" || cb_studentyear.SelectedItem.ToString() == "2"))
+                            {
+                                D = "20";
+                            }
+                            else
+                            {
+                                MessageBox.Show("Please choose correct couse id for students");
+                            break;
+                        }
+                            break;
+                        }
+                    case "2":
+                        {
+                            if (((cb_courseid.SelectedItem.ToString() == "2" || cb_courseid.SelectedItem.ToString() == "3") && cb_studentyear.SelectedItem.ToString() == "All")|| (cb_courseid.SelectedItem.ToString() == "2" && cb_studentyear.SelectedItem.ToString()=="2") || (cb_courseid.SelectedItem.ToString() == "3" &&cb_studentyear.SelectedItem.ToString()=="1") )
+                            {
+                                D = "09";
+                            }
+                            else if ((cb_courseid.SelectedItem.ToString() == "5" && (cb_studentyear.SelectedItem.ToString() == "All" ||cb_studentyear.SelectedItem.ToString( )=="1")) || cb_courseid.SelectedItem.ToString() == "4" )
+                            {
+                                D = "15";
+                            }
+                            else if ((cb_courseid.SelectedItem.ToString() == "1" || cb_courseid.SelectedItem.ToString() == "6") && (cb_studentyear.SelectedItem.ToString() == "All" || cb_studentyear.SelectedItem.ToString() == "2"))
+                            {
+                                D = "21";
+                            }
+                            else
+                            {
+                                MessageBox.Show("Please choose correct couse id for students");
+                            break;
+                        }
+                            break;
+                        }
+                    case "3":
+                        {
+                            if (((cb_courseid.SelectedItem.ToString() == "2" || cb_courseid.SelectedItem.ToString() == "3") && cb_studentyear.SelectedItem.ToString() == "All")|| (cb_courseid.SelectedItem.ToString() == "2" && cb_studentyear.SelectedItem.ToString()=="2") || (cb_courseid.SelectedItem.ToString() == "3" &&cb_studentyear.SelectedItem.ToString()=="1") )
+                            {
+                                D = "10";
+                            }
+                            else if ((cb_courseid.SelectedItem.ToString() == "5" && (cb_studentyear.SelectedItem.ToString() == "All" ||cb_studentyear.SelectedItem.ToString( )=="1")) || cb_courseid.SelectedItem.ToString() == "4" )
+                            {
+                                D = "16";
+                            }
+                            else if ((cb_courseid.SelectedItem.ToString() == "1" || cb_courseid.SelectedItem.ToString() == "6") && (cb_studentyear.SelectedItem.ToString() == "All" || cb_studentyear.SelectedItem.ToString() == "2"))
+                            {
+                                D = "22";
+                            }
+                            else
+                            {
+                                MessageBox.Show("Please choose correct couse id for students");
+                            break;
+                        }
+                            break;
+                        }
+                    case "4":
+                        {
+                            if (((cb_courseid.SelectedItem.ToString() == "2" || cb_courseid.SelectedItem.ToString() == "3") && cb_studentyear.SelectedItem.ToString() == "All")|| (cb_courseid.SelectedItem.ToString() == "2" && cb_studentyear.SelectedItem.ToString()=="2") || (cb_courseid.SelectedItem.ToString() == "3" &&cb_studentyear.SelectedItem.ToString()=="1") )
+                            {
+                                D = "11";
+                            }
+                            else if ((cb_courseid.SelectedItem.ToString() == "5" && (cb_studentyear.SelectedItem.ToString() == "All" ||cb_studentyear.SelectedItem.ToString( )=="1")) || cb_courseid.SelectedItem.ToString() == "4" )
+                            {
+                                D = "17";
+                            }
+                            else if ((cb_courseid.SelectedItem.ToString() == "1" || cb_courseid.SelectedItem.ToString() == "6") && (cb_studentyear.SelectedItem.ToString() == "All" || cb_studentyear.SelectedItem.ToString() == "2"))
+                            {
+                                D = "23";
+                            }
+                            else
+                            {
+                                MessageBox.Show("Please choose correct couse id for students");
+                            break;
+                        }
+                            break;
+                        }
+                    case "5":
+                        {
+                            if (((cb_courseid.SelectedItem.ToString() == "2" || cb_courseid.SelectedItem.ToString() == "3") && cb_studentyear.SelectedItem.ToString() == "All")|| (cb_courseid.SelectedItem.ToString() == "2" && cb_studentyear.SelectedItem.ToString()=="2") || (cb_courseid.SelectedItem.ToString() == "3" &&cb_studentyear.SelectedItem.ToString()=="1") )
+                            {
+                                D = "12";
+                            }
+                            else if ((cb_courseid.SelectedItem.ToString() == "5" && (cb_studentyear.SelectedItem.ToString() == "All" ||cb_studentyear.SelectedItem.ToString( )=="1")) || cb_courseid.SelectedItem.ToString() == "4" )
+                            {
+                                D = "18";
+                            }
+                            else if ((cb_courseid.SelectedItem.ToString() == "1" || cb_courseid.SelectedItem.ToString() == "6") && (cb_studentyear.SelectedItem.ToString() == "All" || cb_studentyear.SelectedItem.ToString() == "2"))
+                            {
+                                D = "24";
+                            }
+                            else
+                            {
+                                MessageBox.Show("Please choose correct couse id for students");
+                            break;
+                        }
+                            break;
+                        }
+                    case "6":
+                        {
+                            if (((cb_courseid.SelectedItem.ToString() == "2" || cb_courseid.SelectedItem.ToString() == "3") && cb_studentyear.SelectedItem.ToString() == "All")|| (cb_courseid.SelectedItem.ToString() == "2" && cb_studentyear.SelectedItem.ToString()=="2") || (cb_courseid.SelectedItem.ToString() == "3" &&cb_studentyear.SelectedItem.ToString()=="1") )
+                            {
+                                D = "13";
+                            }
+                            else if ((cb_courseid.SelectedItem.ToString() == "5" && (cb_studentyear.SelectedItem.ToString() == "All" ||cb_studentyear.SelectedItem.ToString( )=="1")) || cb_courseid.SelectedItem.ToString() == "4" )
+                            {
+                                D = "19";
+                            }
+                            else if ((cb_courseid.SelectedItem.ToString() == "1" || cb_courseid.SelectedItem.ToString() == "6") && (cb_studentyear.SelectedItem.ToString() == "All" || cb_studentyear.SelectedItem.ToString() == "2"))
+                            {
+                                D = "25";
+                            }
+                            else
+                            {
+                                MessageBox.Show("Please choose correct couse id for students");
+                            break;
+                        }
+                            break;
+                        }
+                    default:
+                        {
+                            MessageBox.Show("Please choose couse id and lesson");
+                        return;
+                    }
+                }
+                string customize = Y + "-" + M + "-" + D + " " + H + ":" + m + ":00";
+                this.dateTime = DateTime.Parse(customize);
         }
+        /*
+         switch (cb_studentyear.SelectedItem.ToString())
+                {
+                    case "1":
+                        {
+                            if (cb_courseid.SelectedItem.ToString() == "4" || cb_courseid.SelectedItem.ToString().ToString() == "5")
+                            {
+                                D = "14";
+                            }
+                            else if (cb_courseid.SelectedItem.ToString() == "3")
+                            {
+                                D = "08";
+                            }
+                            else
+                            {
+                                MessageBox.Show("Please choose the correct couseId");
+                            }
+                            break;
+                        }
+                    case "2":
+                        {
+                            if (cb_courseid.SelectedItem.ToString() == "1" || cb_courseid.SelectedItem.ToString().ToString() == "6")
+                            {
+                                D = "14";
+                            }
+                            else if (cb_courseid.SelectedItem.ToString() == "4")
+                            {
+                                D = "08";
+                            }
+                            else
+                            {
+                                MessageBox.Show("Please choose the correct couseId");
+                            }
+                            break;
+                        }
+                }
+         */
         public DateTime getcustomdt()
         {
             return dateTime;
@@ -59,7 +235,7 @@ namespace JSONandSQL
         private void addstudent()
         {
             connection.Open();
-            if (studentlist.CheckedItems.Count > 0)
+            if (studentlist.CheckedItems.Count >= 0)
             {
                 for (int i = 0; i < studentlist.CheckedItems.Count; i++)
                 {
@@ -79,25 +255,25 @@ namespace JSONandSQL
                     studentreader.Close();
                     cmd.Dispose();
                 }
-            }
             connection.Close();
-            //
-            for (int si = 0; si < studentList.Capacity; si++)
-            {
-                addJSONbin_Click(studentList[si]);
+                for (int si = 0; si<studentList.Count; si++)
+                {
+                    addJSONbin_Click(studentList[si]);
+                }
             }
         }
         //Select studentinfo.student_id,studentinfo.Student_Name,time(testjson.time) as time,subject.start_time, time(testjson.time-subject.start_time) as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and testjson.time BETWEEN "19:00:00" AND "01:00:00";
         private void btn_addJSONbin_Click(object sender, EventArgs e)
         {
-            addstudent();            
+            addstudent();
+            MessageBox.Show("Add Success");
         }
         private void addJSONbin_Click(string students)
         {
-            if (cb_year.SelectedItem.ToString() != string.Empty && cb_month.SelectedItem.ToString() != string.Empty && cb_date.SelectedItem.ToString() != string.Empty && cb_hour.SelectedItem.ToString() != string.Empty && cb_minute.SelectedItem.ToString() != string.Empty)
+            if ( cb_courseid.SelectedItem.ToString() != string.Empty && cb_lesson.SelectedItem.ToString() != string.Empty && cb_hour.SelectedItem.ToString() != string.Empty && cb_minute.SelectedItem.ToString() != string.Empty)
             {
                 connection.Open();
-                setcustomdt(cb_year.SelectedItem.ToString(), cb_month.SelectedItem.ToString(), cb_date.SelectedItem.ToString(), cb_hour.SelectedItem.ToString(), cb_minute.SelectedItem.ToString());
+                setcustomdt(cb_hour.SelectedItem.ToString(), cb_minute.SelectedItem.ToString());
                 string coursecheck = "select * from`subject` where " + "\"" + cb_courseid.SelectedItem.ToString() + "\"" + "=id;";
                 MySqlCommand mySql = new MySqlCommand(coursecheck, connection);
                 MySqlDataReader sqlreader = mySql.ExecuteReader();
@@ -126,7 +302,6 @@ namespace JSONandSQL
                     {
                         myResp = myReq.GetResponse();
                         Console.WriteLine("Add Success");
-                        //MessageBox.Show("Add Success");
                         myResp.Close();
                     }
                     catch (WebException ex)
@@ -157,7 +332,7 @@ namespace JSONandSQL
             }
             else
             {
-                MessageBox.Show("Please enter your lesson location!");
+                MessageBox.Show("Please enter student info!");
             }
         }
         private void btn_getJSONbin_Click(object sender, EventArgs e)
@@ -230,9 +405,9 @@ namespace JSONandSQL
             }
 
             Console.WriteLine("Finished!");
-            //MessageBox.Show("Finished");
+            MessageBox.Show("Finished");
             backUp();
-        } 
+        }
         private void btn_toSQL_Click(object sender, EventArgs e)
         {
             connection.Open();
@@ -240,57 +415,40 @@ namespace JSONandSQL
             string att = attendformat.Substring(0, attendformat.Length - 1);
             string[] attendrecord = att.Split('_');
             string SQL = "";
-            /*
-            string sqlhead = "insert into testjson (student,time,CourseId) values";
-            string valueshead = "(" + "\"";
-            string valuesmidend = "\"" + ",";
-            string valuesmidstart = "," + "\"";
-            string valuesmid = "\"" + "," + "\"";
-            string valuesend = "\"" + ")";
-            string sqltail = ";";
-            */
-
             for (int i = 0; i < attendrecord.Length; i++)
             {
-
                 string[] attenddata = attendrecord[i].Split('|');
-                
-                if (i == 0 && i == attendrecord.Length - 1)
+                if (i == 0 && i != attendrecord.Length - 1)
                 {
-                     SQL = "insert into testjson (student,time,CourseId) values" + "(" + "\"" + attenddata[0] + "\"" + "," + "\"" + attenddata[2] + "\"" + "," + "\"" + attenddata[1] + "\"" + ");";
+                    SQL = "insert into testjson (student,time,CourseId) values" + "(" + "\"" + attenddata[0] + "\"" + "," + "\"" + attenddata[2] + "\"" + "," + "\"" + attenddata[1] + "\"" + ")";
+                }
+                else if (i == attendrecord.Length - 1)
+                {
+                    SQL = "insert into testjson (student,time,CourseId) values" + "(" + "\"" + attenddata[0] + "\"" + "," + "\"" + attenddata[2] + "\"" + "," + "\"" + attenddata[1] + "\"" + "); ";
                 }
                 else
                 {
-                    if (i == 0 && i != attendrecord.Length - 1)
-                    {
-                         SQL = "insert into testjson (student,time,CourseId) values" + "(" + "\"" + attenddata[0] + "\"" + "," + "\"" + attenddata[2] + "\"" + "," + "\"" + attenddata[1] + "\"" + ")";
-                    }
-                    else if (i == attendrecord.Length - 1)
-                    {
-                        SQL += "," +"(" + "\"" + attenddata[0] + "\"" + "," + "\"" + attenddata[2] + "\"" + "," + "\"" + attenddata[1] + "\"" + ");";
-                    }
-                    else
-                    {
-                        SQL += "," + "(" + "\"" + attenddata[0] + "\"" + "," + "\"" + attenddata[2] + "\"" + "," + "\"" + attenddata[1] + "\"" + ")";
-                    }
+                    SQL = "insert into testjson (student,time,CourseId) values" + "(" + "\"" + attenddata[0] + "\"" + "," + "\"" + attenddata[2] + "\"" + "," + "\"" + attenddata[1] + "\"" + "); ";
                 }
-                //SQL = "insert into testjson (student,time,CourseId) values" + "(" + "\"" + attenddata[0] + "\"" + "," + attenddata[2] + "\"" + "," + "\"" + attenddata[1] + "\"" + ");";
-                MySqlCommand command = new MySqlCommand(SQL, connection);
+                MySqlCommand mycommand = new MySqlCommand(SQL, connection);
                 try
                 {
-                    command.ExecuteNonQuery();
+                    mycommand.ExecuteNonQuery();
                     Console.WriteLine("Insert Success");
-                    //MessageBox.Show("Insert Success");
                 }
                 catch (SqlException ex)
                 {
                     DisplaySqlErrors(ex);
                     MessageBox.Show("Insert Fail");
                 }
-                command.Dispose();
+                mycommand.Dispose();
                 deleteBin(attenddata[3]);
             }
             connection.Close();
+            MessageBox.Show("Success insert SQL and delete bin");
+            tb_result.Text = "";
+            tb_resultKey.Text = "";
+            tb_resultData.Text = "";
         }
         private static void DisplaySqlErrors(SqlException exception)
         {
@@ -423,7 +581,6 @@ namespace JSONandSQL
                 MessageBox.Show("There is no data need to back up!", "Unneccessery back up!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
-        
         private void btn_excel_Click(object sender, EventArgs e)
         {
             connection.Open();
@@ -960,8 +1117,6 @@ namespace JSONandSQL
                     }
                 }
                 //do sth here  year 2 sheet
-
-
             }
             ionic71 = "SELECT date(Date) as Date FROM `lessons` WHERE courseId = 2 ORDER BY date(Date)";
             i71cmd = new MySqlCommand(ionic71, connection);
@@ -982,8 +1137,6 @@ namespace JSONandSQL
                     }
                 }
                 //do sth here  year 2 sheet
-
-
             }
             currentWorksheet.Columns.AutoFit();
             currentWorksheet.Rows.AutoFit();
@@ -994,10 +1147,8 @@ namespace JSONandSQL
                 var col = 3;
                 foreach (var date in Datelist)
                 {
-
                     ionic71 = "SELECT testjson.student, testjson.time, testjson.CourseId,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and testjson.student='" + student + "'and date(testjson.time) = date('" + date + "')";
-                    MessageBox.Show(ionic71);
-                    i71cmd = new MySqlCommand(ionic71, connection);
+                   i71cmd = new MySqlCommand(ionic71, connection);
                     data.Close();
                     data = i71cmd.ExecuteReader();
                     if (data.HasRows == true)
@@ -1009,7 +1160,6 @@ namespace JSONandSQL
                             if (cdc < 0) { currentWorksheet.Cells[row, col].Interior.Color = Excel.XlRgbColor.rgbGreen; }
                             else { currentWorksheet.Cells[row, col].Interior.Color = Excel.XlRgbColor.rgbRed; }
                         }
-
                     }
                     else
                     {
@@ -1088,14 +1238,12 @@ namespace JSONandSQL
             Marshal.ReleaseComObject(Excelapp.Workbooks);
             //Excelapp.Quit();
         }
-
         private void btn_logout_Click(object sender, EventArgs e)
         {
             this.Hide();
             Form3 login = new Form3();
             login.Show();
         }
-
         private void btn_getstudent_Click(object sender, EventArgs e)
         {
             if (cb_studentyear.SelectedItem.ToString()=="All")
@@ -1157,9 +1305,9 @@ namespace JSONandSQL
             }
             else
             {
+                MessageBox.Show("No Student!");
             }
         }
-
     }
 }
 
