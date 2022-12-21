@@ -57,7 +57,7 @@
             // btn_addJSONbin
             // 
             this.btn_addJSONbin.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btn_addJSONbin.Location = new System.Drawing.Point(21, 252);
+            this.btn_addJSONbin.Location = new System.Drawing.Point(50, 240);
             this.btn_addJSONbin.Name = "btn_addJSONbin";
             this.btn_addJSONbin.Size = new System.Drawing.Size(117, 23);
             this.btn_addJSONbin.TabIndex = 29;
@@ -68,7 +68,7 @@
             // btn_getJSONbin
             // 
             this.btn_getJSONbin.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btn_getJSONbin.Location = new System.Drawing.Point(217, 252);
+            this.btn_getJSONbin.Location = new System.Drawing.Point(267, 240);
             this.btn_getJSONbin.Name = "btn_getJSONbin";
             this.btn_getJSONbin.Size = new System.Drawing.Size(117, 23);
             this.btn_getJSONbin.TabIndex = 28;
@@ -80,7 +80,7 @@
             // 
             this.Bin_name.AutoSize = true;
             this.Bin_name.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.Bin_name.Location = new System.Drawing.Point(504, 278);
+            this.Bin_name.Location = new System.Drawing.Point(559, 266);
             this.Bin_name.Name = "Bin_name";
             this.Bin_name.Size = new System.Drawing.Size(70, 16);
             this.Bin_name.TabIndex = 27;
@@ -90,7 +90,7 @@
             // 
             this.Bin_data.AutoSize = true;
             this.Bin_data.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.Bin_data.Location = new System.Drawing.Point(238, 278);
+            this.Bin_data.Location = new System.Drawing.Point(295, 266);
             this.Bin_data.Name = "Bin_data";
             this.Bin_data.Size = new System.Drawing.Size(62, 16);
             this.Bin_data.TabIndex = 26;
@@ -100,7 +100,7 @@
             // 
             this.bin_key.AutoSize = true;
             this.bin_key.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.bin_key.Location = new System.Drawing.Point(47, 278);
+            this.bin_key.Location = new System.Drawing.Point(77, 266);
             this.bin_key.Name = "bin_key";
             this.bin_key.Size = new System.Drawing.Size(49, 16);
             this.bin_key.TabIndex = 25;
@@ -108,15 +108,15 @@
             // 
             // tb_resultKey
             // 
-            this.tb_resultKey.Location = new System.Drawing.Point(21, 297);
+            this.tb_resultKey.Location = new System.Drawing.Point(8, 285);
             this.tb_resultKey.Multiline = true;
             this.tb_resultKey.Name = "tb_resultKey";
-            this.tb_resultKey.Size = new System.Drawing.Size(117, 100);
+            this.tb_resultKey.Size = new System.Drawing.Size(182, 100);
             this.tb_resultKey.TabIndex = 19;
             // 
             // tb_resultData
             // 
-            this.tb_resultData.Location = new System.Drawing.Point(153, 297);
+            this.tb_resultData.Location = new System.Drawing.Point(196, 285);
             this.tb_resultData.Multiline = true;
             this.tb_resultData.Name = "tb_resultData";
             this.tb_resultData.Size = new System.Drawing.Size(251, 100);
@@ -125,7 +125,7 @@
             // btn_toSQL
             // 
             this.btn_toSQL.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btn_toSQL.Location = new System.Drawing.Point(476, 252);
+            this.btn_toSQL.Location = new System.Drawing.Point(537, 240);
             this.btn_toSQL.Name = "btn_toSQL";
             this.btn_toSQL.Size = new System.Drawing.Size(117, 23);
             this.btn_toSQL.TabIndex = 16;
@@ -136,7 +136,7 @@
             // btn_excel
             // 
             this.btn_excel.Font = new System.Drawing.Font("PMingLiU", 15F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btn_excel.Location = new System.Drawing.Point(705, 365);
+            this.btn_excel.Location = new System.Drawing.Point(712, 335);
             this.btn_excel.Name = "btn_excel";
             this.btn_excel.Size = new System.Drawing.Size(157, 36);
             this.btn_excel.TabIndex = 31;
@@ -147,7 +147,7 @@
             // btn_logout
             // 
             this.btn_logout.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btn_logout.Location = new System.Drawing.Point(342, 430);
+            this.btn_logout.Location = new System.Drawing.Point(392, 406);
             this.btn_logout.Name = "btn_logout";
             this.btn_logout.Size = new System.Drawing.Size(86, 35);
             this.btn_logout.TabIndex = 32;
@@ -159,11 +159,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label1.Location = new System.Drawing.Point(267, 16);
+            this.label1.Location = new System.Drawing.Point(389, 24);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 16);
+            this.label1.Size = new System.Drawing.Size(68, 16);
             this.label1.TabIndex = 34;
-            this.label1.Text = "course Id";
+            this.label1.Text = "Course Id";
             // 
             // cb_courseid
             // 
@@ -176,7 +176,7 @@
             "4",
             "5",
             "6"});
-            this.cb_courseid.Location = new System.Drawing.Point(342, 12);
+            this.cb_courseid.Location = new System.Drawing.Point(464, 20);
             this.cb_courseid.Name = "cb_courseid";
             this.cb_courseid.Size = new System.Drawing.Size(121, 20);
             this.cb_courseid.TabIndex = 35;
@@ -188,7 +188,7 @@
             "1",
             "2",
             "All"});
-            this.cb_studentyear.Location = new System.Drawing.Point(105, 16);
+            this.cb_studentyear.Location = new System.Drawing.Point(197, 22);
             this.cb_studentyear.Name = "cb_studentyear";
             this.cb_studentyear.Size = new System.Drawing.Size(46, 20);
             this.cb_studentyear.TabIndex = 37;
@@ -197,7 +197,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("PMingLiU", 12F);
-            this.label2.Location = new System.Drawing.Point(11, 16);
+            this.label2.Location = new System.Drawing.Point(103, 24);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(88, 16);
             this.label2.TabIndex = 38;
@@ -205,7 +205,7 @@
             // 
             // tb_result
             // 
-            this.tb_result.Location = new System.Drawing.Point(410, 297);
+            this.tb_result.Location = new System.Drawing.Point(453, 285);
             this.tb_result.Multiline = true;
             this.tb_result.Name = "tb_result";
             this.tb_result.Size = new System.Drawing.Size(251, 100);
@@ -214,14 +214,14 @@
             // cb_course
             // 
             this.cb_course.FormattingEnabled = true;
-            this.cb_course.Location = new System.Drawing.Point(741, 301);
+            this.cb_course.Location = new System.Drawing.Point(748, 313);
             this.cb_course.Name = "cb_course";
             this.cb_course.Size = new System.Drawing.Size(121, 20);
             this.cb_course.TabIndex = 39;
             // 
             // btn_getstudent
             // 
-            this.btn_getstudent.Location = new System.Drawing.Point(157, 14);
+            this.btn_getstudent.Location = new System.Drawing.Point(249, 22);
             this.btn_getstudent.Name = "btn_getstudent";
             this.btn_getstudent.Size = new System.Drawing.Size(75, 23);
             this.btn_getstudent.TabIndex = 42;
@@ -257,7 +257,7 @@
             "22",
             "23",
             "00"});
-            this.cb_hour.Location = new System.Drawing.Point(342, 51);
+            this.cb_hour.Location = new System.Drawing.Point(464, 59);
             this.cb_hour.Name = "cb_hour";
             this.cb_hour.Size = new System.Drawing.Size(121, 20);
             this.cb_hour.TabIndex = 44;
@@ -266,7 +266,7 @@
             // 
             this.lb_hour.AutoSize = true;
             this.lb_hour.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.lb_hour.Location = new System.Drawing.Point(267, 51);
+            this.lb_hour.Location = new System.Drawing.Point(389, 59);
             this.lb_hour.Name = "lb_hour";
             this.lb_hour.Size = new System.Drawing.Size(39, 16);
             this.lb_hour.TabIndex = 43;
@@ -280,7 +280,7 @@
             "15",
             "30",
             "45"});
-            this.cb_minute.Location = new System.Drawing.Point(556, 51);
+            this.cb_minute.Location = new System.Drawing.Point(648, 57);
             this.cb_minute.Name = "cb_minute";
             this.cb_minute.Size = new System.Drawing.Size(121, 20);
             this.cb_minute.TabIndex = 46;
@@ -289,7 +289,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label4.Location = new System.Drawing.Point(481, 51);
+            this.label4.Location = new System.Drawing.Point(591, 59);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(51, 16);
             this.label4.TabIndex = 45;
@@ -298,9 +298,9 @@
             // studentlist
             // 
             this.studentlist.FormattingEnabled = true;
-            this.studentlist.Location = new System.Drawing.Point(48, 51);
+            this.studentlist.Location = new System.Drawing.Point(169, 48);
             this.studentlist.Name = "studentlist";
-            this.studentlist.Size = new System.Drawing.Size(141, 174);
+            this.studentlist.Size = new System.Drawing.Size(103, 174);
             this.studentlist.TabIndex = 51;
             // 
             // cb_lesson
@@ -313,7 +313,7 @@
             "4",
             "5",
             "6"});
-            this.cb_lesson.Location = new System.Drawing.Point(556, 14);
+            this.cb_lesson.Location = new System.Drawing.Point(648, 20);
             this.cb_lesson.Name = "cb_lesson";
             this.cb_lesson.Size = new System.Drawing.Size(121, 20);
             this.cb_lesson.TabIndex = 53;
@@ -322,7 +322,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label6.Location = new System.Drawing.Point(481, 14);
+            this.label6.Location = new System.Drawing.Point(591, 22);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(51, 16);
             this.label6.TabIndex = 54;
@@ -331,9 +331,10 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(672, 304);
+            this.label7.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.label7.Location = new System.Drawing.Point(709, 294);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(63, 12);
+            this.label7.Size = new System.Drawing.Size(86, 16);
             this.label7.TabIndex = 55;
             this.label7.Text = "course name";
             // 
