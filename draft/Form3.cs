@@ -103,9 +103,7 @@ namespace JSONandSQL
                     }
                     else if (dialog == DialogResult.No)
                     {
-                        this.Hide();
-                        var jsonandsql = new Form1();
-                        jsonandsql.Show();
+                        return;
                     }
                 }
             }
