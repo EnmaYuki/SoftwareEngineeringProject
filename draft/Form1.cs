@@ -45,9 +45,13 @@ namespace JSONandSQL
                 {
                     case "1":
                         {
-                            if (((cb_courseid.SelectedItem.ToString() == "2" || cb_courseid.SelectedItem.ToString() == "3") && cb_studentyear.SelectedItem.ToString() == "All")|| (cb_courseid.SelectedItem.ToString() == "2" && cb_studentyear.SelectedItem.ToString()=="2") || (cb_courseid.SelectedItem.ToString() == "3" &&cb_studentyear.SelectedItem.ToString()=="1") )
+                            if ( cb_courseid.SelectedItem.ToString() == "3" && (cb_studentyear.SelectedItem.ToString() == "All" || cb_studentyear.SelectedItem.ToString()=="1") )
                             {
                                 D = "08";
+                            }
+                            else if (cb_courseid.SelectedItem.ToString() == "2" &&( cb_studentyear.SelectedItem.ToString() == "All" || cb_studentyear.SelectedItem.ToString() == "2"))
+                            {
+                                D = "18";
                             }
                             else if ((cb_courseid.SelectedItem.ToString() == "5" && (cb_studentyear.SelectedItem.ToString() == "All" ||cb_studentyear.SelectedItem.ToString( )=="1")) || cb_courseid.SelectedItem.ToString() == "4" )
                             {
@@ -66,11 +70,15 @@ namespace JSONandSQL
                         }
                     case "2":
                         {
-                            if (((cb_courseid.SelectedItem.ToString() == "2" || cb_courseid.SelectedItem.ToString() == "3") && cb_studentyear.SelectedItem.ToString() == "All")|| (cb_courseid.SelectedItem.ToString() == "2" && cb_studentyear.SelectedItem.ToString()=="2") || (cb_courseid.SelectedItem.ToString() == "3" &&cb_studentyear.SelectedItem.ToString()=="1") )
-                            {
-                                D = "09";
-                            }
-                            else if ((cb_courseid.SelectedItem.ToString() == "5" && (cb_studentyear.SelectedItem.ToString() == "All" ||cb_studentyear.SelectedItem.ToString( )=="1")) || cb_courseid.SelectedItem.ToString() == "4" )
+                        if (cb_courseid.SelectedItem.ToString() == "3" && (cb_studentyear.SelectedItem.ToString() == "All" || cb_studentyear.SelectedItem.ToString() == "1"))
+                        {
+                            D = "09";
+                        }
+                        else if (cb_courseid.SelectedItem.ToString() == "2" && (cb_studentyear.SelectedItem.ToString() == "All" || cb_studentyear.SelectedItem.ToString() == "2"))
+                        {
+                            D = "19";
+                        }
+                        else if ((cb_courseid.SelectedItem.ToString() == "5" && (cb_studentyear.SelectedItem.ToString() == "All" ||cb_studentyear.SelectedItem.ToString( )=="1")) || cb_courseid.SelectedItem.ToString() == "4" )
                             {
                                 D = "15";
                             }
@@ -87,11 +95,15 @@ namespace JSONandSQL
                         }
                     case "3":
                         {
-                            if (((cb_courseid.SelectedItem.ToString() == "2" || cb_courseid.SelectedItem.ToString() == "3") && cb_studentyear.SelectedItem.ToString() == "All")|| (cb_courseid.SelectedItem.ToString() == "2" && cb_studentyear.SelectedItem.ToString()=="2") || (cb_courseid.SelectedItem.ToString() == "3" &&cb_studentyear.SelectedItem.ToString()=="1") )
-                            {
-                                D = "10";
-                            }
-                            else if ((cb_courseid.SelectedItem.ToString() == "5" && (cb_studentyear.SelectedItem.ToString() == "All" ||cb_studentyear.SelectedItem.ToString( )=="1")) || cb_courseid.SelectedItem.ToString() == "4" )
+                        if (cb_courseid.SelectedItem.ToString() == "3" && (cb_studentyear.SelectedItem.ToString() == "All" || cb_studentyear.SelectedItem.ToString() == "1"))
+                        {
+                            D = "10";
+                        }
+                        else if (cb_courseid.SelectedItem.ToString() == "2" && (cb_studentyear.SelectedItem.ToString() == "All" || cb_studentyear.SelectedItem.ToString() == "2"))
+                        {
+                            D = "20";
+                        }
+                        else if ((cb_courseid.SelectedItem.ToString() == "5" && (cb_studentyear.SelectedItem.ToString() == "All" ||cb_studentyear.SelectedItem.ToString( )=="1")) || cb_courseid.SelectedItem.ToString() == "4" )
                             {
                                 D = "16";
                             }
@@ -108,11 +120,15 @@ namespace JSONandSQL
                         }
                     case "4":
                         {
-                            if (((cb_courseid.SelectedItem.ToString() == "2" || cb_courseid.SelectedItem.ToString() == "3") && cb_studentyear.SelectedItem.ToString() == "All")|| (cb_courseid.SelectedItem.ToString() == "2" && cb_studentyear.SelectedItem.ToString()=="2") || (cb_courseid.SelectedItem.ToString() == "3" &&cb_studentyear.SelectedItem.ToString()=="1") )
-                            {
-                                D = "11";
-                            }
-                            else if ((cb_courseid.SelectedItem.ToString() == "5" && (cb_studentyear.SelectedItem.ToString() == "All" ||cb_studentyear.SelectedItem.ToString( )=="1")) || cb_courseid.SelectedItem.ToString() == "4" )
+                        if (cb_courseid.SelectedItem.ToString() == "3" && (cb_studentyear.SelectedItem.ToString() == "All" || cb_studentyear.SelectedItem.ToString() == "1"))
+                        {
+                            D = "11";
+                        }
+                        else if (cb_courseid.SelectedItem.ToString() == "2" && (cb_studentyear.SelectedItem.ToString() == "All" || cb_studentyear.SelectedItem.ToString() == "2"))
+                        {
+                            D = "21";
+                        }
+                        else if ((cb_courseid.SelectedItem.ToString() == "5" && (cb_studentyear.SelectedItem.ToString() == "All" ||cb_studentyear.SelectedItem.ToString( )=="1")) || cb_courseid.SelectedItem.ToString() == "4" )
                             {
                                 D = "17";
                             }
@@ -129,11 +145,15 @@ namespace JSONandSQL
                         }
                     case "5":
                         {
-                            if (((cb_courseid.SelectedItem.ToString() == "2" || cb_courseid.SelectedItem.ToString() == "3") && cb_studentyear.SelectedItem.ToString() == "All")|| (cb_courseid.SelectedItem.ToString() == "2" && cb_studentyear.SelectedItem.ToString()=="2") || (cb_courseid.SelectedItem.ToString() == "3" &&cb_studentyear.SelectedItem.ToString()=="1") )
-                            {
-                                D = "12";
-                            }
-                            else if ((cb_courseid.SelectedItem.ToString() == "5" && (cb_studentyear.SelectedItem.ToString() == "All" ||cb_studentyear.SelectedItem.ToString( )=="1")) || cb_courseid.SelectedItem.ToString() == "4" )
+                        if (cb_courseid.SelectedItem.ToString() == "3" && (cb_studentyear.SelectedItem.ToString() == "All" || cb_studentyear.SelectedItem.ToString() == "1"))
+                        {
+                            D = "12";
+                        }
+                        else if (cb_courseid.SelectedItem.ToString() == "2" && (cb_studentyear.SelectedItem.ToString() == "All" || cb_studentyear.SelectedItem.ToString() == "2"))
+                        {
+                            D = "22";
+                        }
+                        else if ((cb_courseid.SelectedItem.ToString() == "5" && (cb_studentyear.SelectedItem.ToString() == "All" ||cb_studentyear.SelectedItem.ToString( )=="1")) || cb_courseid.SelectedItem.ToString() == "4" )
                             {
                                 D = "18";
                             }
@@ -150,11 +170,15 @@ namespace JSONandSQL
                         }
                     case "6":
                         {
-                            if (((cb_courseid.SelectedItem.ToString() == "2" || cb_courseid.SelectedItem.ToString() == "3") && cb_studentyear.SelectedItem.ToString() == "All")|| (cb_courseid.SelectedItem.ToString() == "2" && cb_studentyear.SelectedItem.ToString()=="2") || (cb_courseid.SelectedItem.ToString() == "3" &&cb_studentyear.SelectedItem.ToString()=="1") )
-                            {
-                                D = "13";
-                            }
-                            else if ((cb_courseid.SelectedItem.ToString() == "5" && (cb_studentyear.SelectedItem.ToString() == "All" ||cb_studentyear.SelectedItem.ToString( )=="1")) || cb_courseid.SelectedItem.ToString() == "4" )
+                        if (cb_courseid.SelectedItem.ToString() == "3" && (cb_studentyear.SelectedItem.ToString() == "All" || cb_studentyear.SelectedItem.ToString() == "1"))
+                        {
+                            D = "13";
+                        }
+                        else if (cb_courseid.SelectedItem.ToString() == "2" && (cb_studentyear.SelectedItem.ToString() == "All" || cb_studentyear.SelectedItem.ToString() == "2"))
+                        {
+                            D = "23";
+                        }
+                        else if ((cb_courseid.SelectedItem.ToString() == "5" && (cb_studentyear.SelectedItem.ToString() == "All" ||cb_studentyear.SelectedItem.ToString( )=="1")) || cb_courseid.SelectedItem.ToString() == "4" )
                             {
                                 D = "19";
                             }
@@ -727,7 +751,7 @@ namespace JSONandSQL
             }
             data.Close();
             i2cmd.Dispose();
-            string ionic2i = "Select studentinfo.student_id,studentinfo.Student_Name,time(testjson.time) as time,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and date(testjson.time) = date('2022-12-19') AND (time(testjson.time)<time('19:30:00')OR time(testjson.time)>time('23:30:00')) order by student_id asc";
+            string ionic2i = "Select studentinfo.student_id,studentinfo.Student_Name,time(testjson.time) as time,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and date(testjson.time) = date('2022-12-19') AND (time(testjson.time)<time('19:30:00')OR time(testjson.time)>time('23:30:00'))";
             MySqlCommand i2icmd = new MySqlCommand(ionic2i, connection);
             datai = i2icmd.ExecuteReader();
 
@@ -945,7 +969,7 @@ namespace JSONandSQL
             worksheet5.Name = "Ionic lesson5";
             currentWorksheet = worksheet5 as Worksheet;
 
-            string ionic5 = "Select studentinfo.student_id,studentinfo.Student_Name,time(testjson.time) as time,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and time(testjson.time)>time('19:30:00')and time(testjson.time)<time('23:30:00') and date(testjson.time) = date('2022-12-22') order by student_id asc";
+            string ionic5 = "Select studentinfo.student_id,studentinfo.Student_Name,time(testjson.time) as time,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and time(testjson.time)>time('19:30:00')and time(testjson.time)<time('23:30:00') and date(testjson.time) = date('2022-12-22')";
             MySqlCommand i5cmd = new MySqlCommand(ionic5, connection);
             data = i5cmd.ExecuteReader();
             y2sn = 0;
@@ -978,7 +1002,7 @@ namespace JSONandSQL
             }
             data.Close();
             i5cmd.Dispose();
-            string ionic5i = "Select studentinfo.student_id,studentinfo.Student_Name,time(testjson.time) as time,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and date(testjson.time) = date('2022-12-22') AND (time(testjson.time)<time('19:30:00')OR time(testjson.time)>time('23:30:00')) order by student_id asc";
+            string ionic5i = "Select studentinfo.student_id,studentinfo.Student_Name,time(testjson.time) as time,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and date(testjson.time) = date('2022-12-22') AND (time(testjson.time)<time('19:30:00')OR time(testjson.time)>time('23:30:00'))";
             MySqlCommand i5icmd = new MySqlCommand(ionic5i, connection);
             datai = i5icmd.ExecuteReader();
 
@@ -1030,7 +1054,7 @@ namespace JSONandSQL
             worksheet6.Name = "Ionic lesson6";
             currentWorksheet = worksheet6 as Worksheet;
 
-            string ionic6 = "Select studentinfo.student_id,studentinfo.Student_Name,time(testjson.time) as time,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and time(testjson.time)>time('19:30:00')and time(testjson.time)<time('23:30:00') and date(testjson.time) = date('2022-12-23') order by student_id asc;";
+            string ionic6 = "Select studentinfo.student_id,studentinfo.Student_Name,time(testjson.time) as time,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and time(testjson.time)>time('19:30:00')and time(testjson.time)<time('23:30:00') and date(testjson.time) = date('2022-12-23')";
             MySqlCommand i6cmd = new MySqlCommand(ionic6, connection);
             data = i6cmd.ExecuteReader();
             y2sn = 0;
@@ -1063,7 +1087,7 @@ namespace JSONandSQL
             }
             data.Close();
             i6cmd.Dispose();
-            string ionic6i = "Select studentinfo.student_id,studentinfo.Student_Name,time(testjson.time) as time,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and date(testjson.time) = date('2022-12-23') AND (time(testjson.time)<time('19:30:00')OR time(testjson.time)>time('23:30:00')) order by student_id asc";
+            string ionic6i = "Select studentinfo.student_id,studentinfo.Student_Name,time(testjson.time) as time,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and date(testjson.time) = date('2022-12-23') AND (time(testjson.time)<time('19:30:00')OR time(testjson.time)>time('23:30:00'))";
             MySqlCommand i6icmd = new MySqlCommand(ionic6i, connection);
             datai = i6icmd.ExecuteReader();
 
@@ -1110,7 +1134,6 @@ namespace JSONandSQL
 
             //ionic total sheet
 
-
             Excel.Worksheet worksheet7 = workBook.Worksheets.Add();
             worksheet7.Name = "ionic total sheet";
             currentWorksheet = worksheet7 as Worksheet;
@@ -1139,6 +1162,8 @@ namespace JSONandSQL
                     }
                 }
                 //do sth here  year 2 sheet
+
+
             }
             ionic71 = "SELECT date(Date) as Date FROM `lessons` WHERE courseId = 2 ORDER BY date(Date)";
             i71cmd = new MySqlCommand(ionic71, connection);
@@ -1159,18 +1184,24 @@ namespace JSONandSQL
                     }
                 }
                 //do sth here  year 2 sheet
+
+
             }
             currentWorksheet.Columns.AutoFit();
             currentWorksheet.Rows.AutoFit();
             int row = 1;
+            int rowsize = studentlist.Capacity;
+            Double[,] matrix = new double[Datelist.Capacity, studentlist.Capacity];
             foreach (var student in studentlist)
             {
                 row++;
                 var col = 3;
                 foreach (var date in Datelist)
                 {
+
                     ionic71 = "SELECT testjson.student, testjson.time, testjson.CourseId,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and testjson.student='" + student + "'and date(testjson.time) = date('" + date + "')";
-                   i71cmd = new MySqlCommand(ionic71, connection);
+                    //textBox1.Text = ionic71;
+                    i71cmd = new MySqlCommand(ionic71, connection);
                     data.Close();
                     data = i71cmd.ExecuteReader();
                     if (data.HasRows == true)
@@ -1179,86 +1210,127 @@ namespace JSONandSQL
                         {
                             currentWorksheet.Cells[row, col] = data["time"].ToString();
                             int cdc = Int32.Parse(data["timer"].ToString());
-                            if (cdc < 0) { currentWorksheet.Cells[row, col].Interior.Color = Excel.XlRgbColor.rgbGreen; }
-                            else { currentWorksheet.Cells[row, col].Interior.Color = Excel.XlRgbColor.rgbRed; }
+                            if (cdc < 0)
+                            {
+                                currentWorksheet.Cells[row, col].Interior.Color = Excel.XlRgbColor.rgbGreen;
+                                matrix[row - 2, col - 3] = 1;
+                            }
+                            else
+                            {
+                                currentWorksheet.Cells[row, col].Interior.Color = Excel.XlRgbColor.rgbRed;
+                                matrix[row - 2, col - 3] = 0.0001;
+                            }
                         }
+
                     }
                     else
                     {
-                        currentWorksheet.Cells[row, col] = "null";
+                        currentWorksheet.Cells[row, col] = "absent";
+                        matrix[row - 1, col - 2] = 0;
                     }
+
                     col++;
                 }
+                int pr = 0;
+                int la = 0;
+                int ab = 0;
+                for (int i = 0; i < Datelist.Capacity; i++)
+                {
+
+                    if (matrix[row - 2, i] == 1)
+                    {
+                        pr++;
+                    }
+                    else if (matrix[row - 2, i] < 1 && matrix[row - 2, i] > 0)
+                    {
+                        la++;
+                    }
+                    else if (matrix[row - 2, i] == 0)
+                    {
+                        ab++;
+                    }
+                }
+                currentWorksheet.Cells[row, col] = currentWorksheet.Cells[row, 2];
+                currentWorksheet.Cells[row, col + 1] = pr;
+                currentWorksheet.Cells[row, col + 2] = la;
+                currentWorksheet.Cells[row, col + 3] = ab - 2;
+
             }
             row = 1;
+            currentWorksheet.Cells[1, Datelist.Capacity + 2] = "Presented";
+            currentWorksheet.Cells[1, Datelist.Capacity + 3] = "Late";
+            currentWorksheet.Cells[1, Datelist.Capacity + 4] = "Absent";
+            currentWorksheet.Cells[studentlist.Capacity + 3, 2] = "Presented";
+            currentWorksheet.Cells[studentlist.Capacity + 4, 2] = "Late";
+            currentWorksheet.Cells[studentlist.Capacity + 5, 2] = "Absent";
 
+            for (int lesson = 0; lesson < Datelist.Capacity - 2; lesson++)
+            {
+                int pr = 0;
+                int la = 0;
+                int ab = 0;
+                for (int student = 0; student < studentlist.Capacity; student++)
+                {
+
+
+                    if (matrix[student, lesson] == 1)
+                    {
+                        pr++;
+                    }
+                    else if (matrix[student, lesson] < 1 && matrix[student, lesson] > 0)
+                    {
+                        la++;
+                    }
+                    else if (matrix[student, lesson] == 0)
+                    {
+                        ab++;
+                    }
+                }
+                currentWorksheet.Cells[2 + studentlist.Capacity, 3 + lesson] = "lesson " + (lesson + 1);
+                currentWorksheet.Cells[3 + studentlist.Capacity, 3 + lesson] = pr;
+                currentWorksheet.Cells[4 + studentlist.Capacity, 3 + lesson] = la;
+                currentWorksheet.Cells[5 + studentlist.Capacity, 3 + lesson] = ab;
+            }
+            Microsoft.Office.Interop.Excel.Range chartRange;
+            Microsoft.Office.Interop.Excel.ChartObjects xlCharts =
+                (Excel.ChartObjects)currentWorksheet.ChartObjects(Type.Missing);
+            Microsoft.Office.Interop.Excel.ChartObject myChart =
+                (Excel.ChartObject)xlCharts.Add(0, 150, 300, 250);
+            Microsoft.Office.Interop.Excel.Chart chartPage = myChart.Chart;
+            object misValue = System.Reflection.Missing.Value;
+
+
+            chartRange = currentWorksheet.get_Range("i1", "l9");
+            chartPage.SetSourceData(chartRange, misValue);
+            chartPage.ChartType = Excel.XlChartType.xlColumnClustered;
+
+            myChart = (Excel.ChartObject)xlCharts.Add(350, 150, 300, 250);
+            chartPage = myChart.Chart;
+            misValue = System.Reflection.Missing.Value;
+
+
+            chartRange = currentWorksheet.get_Range("b10", "h13");
+            chartPage.SetSourceData(chartRange, misValue);
+            chartPage.ChartType = Excel.XlChartType.xlColumnClustered;
             currentWorksheet.Columns.AutoFit();
             currentWorksheet.Rows.AutoFit();
             data.Close();
             i71cmd.Dispose();
-
             y2sn = 0;
             validcount = 0;
             invalidcount = 0;
+            currentWorksheet.get_Range("b10", "h13").EntireColumn.Hidden = true;
+            currentWorksheet.get_Range("i1", "l9").EntireRow.Hidden = true;
             currentWorksheet.Columns.AutoFit();
             currentWorksheet.Rows.AutoFit();
             currentWorksheet = null;
 
 
-            //try year1
-            Excel.Worksheet worksheet8 = workBook.Worksheets.Add();
-            worksheet8.Name = "year1 lesson";
-            currentWorksheet = worksheet8 as Worksheet;
-
-            string year1 = "Select studentinfo.student_id,studentinfo.Student_Name,time(testjson.time) as time,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and time(testjson.time)>=time('19:30:00')and time(testjson.time)<=time('23:30:00') and date(testjson.time) = date('2022-12-21') and studentinfo.Year=1 order by student_id asc;";
-            MySqlCommand year1cmd = new MySqlCommand(year1, connection);
-            MySqlDataReader y1data = year1cmd.ExecuteReader();
-            var y1sn=0;
-            if (y1data.HasRows == true)
-            {
-                var datarow = 2;
-                for (int i = 0; i < y1data.FieldCount; i++)
-                {
-                    currentWorksheet.Cells[1, i + 1] = y1data.GetName(i);
-                    while (y1data.Read())
-                    {
-                        currentWorksheet.Cells[datarow + validcount, 1] = y1data["student_id"];
-                        currentWorksheet.Cells[datarow + validcount, 2] = y1data["student_Name"];
-                        currentWorksheet.Cells[datarow + validcount, 3] = y1data["time"].ToString();
-                        currentWorksheet.Cells[datarow + validcount, 4] = y1data["start_time"].ToString();
-                        currentWorksheet.Cells[datarow + validcount, 5] = "Invalid";
-                        datarow++;
-                        y1sn++;
-                        invalidcount++;
-                    }
-                }
-                //do sth here  year 2 sheet
-
-                currentWorksheet.Columns.AutoFit();
-                currentWorksheet.Rows.AutoFit();
-            }
-            currentWorksheet.Cells[y1sn + 5, 1] = "Total student number";
-            currentWorksheet.Cells[y1sn + 5, 2] = y1sn;
-
-            currentWorksheet.Cells[y1sn + 6, 1] = "Valid Register number";
-            currentWorksheet.Cells[y1sn + 6, 2] = validcount;
-
-            currentWorksheet.Cells[y1sn + 7, 1] = "Invalid Register number";
-            currentWorksheet.Cells[y1sn + 7, 2] = invalidcount;
-            y1sn = 0;
-            validcount = 0;
-            invalidcount = 0;
-            y1data.Close();
-            year1cmd.Dispose();
-            currentWorksheet.Columns.AutoFit();
-            currentWorksheet.Rows.AutoFit();
-            currentWorksheet = null;
 
 
             connection.Close();
             workBook.SaveAs(Environment.CurrentDirectory + @"\courseReport.xlsx");
-            Marshal.ReleaseComObject(Excelapp.Workbooks);
-            //Excelapp.Quit();
+            Marshal.ReleaseComObject(Excelapp.Workbooks);//Excelapp.Quit();
         }
         private void btn_logout_Click(object sender, EventArgs e)
         {
