@@ -23,7 +23,6 @@ using System.Collections;
 
 namespace JSONandSQL
 {
-
     public partial class Form1 : Form
     {
         public Form1()
@@ -32,14 +31,11 @@ namespace JSONandSQL
         }
         static string connectionString = "server=localhost;User Id=root;password=;Database=softwareengineera2; convert zero datetime=True";
         MySqlConnection connection = new MySqlConnection(connectionString);
-
         private string collectionID = "638073a80e6a79321e555207";
         private string APIkey = "$2b$10$l5EyYl0U3FvpMQULZaPjX.uPNB86iNFrnKVtTLDMLVu3DuDweIxHi";
-        
         private DateTime dateTime;
-
+        private string student_id;
         public List<string> studentList = new List<string>();
-
         public void setcustomdt(string H, string m)
         {
             string Y, M, D="";
@@ -182,48 +178,10 @@ namespace JSONandSQL
                 string customize = Y + "-" + M + "-" + D + " " + H + ":" + m + ":00";
                 this.dateTime = DateTime.Parse(customize);
         }
-        /*
-         switch (cb_studentyear.SelectedItem.ToString())
-                {
-                    case "1":
-                        {
-                            if (cb_courseid.SelectedItem.ToString() == "4" || cb_courseid.SelectedItem.ToString().ToString() == "5")
-                            {
-                                D = "14";
-                            }
-                            else if (cb_courseid.SelectedItem.ToString() == "3")
-                            {
-                                D = "08";
-                            }
-                            else
-                            {
-                                MessageBox.Show("Please choose the correct couseId");
-                            }
-                            break;
-                        }
-                    case "2":
-                        {
-                            if (cb_courseid.SelectedItem.ToString() == "1" || cb_courseid.SelectedItem.ToString().ToString() == "6")
-                            {
-                                D = "14";
-                            }
-                            else if (cb_courseid.SelectedItem.ToString() == "4")
-                            {
-                                D = "08";
-                            }
-                            else
-                            {
-                                MessageBox.Show("Please choose the correct couseId");
-                            }
-                            break;
-                        }
-                }
-         */
         public DateTime getcustomdt()
         {
             return dateTime;
         }
-        private string student_id;
         public void setStudent(string thisstudent_id)
         {
             this.student_id = thisstudent_id;
@@ -231,6 +189,70 @@ namespace JSONandSQL
         public string getStudent()
         {
             return student_id;
+        }
+        private void btn_getstudent_Click(object sender, EventArgs e)
+        {
+            if (cb_studentyear.SelectedItem.ToString()=="All")
+            {
+                studentlist.Items.Clear();
+                connection.Open();
+                string yearstudent = "Select Student_Name from `studentinfo` order by student_id asc;";
+                MySqlCommand sqlCommand = new MySqlCommand(yearstudent,connection);
+                MySqlDataReader reader = sqlCommand.ExecuteReader();
+                if (reader.HasRows == true)
+                {
+                    while (reader.Read())
+                    {
+                        studentlist.Items.Add(reader["Student_Name"]);
+                    }
+                }
+                reader.Close();
+                //checkedListBox1.Text=(string)sqlCommand.ExecuteScalar();
+                sqlCommand.Dispose();
+                connection.Close();
+            }
+            else if (cb_studentyear.SelectedItem.ToString() == "1")
+            {
+                studentlist.Items.Clear();
+                connection.Open();
+                string yearstudent = "Select Student_Name from `studentinfo` where year= " + cb_studentyear.SelectedItem.ToString() + ";";
+                MySqlCommand sqlCommand = new MySqlCommand(yearstudent, connection);
+                MySqlDataReader reader = sqlCommand.ExecuteReader();
+                if (reader.HasRows == true)
+                {
+                    while (reader.Read())
+                    {
+                        studentlist.Items.Add(reader["Student_Name"]);
+                    }
+                }
+                reader.Close();
+                //checkedListBox1.Text=(string)sqlCommand.ExecuteScalar();
+                sqlCommand.Dispose();
+                connection.Close();
+            }
+            else if (cb_studentyear.SelectedItem.ToString() == "2")
+            {
+                studentlist.Items.Clear();
+                connection.Open();
+                string yearstudent = "Select Student_Name from `studentinfo` where year= " + cb_studentyear.SelectedItem.ToString() + ";";
+                MySqlCommand sqlCommand = new MySqlCommand(yearstudent, connection);
+                MySqlDataReader reader = sqlCommand.ExecuteReader();
+                if (reader.HasRows == true)
+                {
+                    while (reader.Read())
+                    {
+                        studentlist.Items.Add(reader["Student_Name"]);
+                    }
+                }
+                reader.Close();
+                //checkedListBox1.Text=(string)sqlCommand.ExecuteScalar();
+                sqlCommand.Dispose();
+                connection.Close();
+            }
+            else
+            {
+                MessageBox.Show("No Student!");
+            }
         }
         private void addstudent()
         {
@@ -324,7 +346,7 @@ namespace JSONandSQL
                     sqlreader.Close();
                     mySql.Dispose();
                     connection.Close();
-                    MessageBox.Show("Please enter your lesson location correctly!");
+                    MessageBox.Show("Please enter your course correctly!");
                 }
                 sqlreader.Close();
                 mySql.Dispose();
@@ -1244,73 +1266,8 @@ namespace JSONandSQL
             Form3 login = new Form3();
             login.Show();
         }
-        private void btn_getstudent_Click(object sender, EventArgs e)
-        {
-            if (cb_studentyear.SelectedItem.ToString()=="All")
-            {
-                studentlist.Items.Clear();
-                connection.Open();
-                string yearstudent = "Select Student_Name from `studentinfo` order by student_id asc;";
-                MySqlCommand sqlCommand = new MySqlCommand(yearstudent,connection);
-                MySqlDataReader reader = sqlCommand.ExecuteReader();
-                if (reader.HasRows == true)
-                {
-                    while (reader.Read())
-                    {
-                        studentlist.Items.Add(reader["Student_Name"]);
-                    }
-                }
-                reader.Close();
-                //checkedListBox1.Text=(string)sqlCommand.ExecuteScalar();
-                sqlCommand.Dispose();
-                connection.Close();
-            }
-            else if (cb_studentyear.SelectedItem.ToString() == "1")
-            {
-                studentlist.Items.Clear();
-                connection.Open();
-                string yearstudent = "Select Student_Name from `studentinfo` where year= " + cb_studentyear.SelectedItem.ToString() + ";";
-                MySqlCommand sqlCommand = new MySqlCommand(yearstudent, connection);
-                MySqlDataReader reader = sqlCommand.ExecuteReader();
-                if (reader.HasRows == true)
-                {
-                    while (reader.Read())
-                    {
-                        studentlist.Items.Add(reader["Student_Name"]);
-                    }
-                }
-                reader.Close();
-                //checkedListBox1.Text=(string)sqlCommand.ExecuteScalar();
-                sqlCommand.Dispose();
-                connection.Close();
-            }
-            else if (cb_studentyear.SelectedItem.ToString() == "2")
-            {
-                studentlist.Items.Clear();
-                connection.Open();
-                string yearstudent = "Select Student_Name from `studentinfo` where year= " + cb_studentyear.SelectedItem.ToString() + ";";
-                MySqlCommand sqlCommand = new MySqlCommand(yearstudent, connection);
-                MySqlDataReader reader = sqlCommand.ExecuteReader();
-                if (reader.HasRows == true)
-                {
-                    while (reader.Read())
-                    {
-                        studentlist.Items.Add(reader["Student_Name"]);
-                    }
-                }
-                reader.Close();
-                //checkedListBox1.Text=(string)sqlCommand.ExecuteScalar();
-                sqlCommand.Dispose();
-                connection.Close();
-            }
-            else
-            {
-                MessageBox.Show("No Student!");
-            }
-        }
     }
 }
-
 /*
 
 //INSERT INTO `rawdata` (`id`, `userID`, `dateStamp`, `scanQR`, `location`) VALUES (NULL, 'hkct001', '20211216140501', '001', NULL);

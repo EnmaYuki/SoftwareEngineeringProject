@@ -55,39 +55,18 @@ namespace JSONandSQL
                 while (reader.Read())
                 {
                     string messagecaption = "Hello, " + reader["Greeting"] + " sir";
-                    if (reader["teacher_id"].ToString().Contains("_H-"))
-                    {
-                        DialogResult dialog = MessageBox.Show("Need to add subject? \n Press No for view Excel.",messagecaption , MessageBoxButtons.YesNoCancel);
+                   
+                        DialogResult dialog = MessageBox.Show("Take attendance for student?",messagecaption , MessageBoxButtons.YesNo);
 
                         if (dialog == DialogResult.Yes)
                         {
-                            Form2 addsubject = new Form2();
-                            addsubject.Show();
+                            Form1 jsonandsql = new Form1();
+                            jsonandsql.Show();
                         }
                         else if (dialog == DialogResult.No)
                         {
-                            Form1 jsonandsql = new Form1();
-                            jsonandsql.Show();
-                        }
-                        else if (dialog == DialogResult.Cancel)
-                        {
                             return;
                         }
-                    }
-                    else
-                    {
-                        DialogResult dialog = MessageBox.Show("View Excel?", messagecaption, MessageBoxButtons.OKCancel);
-
-                        if (dialog == DialogResult.OK)
-                        {
-                            Form1 jsonandsql = new Form1();
-                            jsonandsql.Show();
-                        }
-                        else if (dialog == DialogResult.Cancel)
-                        {
-                            return;
-                        }
-                    }
                 }
             }
             else
@@ -113,18 +92,20 @@ namespace JSONandSQL
             {
                 while (studentreader.Read())
                 {
-                    DialogResult dialog = MessageBox.Show("Take attendance?", "Hello, " + studentreader["Student_Name"], MessageBoxButtons.OKCancel);
+                    DialogResult dialog = MessageBox.Show("Take attendance?", "Hello, " + studentreader["Student_Name"], MessageBoxButtons.YesNo);
 
-                    if (dialog == DialogResult.OK)
+                    if (dialog == DialogResult.Yes)
+                    {
+                        this.Hide();
+                        var takeattend = new Form2();
+                        takeattend.setStudentid(studentreader["student_id"].ToString());
+                        takeattend.Show();
+                    }
+                    else if (dialog == DialogResult.No)
                     {
                         this.Hide();
                         var jsonandsql = new Form1();
-                        jsonandsql.setStudent(studentreader["student_id"].ToString());
                         jsonandsql.Show();
-                    }
-                    else if (dialog == DialogResult.Cancel)
-                    {
-                        return;
                     }
                 }
             }
