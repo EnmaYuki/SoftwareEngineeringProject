@@ -372,6 +372,7 @@ namespace JSONandSQL
             this.Hide();
             Form3 login = new Form3();
             login.Show();
+            
         }
     }
 }

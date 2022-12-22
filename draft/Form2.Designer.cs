@@ -136,6 +136,7 @@
             this.tb_resultKey.Location = new System.Drawing.Point(12, 88);
             this.tb_resultKey.Multiline = true;
             this.tb_resultKey.Name = "tb_resultKey";
+            this.tb_resultKey.ReadOnly = true;
             this.tb_resultKey.Size = new System.Drawing.Size(195, 101);
             this.tb_resultKey.TabIndex = 59;
             // 
@@ -144,6 +145,7 @@
             this.tb_resultData.Location = new System.Drawing.Point(213, 88);
             this.tb_resultData.Multiline = true;
             this.tb_resultData.Name = "tb_resultData";
+            this.tb_resultData.ReadOnly = true;
             this.tb_resultData.Size = new System.Drawing.Size(251, 101);
             this.tb_resultData.TabIndex = 58;
             // 
@@ -152,6 +154,7 @@
             this.tb_result.Location = new System.Drawing.Point(470, 88);
             this.tb_result.Multiline = true;
             this.tb_result.Name = "tb_result";
+            this.tb_result.ReadOnly = true;
             this.tb_result.Size = new System.Drawing.Size(251, 101);
             this.tb_result.TabIndex = 57;
             // 

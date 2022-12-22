@@ -634,513 +634,24 @@ namespace JSONandSQL
             var Excelapp = new Excel.Application();
             Excelapp.Visible = true;
             Workbook workBook = Excelapp.Workbooks.Add();
-            Worksheet worksheet1 = Excelapp.ActiveSheet;
-            worksheet1.Name = "Ionic lesson1";
-            string ionic1 = "Select studentinfo.student_id,studentinfo.Student_Name,time(testjson.time) as time,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and time(testjson.time)>time('19:30:00')and time(testjson.time)<time('23:30:00') and date(testjson.time) = date('2022-12-18')";
-            MySqlCommand i1cmd = new MySqlCommand(ionic1, connection);
-            MySqlDataReader data = i1cmd.ExecuteReader();
+
             int y2sn = 0;
             int validcount = 0;
             int invalidcount = 0;
-            if (data.HasRows == true)
-            {
-                var datarow = 2;
-                for (int i = 0; i < data.FieldCount; i++)
-                {
-                    worksheet1.Cells[1, i + 1] = data.GetName(i);
-                    while (data.Read())
-                    {
-                        worksheet1.Cells[datarow, 1] = data["student_id"];
-                        worksheet1.Cells[datarow, 2] = data["student_Name"];
-                        worksheet1.Cells[datarow, 3] = data["time"].ToString();
-                        worksheet1.Cells[datarow, 4] = data["start_time"].ToString();
-                        int cdc = Int32.Parse(data["timer"].ToString());
-                        if (cdc < 0) { worksheet1.Cells[datarow, 5] = "OnTime"; }
-                        else { worksheet1.Cells[datarow, 5] = "Late"; }
-                        datarow++;
-                        y2sn++;
-                        validcount++;
-                    }
-                }
-                //do sth here  year 2 sheet
-
-                worksheet1.Columns.AutoFit();
-                worksheet1.Rows.AutoFit();
-            }
-            data.Close();
-            i1cmd.Dispose();
-            string ionic1i = "Select studentinfo.student_id,studentinfo.Student_Name,time(testjson.time) as time,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and date(testjson.time) = date('2022-12-18') AND (time(testjson.time)<time('19:30:00')OR time(testjson.time)>time('23:30:00'))";
-            MySqlCommand i1icmd = new MySqlCommand(ionic1i, connection);
-            MySqlDataReader datai = i1icmd.ExecuteReader();
-
-            if (datai.HasRows == true)
-            {
-                var datarow = 2;
-                for (int i = 0; i < datai.FieldCount; i++)
-                {
-                    worksheet1.Cells[1, i + 1] = datai.GetName(i);
-                    while (datai.Read())
-                    {
-                        worksheet1.Cells[datarow + validcount, 1] = datai["student_id"];
-                        worksheet1.Cells[datarow + validcount, 2] = datai["student_Name"];
-                        worksheet1.Cells[datarow + validcount, 3] = datai["time"].ToString();
-                        worksheet1.Cells[datarow + validcount, 4] = datai["start_time"].ToString();
-                        worksheet1.Cells[datarow + validcount, 5] = "Invalid";
-                        datarow++;
-                        y2sn++;
-                        invalidcount++;
-                    }
-                }
-                //do sth here  year 2 sheet
-
-                worksheet1.Columns.AutoFit();
-                worksheet1.Rows.AutoFit();
-            }
-            worksheet1.Cells[y2sn + 5, 1] = "Total student number";
-            worksheet1.Cells[y2sn + 5, 2] = y2sn;
-
-            worksheet1.Cells[y2sn + 6, 1] = "Valid Register number";
-            worksheet1.Cells[y2sn + 6, 2] = validcount;
-
-            worksheet1.Cells[y2sn + 7, 1] = "Invalid Register number";
-            worksheet1.Cells[y2sn + 7, 2] = invalidcount;
-            y2sn = 0;
-            validcount = 0;
-            invalidcount = 0;
-            worksheet1.Columns.AutoFit();
-            worksheet1.Rows.AutoFit();
-            datai.Close();
-            i1icmd.Dispose();
-
-            //lesson2
-
-            Excel.Worksheet worksheet2 = workBook.Worksheets.Add();
-            worksheet2.Name = "Ionic lesson2";
-
-
-            string ionic2 = "Select studentinfo.student_id,studentinfo.Student_Name,time(testjson.time) as time,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and time(testjson.time)>time('19:30:00')and time(testjson.time)<time('23:30:00') and date(testjson.time) = date('2022-12-19')";
-            MySqlCommand i2cmd = new MySqlCommand(ionic2, connection);
-            data = i2cmd.ExecuteReader();
-            y2sn = 0;
-            validcount = 0;
-            invalidcount = 0;
-            if (data.HasRows == true)
-            {
-                var datarow = 2;
-                for (int i = 0; i < data.FieldCount; i++)
-                {
-                    worksheet2.Cells[1, i + 1] = data.GetName(i);
-                    while (data.Read())
-                    {
-                        worksheet2.Cells[datarow, 1] = data["student_id"];
-                        worksheet2.Cells[datarow, 2] = data["student_Name"];
-                        worksheet2.Cells[datarow, 3] = data["time"].ToString();
-                        worksheet2.Cells[datarow, 4] = data["start_time"].ToString();
-                        int cdc = Int32.Parse(data["timer"].ToString());
-                        if (cdc < 0) { worksheet2.Cells[datarow, 5] = "OnTime"; }
-                        else { worksheet2.Cells[datarow, 5] = "Late"; }
-                        datarow++;
-                        y2sn++;
-                        validcount++;
-                    }
-                }
-                //do sth here  year 2 sheet
-
-                worksheet2.Columns.AutoFit();
-                worksheet2.Rows.AutoFit();
-            }
-            data.Close();
-            i2cmd.Dispose();
-            string ionic2i = "Select studentinfo.student_id,studentinfo.Student_Name,time(testjson.time) as time,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and date(testjson.time) = date('2022-12-19') AND (time(testjson.time)<time('19:30:00')OR time(testjson.time)>time('23:30:00'))";
-            MySqlCommand i2icmd = new MySqlCommand(ionic2i, connection);
-            datai = i2icmd.ExecuteReader();
-
-            if (datai.HasRows == true)
-            {
-                var datarow = 2;
-                for (int i = 0; i < datai.FieldCount; i++)
-                {
-                    worksheet2.Cells[1, i + 1] = datai.GetName(i);
-                    while (datai.Read())
-                    {
-                        worksheet2.Cells[datarow + validcount, 1] = datai["student_id"];
-                        worksheet2.Cells[datarow + validcount, 2] = datai["student_Name"];
-                        worksheet2.Cells[datarow + validcount, 3] = datai["time"].ToString();
-                        worksheet2.Cells[datarow + validcount, 4] = datai["start_time"].ToString();
-                        worksheet2.Cells[datarow + validcount, 5] = "Invalid";
-                        datarow++;
-                        y2sn++;
-                        invalidcount++;
-                    }
-                }
-                //do sth here  year 2 sheet
-
-                worksheet2.Columns.AutoFit();
-                worksheet2.Rows.AutoFit();
-            }
-            worksheet2.Cells[y2sn + 5, 1] = "Total student number";
-            worksheet2.Cells[y2sn + 5, 2] = y2sn;
-
-            worksheet2.Cells[y2sn + 6, 1] = "Valid Register number";
-            worksheet2.Cells[y2sn + 6, 2] = validcount;
-
-            worksheet2.Cells[y2sn + 7, 1] = "Invalid Register number";
-            worksheet2.Cells[y2sn + 7, 2] = invalidcount;
-            y2sn = 0;
-            validcount = 0;
-            invalidcount = 0;
-            worksheet2.Columns.AutoFit();
-            worksheet2.Rows.AutoFit();
-            datai.Close();
-            i2icmd.Dispose();
-
-
-            //lesson3
-
-            Excel.Worksheet worksheet3 = workBook.Worksheets.Add();
-            worksheet3.Name = "Ionic lesson3";
-            Worksheet currentWorksheet = worksheet3 as Worksheet;
-
-            string ionic3 = "Select studentinfo.student_id,studentinfo.Student_Name,time(testjson.time) as time,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and time(testjson.time)>time('19:30:00')and time(testjson.time)<time('23:30:00') and date(testjson.time) = date('2022-12-20')";
-            MySqlCommand i3cmd = new MySqlCommand(ionic3, connection);
-            data = i3cmd.ExecuteReader();
-            y2sn = 0;
-            validcount = 0;
-            invalidcount = 0;
-            if (data.HasRows == true)
-            {
-                var datarow = 2;
-                for (int i = 0; i < data.FieldCount; i++)
-                {
-                    currentWorksheet.Cells[1, i + 1] = data.GetName(i);
-                    while (data.Read())
-                    {
-                        currentWorksheet.Cells[datarow, 1] = data["student_id"];
-                        currentWorksheet.Cells[datarow, 2] = data["student_Name"];
-                        currentWorksheet.Cells[datarow, 3] = data["time"].ToString();
-                        currentWorksheet.Cells[datarow, 4] = data["start_time"].ToString();
-                        int cdc = Int32.Parse(data["timer"].ToString());
-                        if (cdc < 0) { currentWorksheet.Cells[datarow, 5] = "OnTime"; }
-                        else { currentWorksheet.Cells[datarow, 5] = "Late"; }
-                        datarow++;
-                        y2sn++;
-                        validcount++;
-                    }
-                }
-                //do sth here  year 2 sheet
-
-                currentWorksheet.Columns.AutoFit();
-                currentWorksheet.Rows.AutoFit();
-            }
-            data.Close();
-            i3cmd.Dispose();
-            string ionic3i = "Select studentinfo.student_id,studentinfo.Student_Name,time(testjson.time) as time,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and date(testjson.time) = date('2022-12-20') AND (time(testjson.time)<time('19:30:00')OR time(testjson.time)>time('23:30:00'))";
-            MySqlCommand i3icmd = new MySqlCommand(ionic3i, connection);
-            datai = i3icmd.ExecuteReader();
-
-            if (datai.HasRows == true)
-            {
-                var datarow = 2;
-                for (int i = 0; i < datai.FieldCount; i++)
-                {
-                    currentWorksheet.Cells[1, i + 1] = datai.GetName(i);
-                    while (datai.Read())
-                    {
-                        currentWorksheet.Cells[datarow + validcount, 1] = datai["student_id"];
-                        currentWorksheet.Cells[datarow + validcount, 2] = datai["student_Name"];
-                        currentWorksheet.Cells[datarow + validcount, 3] = datai["time"].ToString();
-                        currentWorksheet.Cells[datarow + validcount, 4] = datai["start_time"].ToString();
-                        currentWorksheet.Cells[datarow + validcount, 5] = "Invalid";
-                        datarow++;
-                        y2sn++;
-                        invalidcount++;
-                    }
-                }
-                //do sth here  year 2 sheet
-
-                currentWorksheet.Columns.AutoFit();
-                currentWorksheet.Rows.AutoFit();
-            }
-            currentWorksheet.Cells[y2sn + 5, 1] = "Total student number";
-            currentWorksheet.Cells[y2sn + 5, 2] = y2sn;
-
-            currentWorksheet.Cells[y2sn + 6, 1] = "Valid Register number";
-            currentWorksheet.Cells[y2sn + 6, 2] = validcount;
-
-            currentWorksheet.Cells[y2sn + 7, 1] = "Invalid Register number";
-            currentWorksheet.Cells[y2sn + 7, 2] = invalidcount;
-            y2sn = 0;
-            validcount = 0;
-            invalidcount = 0;
-            currentWorksheet.Columns.AutoFit();
-            currentWorksheet.Rows.AutoFit();
-            currentWorksheet = null;
-            datai.Close();
-            i3icmd.Dispose();
-
-
-            //lesson4
-
-            Excel.Worksheet worksheet4 = workBook.Worksheets.Add();
-            worksheet4.Name = "Ionic lesson4";
-            currentWorksheet = worksheet4 as Worksheet;
-
-            string ionic4 = "Select studentinfo.student_id,studentinfo.Student_Name,time(testjson.time) as time,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and time(testjson.time)>time('19:30:00')and time(testjson.time)<time('23:30:00') and date(testjson.time) = date('2022-12-21')";
-            MySqlCommand i4cmd = new MySqlCommand(ionic4, connection);
-            data = i4cmd.ExecuteReader();
-            y2sn = 0;
-            validcount = 0;
-            invalidcount = 0;
-            if (data.HasRows == true)
-            {
-                var datarow = 2;
-                for (int i = 0; i < data.FieldCount; i++)
-                {
-                    currentWorksheet.Cells[1, i + 1] = data.GetName(i);
-                    while (data.Read())
-                    {
-                        currentWorksheet.Cells[datarow, 1] = data["student_id"];
-                        currentWorksheet.Cells[datarow, 2] = data["student_Name"];
-                        currentWorksheet.Cells[datarow, 3] = data["time"].ToString();
-                        currentWorksheet.Cells[datarow, 4] = data["start_time"].ToString();
-                        int cdc = Int32.Parse(data["timer"].ToString());
-                        if (cdc < 0) { currentWorksheet.Cells[datarow, 5] = "OnTime"; }
-                        else { currentWorksheet.Cells[datarow, 5] = "Late"; }
-                        datarow++;
-                        y2sn++;
-                        validcount++;
-                    }
-                }
-                //do sth here  year 2 sheet
-
-                currentWorksheet.Columns.AutoFit();
-                currentWorksheet.Rows.AutoFit();
-            }
-            data.Close();
-            i4cmd.Dispose();
-            string ionic4i = "Select studentinfo.student_id,studentinfo.Student_Name,time(testjson.time) as time,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and date(testjson.time) = date('2022-12-21') AND (time(testjson.time)<time('19:30:00')OR time(testjson.time)>time('23:30:00'))";
-            MySqlCommand i4icmd = new MySqlCommand(ionic4i, connection);
-            datai = i4icmd.ExecuteReader();
-
-            if (datai.HasRows == true)
-            {
-                var datarow = 2;
-                for (int i = 0; i < datai.FieldCount; i++)
-                {
-                    currentWorksheet.Cells[1, i + 1] = datai.GetName(i);
-                    while (datai.Read())
-                    {
-                        currentWorksheet.Cells[datarow + validcount, 1] = datai["student_id"];
-                        currentWorksheet.Cells[datarow + validcount, 2] = datai["student_Name"];
-                        currentWorksheet.Cells[datarow + validcount, 3] = datai["time"].ToString();
-                        currentWorksheet.Cells[datarow + validcount, 4] = datai["start_time"].ToString();
-                        currentWorksheet.Cells[datarow + validcount, 5] = "Invalid";
-                        datarow++;
-                        y2sn++;
-                        invalidcount++;
-                    }
-                }
-                //do sth here  year 2 sheet
-
-                currentWorksheet.Columns.AutoFit();
-                currentWorksheet.Rows.AutoFit();
-            }
-            currentWorksheet.Cells[y2sn + 5, 1] = "Total student number";
-            currentWorksheet.Cells[y2sn + 5, 2] = y2sn;
-
-            currentWorksheet.Cells[y2sn + 6, 1] = "Valid Register number";
-            currentWorksheet.Cells[y2sn + 6, 2] = validcount;
-
-            currentWorksheet.Cells[y2sn + 7, 1] = "Invalid Register number";
-            currentWorksheet.Cells[y2sn + 7, 2] = invalidcount;
-            y2sn = 0;
-            validcount = 0;
-            invalidcount = 0;
-            currentWorksheet.Columns.AutoFit();
-            currentWorksheet.Rows.AutoFit();
-            currentWorksheet = null;
-            datai.Close();
-            i4icmd.Dispose();
-
-
-            //lesson5
-
-            Excel.Worksheet worksheet5 = workBook.Worksheets.Add();
-            worksheet5.Name = "Ionic lesson5";
-            currentWorksheet = worksheet5 as Worksheet;
-
-            string ionic5 = "Select studentinfo.student_id,studentinfo.Student_Name,time(testjson.time) as time,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and time(testjson.time)>time('19:30:00')and time(testjson.time)<time('23:30:00') and date(testjson.time) = date('2022-12-22')";
-            MySqlCommand i5cmd = new MySqlCommand(ionic5, connection);
-            data = i5cmd.ExecuteReader();
-            y2sn = 0;
-            validcount = 0;
-            invalidcount = 0;
-            if (data.HasRows == true)
-            {
-                var datarow = 2;
-                for (int i = 0; i < data.FieldCount; i++)
-                {
-                    currentWorksheet.Cells[1, i + 1] = data.GetName(i);
-                    while (data.Read())
-                    {
-                        currentWorksheet.Cells[datarow, 1] = data["student_id"];
-                        currentWorksheet.Cells[datarow, 2] = data["student_Name"];
-                        currentWorksheet.Cells[datarow, 3] = data["time"].ToString();
-                        currentWorksheet.Cells[datarow, 4] = data["start_time"].ToString();
-                        int cdc = Int32.Parse(data["timer"].ToString());
-                        if (cdc < 0) { currentWorksheet.Cells[datarow, 5] = "OnTime"; }
-                        else { currentWorksheet.Cells[datarow, 5] = "Late"; }
-                        datarow++;
-                        y2sn++;
-                        validcount++;
-                    }
-                }
-                //do sth here  year 2 sheet
-
-                currentWorksheet.Columns.AutoFit();
-                currentWorksheet.Rows.AutoFit();
-            }
-            data.Close();
-            i5cmd.Dispose();
-            string ionic5i = "Select studentinfo.student_id,studentinfo.Student_Name,time(testjson.time) as time,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and date(testjson.time) = date('2022-12-22') AND (time(testjson.time)<time('19:30:00')OR time(testjson.time)>time('23:30:00'))";
-            MySqlCommand i5icmd = new MySqlCommand(ionic5i, connection);
-            datai = i5icmd.ExecuteReader();
-
-            if (datai.HasRows == true)
-            {
-                var datarow = 2;
-                for (int i = 0; i < datai.FieldCount; i++)
-                {
-                    currentWorksheet.Cells[1, i + 1] = datai.GetName(i);
-                    while (datai.Read())
-                    {
-                        currentWorksheet.Cells[datarow + validcount, 1] = datai["student_id"];
-                        currentWorksheet.Cells[datarow + validcount, 2] = datai["student_Name"];
-                        currentWorksheet.Cells[datarow + validcount, 3] = datai["time"].ToString();
-                        currentWorksheet.Cells[datarow + validcount, 4] = datai["start_time"].ToString();
-                        currentWorksheet.Cells[datarow + validcount, 5] = "Invalid";
-                        datarow++;
-                        y2sn++;
-                        invalidcount++;
-                    }
-                }
-                //do sth here  year 2 sheet
-
-                currentWorksheet.Columns.AutoFit();
-                currentWorksheet.Rows.AutoFit();
-            }
-            currentWorksheet.Cells[y2sn + 5, 1] = "Total student number";
-            currentWorksheet.Cells[y2sn + 5, 2] = y2sn;
-
-            currentWorksheet.Cells[y2sn + 6, 1] = "Valid Register number";
-            currentWorksheet.Cells[y2sn + 6, 2] = validcount;
-
-            currentWorksheet.Cells[y2sn + 7, 1] = "Invalid Register number";
-            currentWorksheet.Cells[y2sn + 7, 2] = invalidcount;
-            y2sn = 0;
-            validcount = 0;
-            invalidcount = 0;
-            currentWorksheet.Columns.AutoFit();
-            currentWorksheet.Rows.AutoFit();
-            currentWorksheet = null;
-            datai.Close();
-            i5icmd.Dispose();
 
 
 
-            //lesson6
 
-            Excel.Worksheet worksheet6 = workBook.Worksheets.Add();
-            worksheet6.Name = "Ionic lesson6";
-            currentWorksheet = worksheet6 as Worksheet;
-
-            string ionic6 = "Select studentinfo.student_id,studentinfo.Student_Name,time(testjson.time) as time,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and time(testjson.time)>time('19:30:00')and time(testjson.time)<time('23:30:00') and date(testjson.time) = date('2022-12-23')";
-            MySqlCommand i6cmd = new MySqlCommand(ionic6, connection);
-            data = i6cmd.ExecuteReader();
-            y2sn = 0;
-            validcount = 0;
-            invalidcount = 0;
-            if (data.HasRows == true)
-            {
-                var datarow = 2;
-                for (int i = 0; i < data.FieldCount; i++)
-                {
-                    currentWorksheet.Cells[1, i + 1] = data.GetName(i);
-                    while (data.Read())
-                    {
-                        currentWorksheet.Cells[datarow, 1] = data["student_id"];
-                        currentWorksheet.Cells[datarow, 2] = data["student_Name"];
-                        currentWorksheet.Cells[datarow, 3] = data["time"].ToString();
-                        currentWorksheet.Cells[datarow, 4] = data["start_time"].ToString();
-                        int cdc = Int32.Parse(data["timer"].ToString());
-                        if (cdc < 0) { currentWorksheet.Cells[datarow, 5] = "OnTime"; }
-                        else { currentWorksheet.Cells[datarow, 5] = "Late"; }
-                        datarow++;
-                        y2sn++;
-                        validcount++;
-                    }
-                }
-                //do sth here  year 2 sheet
-
-                currentWorksheet.Columns.AutoFit();
-                currentWorksheet.Rows.AutoFit();
-            }
-            data.Close();
-            i6cmd.Dispose();
-            string ionic6i = "Select studentinfo.student_id,studentinfo.Student_Name,time(testjson.time) as time,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and date(testjson.time) = date('2022-12-23') AND (time(testjson.time)<time('19:30:00')OR time(testjson.time)>time('23:30:00'))";
-            MySqlCommand i6icmd = new MySqlCommand(ionic6i, connection);
-            datai = i6icmd.ExecuteReader();
-
-            if (datai.HasRows == true)
-            {
-                var datarow = 2;
-                for (int i = 0; i < datai.FieldCount; i++)
-                {
-                    currentWorksheet.Cells[1, i + 1] = datai.GetName(i);
-                    while (datai.Read())
-                    {
-                        currentWorksheet.Cells[datarow + validcount, 1] = datai["student_id"];
-                        currentWorksheet.Cells[datarow + validcount, 2] = datai["student_Name"];
-                        currentWorksheet.Cells[datarow + validcount, 3] = datai["time"].ToString();
-                        currentWorksheet.Cells[datarow + validcount, 4] = datai["start_time"].ToString();
-                        currentWorksheet.Cells[datarow + validcount, 5] = "Invalid";
-                        datarow++;
-                        y2sn++;
-                        invalidcount++;
-                    }
-                }
-                //do sth here  year 2 sheet
-
-                currentWorksheet.Columns.AutoFit();
-                currentWorksheet.Rows.AutoFit();
-            }
-            currentWorksheet.Cells[y2sn + 5, 1] = "Total student number";
-            currentWorksheet.Cells[y2sn + 5, 2] = y2sn;
-
-            currentWorksheet.Cells[y2sn + 6, 1] = "Valid Register number";
-            currentWorksheet.Cells[y2sn + 6, 2] = validcount;
-
-            currentWorksheet.Cells[y2sn + 7, 1] = "Invalid Register number";
-            currentWorksheet.Cells[y2sn + 7, 2] = invalidcount;
-            y2sn = 0;
-            validcount = 0;
-            invalidcount = 0;
-            currentWorksheet.Columns.AutoFit();
-            currentWorksheet.Rows.AutoFit();
-            currentWorksheet = null;
-            datai.Close();
-            i6icmd.Dispose();
-
-
+            //
             //ionic total sheet
-
-            Excel.Worksheet worksheet7 = workBook.Worksheets.Add();
-            worksheet7.Name = "ionic total sheet";
-            currentWorksheet = worksheet7 as Worksheet;
-
+            //
+            Excel.Worksheet worksheet1 = workBook.Worksheets.Add();
+            worksheet1.Name = "ionic total sheet";
+            Worksheet currentWorksheet = worksheet1 as Worksheet;
+            int courseid = 2;
             string ionic71 = "SELECT student_id, Student_Name FROM `studentinfo` WHERE Year = 2";
             MySqlCommand i71cmd = new MySqlCommand(ionic71, connection);
-            data = i71cmd.ExecuteReader();
+            MySqlDataReader data = i71cmd.ExecuteReader();
             y2sn = 0;
             validcount = 0;
             invalidcount = 0;
@@ -1161,7 +672,6 @@ namespace JSONandSQL
                         y2sn++;
                     }
                 }
-                //do sth here  year 2 sheet
 
 
             }
@@ -1183,7 +693,6 @@ namespace JSONandSQL
                         y2sn++;
                     }
                 }
-                //do sth here  year 2 sheet
 
 
             }
@@ -1199,8 +708,8 @@ namespace JSONandSQL
                 foreach (var date in Datelist)
                 {
 
-                    ionic71 = "SELECT testjson.student, testjson.time, testjson.CourseId,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and testjson.student='" + student + "'and date(testjson.time) = date('" + date + "')";
-                    //textBox1.Text = ionic71;
+                    ionic71 = "SELECT testjson.student, testjson.time, testjson.CourseId,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and testjson.student='" + student + "'and date(testjson.time) = date('" + date + "')and courseId = " + courseid;
+
                     i71cmd = new MySqlCommand(ionic71, connection);
                     data.Close();
                     data = i71cmd.ExecuteReader();
@@ -1307,11 +816,12 @@ namespace JSONandSQL
             myChart = (Excel.ChartObject)xlCharts.Add(350, 150, 300, 250);
             chartPage = myChart.Chart;
             misValue = System.Reflection.Missing.Value;
-
-
             chartRange = currentWorksheet.get_Range("b10", "h13");
             chartPage.SetSourceData(chartRange, misValue);
             chartPage.ChartType = Excel.XlChartType.xlColumnClustered;
+
+
+
             currentWorksheet.Columns.AutoFit();
             currentWorksheet.Rows.AutoFit();
             data.Close();
@@ -1319,18 +829,975 @@ namespace JSONandSQL
             y2sn = 0;
             validcount = 0;
             invalidcount = 0;
-            currentWorksheet.get_Range("b10", "h13").EntireColumn.Hidden = true;
-            currentWorksheet.get_Range("i1", "l9").EntireRow.Hidden = true;
+            //currentWorksheet.get_Range("b10", "h13").EntireColumn.Hidden = true;
+            //currentWorksheet.get_Range("i1", "l9").EntireRow.Hidden = true;
+            currentWorksheet.Columns.AutoFit();
+            currentWorksheet.Rows.AutoFit();
+            currentWorksheet = null;
+
+
+            //
+            //Unity total sheet
+            //
+
+            Excel.Worksheet worksheet7 = workBook.Worksheets.Add();
+            worksheet7.Name = "Unity total sheet";
+            currentWorksheet = worksheet7 as Worksheet;
+
+            ionic71 = "SELECT student_id, Student_Name FROM `studentinfo` WHERE Year = 2";
+            i71cmd = new MySqlCommand(ionic71, connection);
+            data = i71cmd.ExecuteReader();
+            y2sn = 0;
+            validcount = 0;
+            invalidcount = 0;
+            studentlist = new List<string>();
+            Datelist = new List<string>();
+            if (data.HasRows == true)
+            {
+                var datarow = 2;
+                for (int i = 0; i < data.FieldCount; i++)
+                {
+                    currentWorksheet.Cells[1, i + 1] = data.GetName(i);
+                    while (data.Read())
+                    {
+                        currentWorksheet.Cells[datarow, 1] = data["student_id"];
+                        studentlist.Add(data["student_id"].ToString());
+                        currentWorksheet.Cells[datarow, 2] = data["student_Name"];
+                        datarow++;
+                        y2sn++;
+                    }
+                }
+
+
+            }
+            courseid = 1;
+            ionic71 = "SELECT date(Date) as Date FROM `lessons` WHERE courseId = " + courseid + " ORDER BY date(Date)";
+            i71cmd = new MySqlCommand(ionic71, connection);
+            data.Close();
+            data = i71cmd.ExecuteReader();
+            if (data.HasRows == true)
+            {
+                var datarow = 3;
+                for (int i = 0; i < data.FieldCount; i++)
+                {
+
+                    while (data.Read())
+                    {
+                        currentWorksheet.Cells[1, datarow] = data["Date"];
+                        Datelist.Add(data["Date"].ToString());
+                        datarow++;
+                        y2sn++;
+                    }
+                }
+
+
+            }
+            currentWorksheet.Columns.AutoFit();
+            currentWorksheet.Rows.AutoFit();
+            row = 1;
+            rowsize = studentlist.Capacity;
+            matrix = new double[Datelist.Capacity, studentlist.Capacity];
+            foreach (var student in studentlist)
+            {
+                row++;
+                var col = 3;
+                foreach (var date in Datelist)
+                {
+
+                    ionic71 = "SELECT testjson.student, testjson.time, testjson.CourseId,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and testjson.student='" + student + "'and date(testjson.time) = date('" + date + "')and courseId = " + courseid;
+
+                    i71cmd = new MySqlCommand(ionic71, connection);
+                    data.Close();
+                    data = i71cmd.ExecuteReader();
+                    if (data.HasRows == true)
+                    {
+                        while (data.Read())
+                        {
+                            currentWorksheet.Cells[row, col] = data["time"].ToString();
+                            int cdc = Int32.Parse(data["timer"].ToString());
+                            if (cdc < 0)
+                            {
+                                currentWorksheet.Cells[row, col].Interior.Color = Excel.XlRgbColor.rgbGreen;
+                                matrix[row - 2, col - 3] = 1;
+                            }
+                            else
+                            {
+                                currentWorksheet.Cells[row, col].Interior.Color = Excel.XlRgbColor.rgbRed;
+                                matrix[row - 2, col - 3] = 0.0001;
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        currentWorksheet.Cells[row, col] = "absent";
+                        matrix[row - 1, col - 2] = 0;
+                    }
+
+                    col++;
+                }
+                int pr = 0;
+                int la = 0;
+                int ab = 0;
+                for (int i = 0; i < Datelist.Capacity; i++)
+                {
+
+                    if (matrix[row - 2, i] == 1)
+                    {
+                        pr++;
+                    }
+                    else if (matrix[row - 2, i] < 1 && matrix[row - 2, i] > 0)
+                    {
+                        la++;
+                    }
+                    else if (matrix[row - 2, i] == 0)
+                    {
+                        ab++;
+                    }
+                }
+                currentWorksheet.Cells[row, col] = currentWorksheet.Cells[row, 2];
+                currentWorksheet.Cells[row, col + 1] = pr;
+                currentWorksheet.Cells[row, col + 2] = la;
+                currentWorksheet.Cells[row, col + 3] = ab - 2;
+
+            }
+            row = 1;
+            currentWorksheet.Cells[1, Datelist.Capacity + 2] = "Presented";
+            currentWorksheet.Cells[1, Datelist.Capacity + 3] = "Late";
+            currentWorksheet.Cells[1, Datelist.Capacity + 4] = "Absent";
+            currentWorksheet.Cells[studentlist.Capacity + 3, 2] = "Presented";
+            currentWorksheet.Cells[studentlist.Capacity + 4, 2] = "Late";
+            currentWorksheet.Cells[studentlist.Capacity + 5, 2] = "Absent";
+
+            for (int lesson = 0; lesson < Datelist.Capacity - 2; lesson++)
+            {
+                int pr = 0;
+                int la = 0;
+                int ab = 0;
+                for (int student = 0; student < studentlist.Capacity; student++)
+                {
+
+
+                    if (matrix[student, lesson] == 1)
+                    {
+                        pr++;
+                    }
+                    else if (matrix[student, lesson] < 1 && matrix[student, lesson] > 0)
+                    {
+                        la++;
+                    }
+                    else if (matrix[student, lesson] == 0)
+                    {
+                        ab++;
+                    }
+                }
+                currentWorksheet.Cells[2 + studentlist.Capacity, 3 + lesson] = "lesson " + (lesson + 1);
+                currentWorksheet.Cells[3 + studentlist.Capacity, 3 + lesson] = pr;
+                currentWorksheet.Cells[4 + studentlist.Capacity, 3 + lesson] = la;
+                currentWorksheet.Cells[5 + studentlist.Capacity, 3 + lesson] = ab;
+            }
+            xlCharts =
+               (Excel.ChartObjects)currentWorksheet.ChartObjects(Type.Missing);
+            myChart =
+                (Excel.ChartObject)xlCharts.Add(0, 150, 300, 250);
+            chartPage = myChart.Chart;
+            misValue = System.Reflection.Missing.Value;
+
+
+            chartRange = currentWorksheet.get_Range("i1", "l9");
+            chartPage.SetSourceData(chartRange, misValue);
+            chartPage.ChartType = Excel.XlChartType.xlColumnClustered;
+
+            myChart = (Excel.ChartObject)xlCharts.Add(350, 150, 300, 250);
+            chartPage = myChart.Chart;
+            misValue = System.Reflection.Missing.Value;
+            chartRange = currentWorksheet.get_Range("b10", "h13");
+            chartPage.SetSourceData(chartRange, misValue);
+            chartPage.ChartType = Excel.XlChartType.xlColumnClustered;
+
+
+
+            currentWorksheet.Columns.AutoFit();
+            currentWorksheet.Rows.AutoFit();
+            data.Close();
+            i71cmd.Dispose();
+            y2sn = 0;
+            validcount = 0;
+            invalidcount = 0;
+            //currentWorksheet.get_Range("b10", "h13").EntireColumn.Hidden = true;
+            //currentWorksheet.get_Range("i1", "l9").EntireRow.Hidden = true;
+            currentWorksheet.Columns.AutoFit();
+            currentWorksheet.Rows.AutoFit();
+            currentWorksheet = null;
+
+            //
+            //SQL total sheet
+            //
+
+            Excel.Worksheet worksheet10 = workBook.Worksheets.Add();
+            worksheet10.Name = "SQL total sheet";
+            currentWorksheet = worksheet10 as Worksheet;
+
+            ionic71 = "SELECT student_id, Student_Name FROM `studentinfo` WHERE Year = 2";
+            i71cmd = new MySqlCommand(ionic71, connection);
+            data = i71cmd.ExecuteReader();
+            y2sn = 0;
+            validcount = 0;
+            invalidcount = 0;
+            studentlist = new List<string>();
+            Datelist = new List<string>();
+            if (data.HasRows == true)
+            {
+                var datarow = 2;
+                for (int i = 0; i < data.FieldCount; i++)
+                {
+                    currentWorksheet.Cells[1, i + 1] = data.GetName(i);
+                    while (data.Read())
+                    {
+                        currentWorksheet.Cells[datarow, 1] = data["student_id"];
+                        studentlist.Add(data["student_id"].ToString());
+                        currentWorksheet.Cells[datarow, 2] = data["student_Name"];
+                        datarow++;
+                        y2sn++;
+                    }
+                }
+
+
+            }
+            courseid = 6;
+            ionic71 = "SELECT date(Date) as Date FROM `lessons` WHERE courseId = " + courseid + " ORDER BY date(Date)";
+            i71cmd = new MySqlCommand(ionic71, connection);
+            data.Close();
+            data = i71cmd.ExecuteReader();
+            if (data.HasRows == true)
+            {
+                var datarow = 3;
+                for (int i = 0; i < data.FieldCount; i++)
+                {
+
+                    while (data.Read())
+                    {
+                        currentWorksheet.Cells[1, datarow] = data["Date"];
+                        Datelist.Add(data["Date"].ToString());
+                        datarow++;
+                        y2sn++;
+                    }
+                }
+
+
+            }
+            currentWorksheet.Columns.AutoFit();
+            currentWorksheet.Rows.AutoFit();
+            row = 1;
+            rowsize = studentlist.Capacity;
+            matrix = new double[Datelist.Capacity, studentlist.Capacity];
+            foreach (var student in studentlist)
+            {
+                row++;
+                var col = 3;
+                foreach (var date in Datelist)
+                {
+
+                    ionic71 = "SELECT testjson.student, testjson.time, testjson.CourseId,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and testjson.student='" + student + "'and date(testjson.time) = date('" + date + "') and courseId = " + courseid + ";";
+
+                    i71cmd = new MySqlCommand(ionic71, connection);
+                    data.Close();
+                    data = i71cmd.ExecuteReader();
+                    if (data.HasRows == true)
+                    {
+                        while (data.Read())
+                        {
+                            currentWorksheet.Cells[row, col] = data["time"].ToString();
+                            int cdc = Int32.Parse(data["timer"].ToString());
+                            if (cdc < 0)
+                            {
+                                currentWorksheet.Cells[row, col].Interior.Color = Excel.XlRgbColor.rgbGreen;
+                                matrix[row - 2, col - 3] = 1;
+                            }
+                            else
+                            {
+                                currentWorksheet.Cells[row, col].Interior.Color = Excel.XlRgbColor.rgbRed;
+                                matrix[row - 2, col - 3] = 0.0001;
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        currentWorksheet.Cells[row, col] = "absent";
+                        matrix[row - 1, col - 2] = 0;
+                    }
+
+                    col++;
+                }
+                int pr = 0;
+                int la = 0;
+                int ab = 0;
+                for (int i = 0; i < Datelist.Capacity; i++)
+                {
+
+                    if (matrix[row - 2, i] == 1)
+                    {
+                        pr++;
+                    }
+                    else if (matrix[row - 2, i] < 1 && matrix[row - 2, i] > 0)
+                    {
+                        la++;
+                    }
+                    else if (matrix[row - 2, i] == 0)
+                    {
+                        ab++;
+                    }
+                }
+                currentWorksheet.Cells[row, col] = currentWorksheet.Cells[row, 2];
+                currentWorksheet.Cells[row, col + 1] = pr;
+                currentWorksheet.Cells[row, col + 2] = la;
+                currentWorksheet.Cells[row, col + 3] = ab - 2;
+
+            }
+            row = 1;
+            currentWorksheet.Cells[1, Datelist.Capacity + 2] = "Presented";
+            currentWorksheet.Cells[1, Datelist.Capacity + 3] = "Late";
+            currentWorksheet.Cells[1, Datelist.Capacity + 4] = "Absent";
+            currentWorksheet.Cells[studentlist.Capacity + 3, 2] = "Presented";
+            currentWorksheet.Cells[studentlist.Capacity + 4, 2] = "Late";
+            currentWorksheet.Cells[studentlist.Capacity + 5, 2] = "Absent";
+
+            for (int lesson = 0; lesson < Datelist.Capacity - 2; lesson++)
+            {
+                int pr = 0;
+                int la = 0;
+                int ab = 0;
+                for (int student = 0; student < studentlist.Capacity; student++)
+                {
+
+
+                    if (matrix[student, lesson] == 1)
+                    {
+                        pr++;
+                    }
+                    else if (matrix[student, lesson] < 1 && matrix[student, lesson] > 0)
+                    {
+                        la++;
+                    }
+                    else if (matrix[student, lesson] == 0)
+                    {
+                        ab++;
+                    }
+                }
+                currentWorksheet.Cells[2 + studentlist.Capacity, 3 + lesson] = "lesson " + (lesson + 1);
+                currentWorksheet.Cells[3 + studentlist.Capacity, 3 + lesson] = pr;
+                currentWorksheet.Cells[4 + studentlist.Capacity, 3 + lesson] = la;
+                currentWorksheet.Cells[5 + studentlist.Capacity, 3 + lesson] = ab;
+            }
+            xlCharts =
+               (Excel.ChartObjects)currentWorksheet.ChartObjects(Type.Missing);
+            myChart =
+                (Excel.ChartObject)xlCharts.Add(0, 150, 300, 250);
+            chartPage = myChart.Chart;
+            misValue = System.Reflection.Missing.Value;
+
+
+            chartRange = currentWorksheet.get_Range("i1", "l9");
+            chartPage.SetSourceData(chartRange, misValue);
+            chartPage.ChartType = Excel.XlChartType.xlColumnClustered;
+
+            myChart = (Excel.ChartObject)xlCharts.Add(350, 150, 300, 250);
+            chartPage = myChart.Chart;
+            misValue = System.Reflection.Missing.Value;
+            chartRange = currentWorksheet.get_Range("b10", "h13");
+            chartPage.SetSourceData(chartRange, misValue);
+            chartPage.ChartType = Excel.XlChartType.xlColumnClustered;
+
+
+
+            currentWorksheet.Columns.AutoFit();
+            currentWorksheet.Rows.AutoFit();
+            data.Close();
+            i71cmd.Dispose();
+            y2sn = 0;
+            validcount = 0;
+            invalidcount = 0;
+            //currentWorksheet.get_Range("b10", "h13").EntireColumn.Hidden = true;
+            //currentWorksheet.get_Range("i1", "l9").EntireRow.Hidden = true;
             currentWorksheet.Columns.AutoFit();
             currentWorksheet.Rows.AutoFit();
             currentWorksheet = null;
 
 
 
+            //
+            //java total worksheet
+            //
+
+
+            Excel.Worksheet worksheet8 = workBook.Worksheets.Add();
+            worksheet8.Name = "java total sheet";
+            currentWorksheet = worksheet8 as Worksheet;
+            string javasql = "SELECT student_id, Student_Name FROM `studentinfo` WHERE Year = 1";
+            i71cmd = new MySqlCommand(javasql, connection);
+            data = i71cmd.ExecuteReader();
+            y2sn = 0;
+            validcount = 0;
+            invalidcount = 0;
+            List<string> studentlistj = new List<string>();
+            List<string> Datelistj = new List<string>();
+            if (data.HasRows == true)
+            {
+                var datarow = 2;
+                for (int i = 0; i < data.FieldCount; i++)
+                {
+                    currentWorksheet.Cells[1, i + 1] = data.GetName(i);
+                    while (data.Read())
+                    {
+                        currentWorksheet.Cells[datarow, 1] = data["student_id"];
+                        studentlistj.Add(data["student_id"].ToString());
+                        currentWorksheet.Cells[datarow, 2] = data["student_Name"];
+                        datarow++;
+                        y2sn++;
+                    }
+                }
+
+
+            }
+            courseid = 5;
+            javasql = "SELECT date(Date) as Date FROM `lessons` WHERE courseId = 5 ORDER BY date(Date)";
+            i71cmd = new MySqlCommand(javasql, connection);
+            data.Close();
+            data = i71cmd.ExecuteReader();
+            if (data.HasRows == true)
+            {
+                var datarow = 3;
+                for (int i = 0; i < data.FieldCount; i++)
+                {
+
+                    while (data.Read())
+                    {
+                        currentWorksheet.Cells[1, datarow] = data["Date"];
+                        Datelistj.Add(data["Date"].ToString());
+                        datarow++;
+                        y2sn++;
+                    }
+                }
+
+
+            }
+            currentWorksheet.Columns.AutoFit();
+            currentWorksheet.Rows.AutoFit();
+            row = 1;
+            rowsize = studentlist.Capacity;
+
+
+            Double[,] matrix2 = new double[Datelistj.Capacity, studentlistj.Capacity + 2];
+            foreach (var student in studentlistj)
+            {
+                row++;
+                var col = 3;
+                foreach (var date in Datelistj)
+                {
+
+                    javasql = "SELECT testjson.student, testjson.time, testjson.CourseId,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and testjson.student='" + student + "'and date(testjson.time) = date('" + date + "')and courseId = " + courseid;
+
+                    i71cmd = new MySqlCommand(javasql, connection);
+                    data.Close();
+                    data = i71cmd.ExecuteReader();
+                    if (data.HasRows == true)
+                    {
+                        while (data.Read())
+                        {
+                            currentWorksheet.Cells[row, col] = data["time"].ToString();
+                            int cdc = Int32.Parse(data["timer"].ToString());
+                            if (cdc < 0)
+                            {
+                                currentWorksheet.Cells[row, col].Interior.Color = Excel.XlRgbColor.rgbGreen;
+                                matrix2[row - 2, col - 3] = 1;
+                            }
+                            else
+                            {
+                                currentWorksheet.Cells[row, col].Interior.Color = Excel.XlRgbColor.rgbRed;
+                                matrix2[row - 2, col - 3] = 0.0001;
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        currentWorksheet.Cells[row, col] = "absent";
+                        matrix2[row - 2, col - 3] = 0;
+                    }
+
+                    col++;
+                }
+                int pr = 0;
+                int la = 0;
+                int ab = 0;
+                for (int i = 0; i < Datelistj.Capacity - 2; i++)
+                {
+                    if (matrix2[row - 2, i] == 1)
+                    {
+                        pr++;
+                    }
+                    else if (matrix2[row - 2, i] < 1 && matrix2[row - 2, i] > 0)
+                    {
+                        la++;
+                    }
+                    else if (matrix2[row - 2, i] == 0)
+                    {
+                        ab++;
+                    }
+                }
+                currentWorksheet.Cells[row, col] = currentWorksheet.Cells[row, 2];
+                currentWorksheet.Cells[row, col + 1] = pr;
+                currentWorksheet.Cells[row, col + 2] = la;
+                currentWorksheet.Cells[row, col + 3] = ab;
+
+            }
+            row = 1;
+            currentWorksheet.Cells[1, Datelistj.Capacity + 2] = "Presented";
+            currentWorksheet.Cells[1, Datelistj.Capacity + 3] = "Late";
+            currentWorksheet.Cells[1, Datelistj.Capacity + 4] = "Absent";
+            currentWorksheet.Cells[studentlistj.Capacity + 3, 2] = "Presented";
+            currentWorksheet.Cells[studentlistj.Capacity + 4, 2] = "Late";
+            currentWorksheet.Cells[studentlistj.Capacity + 5, 2] = "Absent";
+
+            for (int lesson = 0; lesson < Datelistj.Capacity - 2; lesson++)
+            {
+                int pr = 0;
+                int la = 0;
+                int ab = 0;
+                for (int student = 0; student < studentlistj.Capacity; student++)
+                {
+
+
+                    if (matrix2[student, lesson] == 1)
+                    {
+                        pr++;
+                    }
+                    else if (matrix2[student, lesson] < 1 && matrix[student, lesson] > 0)
+                    {
+                        la++;
+                    }
+                    else if (matrix2[student, lesson] == 0)
+                    {
+                        ab++;
+                    }
+                }
+                currentWorksheet.Cells[2 + studentlistj.Capacity, 3 + lesson] = "lesson " + (lesson + 1);
+                currentWorksheet.Cells[3 + studentlistj.Capacity, 3 + lesson] = pr;
+                currentWorksheet.Cells[4 + studentlistj.Capacity, 3 + lesson] = la;
+                currentWorksheet.Cells[5 + studentlistj.Capacity, 3 + lesson] = ab;
+            }
+
+            xlCharts = (Excel.ChartObjects)currentWorksheet.ChartObjects(Type.Missing);
+            myChart = (Excel.ChartObject)xlCharts.Add(0, 150, 300, 250);
+            chartPage = myChart.Chart;
+            misValue = System.Reflection.Missing.Value;
+
+
+            chartRange = currentWorksheet.get_Range("i1", "l9");
+            chartPage.SetSourceData(chartRange, misValue);
+            chartPage.ChartType = Excel.XlChartType.xlColumnClustered;
+
+            myChart = (Excel.ChartObject)xlCharts.Add(350, 150, 300, 250);
+            chartPage = myChart.Chart;
+            misValue = System.Reflection.Missing.Value;
+            chartRange = currentWorksheet.get_Range("b6", "h9");
+            chartPage.SetSourceData(chartRange, misValue);
+            chartPage.ChartType = Excel.XlChartType.xlColumnClustered;
+
+
+
+            currentWorksheet.Columns.AutoFit();
+            currentWorksheet.Rows.AutoFit();
+            data.Close();
+            i71cmd.Dispose();
+            y2sn = 0;
+            validcount = 0;
+            invalidcount = 0;
+
+            //
+            //C# total worksheet
+            //
+
+
+            Excel.Worksheet worksheet12 = workBook.Worksheets.Add();
+            worksheet12.Name = "C# total sheet";
+            currentWorksheet = worksheet12 as Worksheet;
+            javasql = "SELECT student_id, Student_Name FROM `studentinfo` WHERE Year = 1";
+            i71cmd = new MySqlCommand(javasql, connection);
+            data = i71cmd.ExecuteReader();
+            y2sn = 0;
+            validcount = 0;
+            invalidcount = 0;
+            studentlistj = new List<string>();
+            Datelistj = new List<string>();
+            if (data.HasRows == true)
+            {
+                var datarow = 2;
+                for (int i = 0; i < data.FieldCount; i++)
+                {
+                    currentWorksheet.Cells[1, i + 1] = data.GetName(i);
+                    while (data.Read())
+                    {
+                        currentWorksheet.Cells[datarow, 1] = data["student_id"];
+                        studentlistj.Add(data["student_id"].ToString());
+                        currentWorksheet.Cells[datarow, 2] = data["student_Name"];
+                        datarow++;
+                        y2sn++;
+                    }
+                }
+
+
+            }
+            courseid = 3;
+            javasql = "SELECT date(Date) as Date FROM `lessons` WHERE courseId = 3 ORDER BY date(Date)";
+            i71cmd = new MySqlCommand(javasql, connection);
+            data.Close();
+            data = i71cmd.ExecuteReader();
+            if (data.HasRows == true)
+            {
+                var datarow = 3;
+                for (int i = 0; i < data.FieldCount; i++)
+                {
+
+                    while (data.Read())
+                    {
+                        currentWorksheet.Cells[1, datarow] = data["Date"];
+                        Datelistj.Add(data["Date"].ToString());
+                        datarow++;
+                        y2sn++;
+                    }
+                }
+
+
+            }
+            currentWorksheet.Columns.AutoFit();
+            currentWorksheet.Rows.AutoFit();
+            row = 1;
+            rowsize = studentlist.Capacity;
+
+            matrix2 = new double[Datelistj.Capacity, studentlistj.Capacity + 2];
+            foreach (var student in studentlistj)
+            {
+                row++;
+                var col = 3;
+                foreach (var date in Datelistj)
+                {
+
+                    javasql = "SELECT testjson.student, testjson.time, testjson.CourseId,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and testjson.student='" + student + "'and date(testjson.time) = date('" + date + "')and courseId = " + courseid;
+
+                    i71cmd = new MySqlCommand(javasql, connection);
+                    data.Close();
+                    data = i71cmd.ExecuteReader();
+                    if (data.HasRows == true)
+                    {
+                        while (data.Read())
+                        {
+                            currentWorksheet.Cells[row, col] = data["time"].ToString();
+                            int cdc = Int32.Parse(data["timer"].ToString());
+                            if (cdc < 0)
+                            {
+                                currentWorksheet.Cells[row, col].Interior.Color = Excel.XlRgbColor.rgbGreen;
+                                matrix2[row - 2, col - 3] = 1;
+                            }
+                            else
+                            {
+                                currentWorksheet.Cells[row, col].Interior.Color = Excel.XlRgbColor.rgbRed;
+                                matrix2[row - 2, col - 3] = 0.0001;
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        currentWorksheet.Cells[row, col] = "absent";
+                        matrix2[row - 2, col - 3] = 0;
+                    }
+
+                    col++;
+                }
+                int pr = 0;
+                int la = 0;
+                int ab = 0;
+                for (int i = 0; i < Datelistj.Capacity - 2; i++)
+                {
+                    if (matrix2[row - 2, i] == 1)
+                    {
+                        pr++;
+                    }
+                    else if (matrix2[row - 2, i] < 1 && matrix2[row - 2, i] > 0)
+                    {
+                        la++;
+                    }
+                    else if (matrix2[row - 2, i] == 0)
+                    {
+                        ab++;
+                    }
+                }
+                currentWorksheet.Cells[row, col] = currentWorksheet.Cells[row, 2];
+                currentWorksheet.Cells[row, col + 1] = pr;
+                currentWorksheet.Cells[row, col + 2] = la;
+                currentWorksheet.Cells[row, col + 3] = ab;
+
+            }
+            row = 1;
+            currentWorksheet.Cells[1, Datelistj.Capacity + 2] = "Presented";
+            currentWorksheet.Cells[1, Datelistj.Capacity + 3] = "Late";
+            currentWorksheet.Cells[1, Datelistj.Capacity + 4] = "Absent";
+            currentWorksheet.Cells[studentlistj.Capacity + 3, 2] = "Presented";
+            currentWorksheet.Cells[studentlistj.Capacity + 4, 2] = "Late";
+            currentWorksheet.Cells[studentlistj.Capacity + 5, 2] = "Absent";
+
+            for (int lesson = 0; lesson < Datelistj.Capacity - 2; lesson++)
+            {
+                int pr = 0;
+                int la = 0;
+                int ab = 0;
+                for (int student = 0; student < studentlistj.Capacity; student++)
+                {
+
+
+                    if (matrix2[student, lesson] == 1)
+                    {
+                        pr++;
+                    }
+                    else if (matrix2[student, lesson] < 1 && matrix[student, lesson] > 0)
+                    {
+                        la++;
+                    }
+                    else if (matrix2[student, lesson] == 0)
+                    {
+                        ab++;
+                    }
+                }
+                currentWorksheet.Cells[2 + studentlistj.Capacity, 3 + lesson] = "lesson " + (lesson + 1);
+                currentWorksheet.Cells[3 + studentlistj.Capacity, 3 + lesson] = pr;
+                currentWorksheet.Cells[4 + studentlistj.Capacity, 3 + lesson] = la;
+                currentWorksheet.Cells[5 + studentlistj.Capacity, 3 + lesson] = ab;
+            }
+
+            xlCharts = (Excel.ChartObjects)currentWorksheet.ChartObjects(Type.Missing);
+            myChart = (Excel.ChartObject)xlCharts.Add(0, 150, 300, 250);
+            chartPage = myChart.Chart;
+            misValue = System.Reflection.Missing.Value;
+
+
+            chartRange = currentWorksheet.get_Range("i1", "l9");
+            chartPage.SetSourceData(chartRange, misValue);
+            chartPage.ChartType = Excel.XlChartType.xlColumnClustered;
+
+            myChart = (Excel.ChartObject)xlCharts.Add(350, 150, 300, 250);
+            chartPage = myChart.Chart;
+            misValue = System.Reflection.Missing.Value;
+            chartRange = currentWorksheet.get_Range("b6", "h9");
+            chartPage.SetSourceData(chartRange, misValue);
+            chartPage.ChartType = Excel.XlChartType.xlColumnClustered;
+
+
+
+            currentWorksheet.Columns.AutoFit();
+            currentWorksheet.Rows.AutoFit();
+            data.Close();
+            i71cmd.Dispose();
+            y2sn = 0;
+            validcount = 0;
+            invalidcount = 0;
+
+            //
+            //python total worksheet
+            //
+
+
+            Excel.Worksheet worksheet9 = workBook.Worksheets.Add();
+            worksheet9.Name = "python total sheet";
+            currentWorksheet = worksheet9 as Worksheet;
+            string pythonsql = "SELECT student_id, Student_Name FROM `studentinfo` WHERE Year = 1 or Year =2 ORDER By student_id";
+            i71cmd = new MySqlCommand(pythonsql, connection);
+            data = i71cmd.ExecuteReader();
+            y2sn = 0;
+            validcount = 0;
+            invalidcount = 0;
+            List<string> studentlistp = new List<string>();
+            List<string> Datelistp = new List<string>();
+            if (data.HasRows == true)
+            {
+                var datarow = 2;
+                for (int i = 0; i < data.FieldCount; i++)
+                {
+                    currentWorksheet.Cells[1, i + 1] = data.GetName(i);
+                    while (data.Read())
+                    {
+                        currentWorksheet.Cells[datarow, 1] = data["student_id"];
+                        studentlistp.Add(data["student_id"].ToString());
+                        currentWorksheet.Cells[datarow, 2] = data["student_Name"];
+                        datarow++;
+                        y2sn++;
+                    }
+                }
+
+
+            }
+            courseid = 4;
+            pythonsql = "SELECT date(Date) as Date FROM `lessons` WHERE courseId = 4 ORDER BY date(Date)";
+            i71cmd = new MySqlCommand(pythonsql, connection);
+            data.Close();
+            data = i71cmd.ExecuteReader();
+            if (data.HasRows == true)
+            {
+                var datarow = 3;
+                for (int i = 0; i < data.FieldCount; i++)
+                {
+
+                    while (data.Read())
+                    {
+                        currentWorksheet.Cells[1, datarow] = data["Date"];
+                        Datelistp.Add(data["Date"].ToString());
+                        datarow++;
+                        y2sn++;
+                    }
+                }
+
+
+            }
+            currentWorksheet.Columns.AutoFit();
+            currentWorksheet.Rows.AutoFit();
+            row = 1;
+            rowsize = studentlist.Capacity;
+
+            Double[,] matrix3 = new double[Datelistp.Capacity + 4, studentlistp.Capacity + 4];
+            foreach (var student in studentlistp)
+            {
+                row++;
+                var col = 3;
+                foreach (var date in Datelistp)
+                {
+
+                    javasql = "SELECT testjson.student, testjson.time, testjson.CourseId,subject.start_time, time(testjson.time)-subject.start_time as timer From studentinfo, testjson,subject where testjson.student= studentinfo.student_id and testjson.CourseId= subject.id and testjson.student='" + student + "'and date(testjson.time) = date('" + date + "')and courseId = " + courseid;
+                    i71cmd = new MySqlCommand(javasql, connection);
+                    data.Close();
+                    data = i71cmd.ExecuteReader();
+                    if (data.HasRows == true)
+                    {
+                        while (data.Read())
+                        {
+                            currentWorksheet.Cells[row, col] = data["time"].ToString();
+                            int cdc = Int32.Parse(data["timer"].ToString());
+                            if (cdc < 0)
+                            {
+                                currentWorksheet.Cells[row, col].Interior.Color = Excel.XlRgbColor.rgbGreen;
+                                matrix3[row - 2, col - 3] = 1;
+                            }
+                            else
+                            {
+                                currentWorksheet.Cells[row, col].Interior.Color = Excel.XlRgbColor.rgbRed;
+                                matrix3[row - 2, col - 3] = 0.0001;
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        currentWorksheet.Cells[row, col] = "absent";
+                        matrix3[row - 2, col - 3] = 0;
+                    }
+
+                    col++;
+                }
+                int pr = 0;
+                int la = 0;
+                int ab = 0;
+                for (int i = 0; i < Datelistp.Capacity - 2; i++)
+                {
+                    if (matrix3[row - 2, i] == 1)
+                    {
+                        pr++;
+                    }
+                    else if (matrix3[row - 2, i] < 1 && matrix3[row - 2, i] > 0)
+                    {
+                        la++;
+                    }
+                    else if (matrix3[row - 2, i] == 0)
+                    {
+                        ab++;
+                    }
+                }
+                currentWorksheet.Cells[row, col] = currentWorksheet.Cells[row, 2];
+                currentWorksheet.Cells[row, col + 1] = pr;
+                currentWorksheet.Cells[row, col + 2] = la;
+                currentWorksheet.Cells[row, col + 3] = ab;
+
+            }
+            row = 1;
+            currentWorksheet.Cells[1, Datelistp.Capacity + 2] = "Presented";
+            currentWorksheet.Cells[1, Datelistp.Capacity + 3] = "Late";
+            currentWorksheet.Cells[1, Datelistp.Capacity + 4] = "Absent";
+            currentWorksheet.Cells[studentlistp.Capacity + 3, 2] = "Presented";
+            currentWorksheet.Cells[studentlistp.Capacity + 4, 2] = "Late";
+            currentWorksheet.Cells[studentlistp.Capacity + 5, 2] = "Absent";
+
+            for (int lesson = 0; lesson < Datelistp.Capacity - 2; lesson++)
+            {
+                int pr = 0;
+                int la = 0;
+                int ab = 0;
+                for (int student = 0; student < studentlistp.Capacity - 4; student++)
+                {
+
+
+                    if (matrix3[student, lesson] == 1)
+                    {
+                        pr++;
+                    }
+                    else if (matrix3[student, lesson] < 1 && matrix3[student, lesson] > 0)
+                    {
+                        la++;
+                    }
+                    else if (matrix3[student, lesson] == 0)
+                    {
+                        ab++;
+                    }
+                }
+                currentWorksheet.Cells[2 + studentlistp.Capacity, 3 + lesson] = "lesson " + (lesson + 1);
+                currentWorksheet.Cells[3 + studentlistp.Capacity, 3 + lesson] = pr;
+                currentWorksheet.Cells[4 + studentlistp.Capacity, 3 + lesson] = la;
+                currentWorksheet.Cells[5 + studentlistp.Capacity, 3 + lesson] = ab;
+            }
+
+            xlCharts = (Excel.ChartObjects)currentWorksheet.ChartObjects(Type.Missing);
+            myChart = (Excel.ChartObject)xlCharts.Add(0, 200, 300, 250);
+            chartPage = myChart.Chart;
+            misValue = System.Reflection.Missing.Value;
+
+
+            chartRange = currentWorksheet.get_Range("i1", "l9");
+            chartPage.SetSourceData(chartRange, misValue);
+            chartPage.ChartType = Excel.XlChartType.xlColumnClustered;
+
+            myChart = (Excel.ChartObject)xlCharts.Add(350, 200, 300, 250);
+            chartPage = myChart.Chart;
+            misValue = System.Reflection.Missing.Value;
+            chartRange = currentWorksheet.get_Range("b18", "h21");
+            chartPage.SetSourceData(chartRange, misValue);
+            chartPage.ChartType = Excel.XlChartType.xlColumnClustered;
+
+
+
+            currentWorksheet.Columns.AutoFit();
+            currentWorksheet.Rows.AutoFit();
+            data.Close();
+            i71cmd.Dispose();
+            y2sn = 0;
+            validcount = 0;
+            invalidcount = 0;
+            //currentWorksheet.get_Range("b10", "h13").EntireColumn.Hidden = true;
+            //currentWorksheet.get_Range("i1", "l9").EntireRow.Hidden = true;
+            currentWorksheet.Columns.AutoFit();
+            currentWorksheet.Rows.AutoFit();
+            currentWorksheet = null;
 
             connection.Close();
             workBook.SaveAs(Environment.CurrentDirectory + @"\courseReport.xlsx");
-            Marshal.ReleaseComObject(Excelapp.Workbooks);//Excelapp.Quit();
+            Marshal.ReleaseComObject(Excelapp.Workbooks);
         }
         private void btn_logout_Click(object sender, EventArgs e)
         {
@@ -1340,151 +1807,3 @@ namespace JSONandSQL
         }
     }
 }
-/*
-
-//INSERT INTO `rawdata` (`id`, `userID`, `dateStamp`, `scanQR`, `location`) VALUES (NULL, 'hkct001', '20211216140501', '001', NULL);
-
-        private void button2_Click_1(object sender, EventArgs e)
-{
-    string connectorString = "server=localhost;User Id=root;password=";
-    MySqlConnection myConnnect = new MySqlConnection(connectorString);
-    myConnnect.Open();
-    MySqlCommand myCmd = new MySqlCommand("CREATE DATABASE IF NOT EXISTS db1", myConnnect);
-    myCmd.ExecuteNonQuery();
-    myCmd.Dispose();
-    myConnnect.Close();
-    connectorString = "server=localhost;User Id=root;password=;Database=db1";
-    myConnnect = new MySqlConnection(connectorString);
-    myConnnect.Open();
-    String create = "CREATE TABLE IF NOT EXISTS `db1`.`attendance` ( `ID` INT NOT NULL AUTO_INCREMENT , `studentID` VARCHAR(255) NOT NULL , `time` VARCHAR(255) NOT NULL , `room` VARCHAR(255) NOT NULL , PRIMARY KEY (`ID`))";
-    myCmd = new MySqlCommand(create, myConnnect);
-    myCmd.ExecuteNonQuery();
-    myCmd.Dispose();
-    myConnnect.Close();
-    String SQL = "";
-    SQL = "SELECT `attendance`.`ID`,`reference`.`name`,`reference`.`groupAB`,`attendance`.`time`,`attendance`.`room` FROM `attendance`,`reference` WHERE `attendance`.`studentID` = `reference`.`studentID` AND `attendance`.`time` LIKE '" + getdate.Value.Date.ToString("yyyyMM") + "%' ORDER BY `attendance`.`ID`";
-    myConnnect.Open();
-    myCmd = new MySqlCommand(SQL, myConnnect);
-    MySqlDataReader data = myCmd.ExecuteReader();
-    int read = 0;
-    //String result = "";
-    Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
-    if (excel == null) { MessageBox.Show("Excel not found"); return; }
-    Workbook workbook1 = excel.Workbooks.Add();
-    workbook1.Worksheets.Add();
-    Worksheet worksheet1 = workbook1.Worksheets.get_Item(1);
-    Worksheet worksheet2 = workbook1.Worksheets.get_Item(2);
-    worksheet1.Name = "raw_data";
-    worksheet2.Name = "attendance";
-    worksheet1.Cells[1, 1] = "ID";
-    worksheet1.Cells[1, 2] = "name";
-    worksheet1.Cells[1, 3] = "group";
-    worksheet1.Cells[1, 4] = "time";
-    worksheet1.Cells[1, 5] = "room";
-    int i = 2;
-
-    while (data.Read())
-    {
-        //MessageBox.Show(data["id"] + ". studentID = " + data["studentID"] +" time = " + data["time"]+" room = " + data["room"]);
-        //result += data["id"] + ". studentID = " + data["studentID"] + " time = " + data["time"] + " room = " + data["room"] + "\n";
-        read++;
-        worksheet1.Cells[i, 1] = data["id"];
-        worksheet1.Cells[i, 2] = data["name"];
-        worksheet1.Cells[i, 3] = data["groupAB"];
-        worksheet1.Cells[i, 4] = DateTime.ParseExact(data["time"].ToString(), "yyyyMMddHHmmss", new CultureInfo("fr-FR"));
-        worksheet1.Cells[i, 5] = data["room"];
-        i++;
-    }
-    if (read == 0)
-    {
-        MessageBox.Show("Data not found");
-    }
-    else
-    {
-        data.Close();
-        myCmd.Dispose();
-
-        SQL = "SELECT `time` FROM `class` WHERE `time` LIKE '" + getdate.Value.Date.ToString("yyyyMM") + "%'";
-        myCmd = new MySqlCommand(SQL, myConnnect);
-        data = myCmd.ExecuteReader();
-        int j = 2;
-        List<String> date = new List<string>();
-        while (data.Read())
-        {
-            date.Add(data["time"].ToString());
-            worksheet2.Cells[1, j] = DateTime.ParseExact(data["time"].ToString(), "yyyyMMdd", new CultureInfo("fr-FR")).ToString("yyyy/MM/dd");
-            j++;
-        }
-        data.Close();
-        myCmd.Dispose();
-        SQL = "SELECT `name` FROM `reference`";
-        myCmd = new MySqlCommand(SQL, myConnnect);
-        data = myCmd.ExecuteReader();
-        int k = 2;
-        List<String> name = new List<string>();
-        while (data.Read())
-        {
-            worksheet2.Cells[k, 1] = data["name"];
-            name.Add(data["name"].ToString());
-            k++;
-        }
-        data.Close();
-        myCmd.Dispose();
-        int d = 0;
-        int n = 0;
-        for (; d < date.Count(); d++)
-        {
-            n = 0;
-            for (; n < name.Count(); n++)
-            {
-                SQL = "SELECT `reference`.`name`,`attendance`.`time`,`attendance`.`room` FROM `attendance`,`reference`,`class` WHERE DAYOFYEAR(`attendance`.`time`) = DAYOFYEAR(`class`.`time`) AND DAYOFYEAR(`class`.`time`) = DAYOFYEAR('" + date[d] + "') AND `attendance`.`room` = `class`.`room` AND `attendance`.`studentID` = `reference`.`studentID` AND `reference`.`name` = '" + name[n] + "'";
-                myCmd = new MySqlCommand(SQL, myConnnect);
-                data = myCmd.ExecuteReader();
-                if (data.Read() == true)
-                {
-                    worksheet2.Cells[n + 2, d + 2] = "v";
-                }
-                myCmd.Dispose();
-                data.Dispose();
-                data.Close();
-            }
-        }
-        worksheet2.Cells[1, d + 2] = "attendance_rate";
-        n = 0;
-        char R = 'B';
-        char R2 = R;
-        for (int z = 0; z < d - 1; z++)
-        {
-            R2++;
-        }
-        for (; n < name.Count(); n++)
-        {
-            R = 'B';
-            worksheet2.Cells[n + 2, d + 2] = "=(COUNTA(" + R + (n + 2) + ":" + R2 + (n + 2) + ")/COUNTA(" + R + "1:" + R2 + "1))*100";
-            R++;
-        }
-
-        //MessageBox.Show(result);
-        workbook1.SaveAs(Environment.CurrentDirectory + @"\Report_generated_at_" + DateTime.Now.ToString("yyyyMMdd") + ".xlsx");
-        MessageBox.Show("Excel generated");
-    }
-    Range range1 = worksheet1.UsedRange;
-    Range range2 = worksheet2.UsedRange;
-
-    Marshal.ReleaseComObject(worksheet1);
-    Marshal.ReleaseComObject(worksheet2);
-    Marshal.ReleaseComObject(range1);
-    workbook1.Close(false);
-    Marshal.ReleaseComObject(workbook1);
-    Marshal.ReleaseComObject(excel.Workbooks);
-    excel.Quit();
-    Marshal.ReleaseComObject(excel);
-    data.Close();
-    myCmd.Dispose();
-    myConnnect.Close();
-    GC.Collect();
-    GC.WaitForPendingFinalizers();
-}
-    }
-}
-*/

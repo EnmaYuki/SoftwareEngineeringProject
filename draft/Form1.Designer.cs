@@ -42,7 +42,6 @@
             this.cb_studentyear = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tb_result = new System.Windows.Forms.TextBox();
-            this.cb_course = new System.Windows.Forms.ComboBox();
             this.btn_getstudent = new System.Windows.Forms.Button();
             this.cb_hour = new System.Windows.Forms.ComboBox();
             this.lb_hour = new System.Windows.Forms.Label();
@@ -51,7 +50,6 @@
             this.studentlist = new System.Windows.Forms.CheckedListBox();
             this.cb_lesson = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btn_addJSONbin
@@ -111,6 +109,7 @@
             this.tb_resultKey.Location = new System.Drawing.Point(8, 285);
             this.tb_resultKey.Multiline = true;
             this.tb_resultKey.Name = "tb_resultKey";
+            this.tb_resultKey.ReadOnly = true;
             this.tb_resultKey.Size = new System.Drawing.Size(182, 100);
             this.tb_resultKey.TabIndex = 19;
             // 
@@ -119,6 +118,7 @@
             this.tb_resultData.Location = new System.Drawing.Point(196, 285);
             this.tb_resultData.Multiline = true;
             this.tb_resultData.Name = "tb_resultData";
+            this.tb_resultData.ReadOnly = true;
             this.tb_resultData.Size = new System.Drawing.Size(251, 100);
             this.tb_resultData.TabIndex = 18;
             // 
@@ -136,7 +136,7 @@
             // btn_excel
             // 
             this.btn_excel.Font = new System.Drawing.Font("PMingLiU", 15F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btn_excel.Location = new System.Drawing.Point(712, 335);
+            this.btn_excel.Location = new System.Drawing.Point(710, 308);
             this.btn_excel.Name = "btn_excel";
             this.btn_excel.Size = new System.Drawing.Size(157, 36);
             this.btn_excel.TabIndex = 31;
@@ -147,7 +147,7 @@
             // btn_logout
             // 
             this.btn_logout.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.btn_logout.Location = new System.Drawing.Point(392, 406);
+            this.btn_logout.Location = new System.Drawing.Point(759, 350);
             this.btn_logout.Name = "btn_logout";
             this.btn_logout.Size = new System.Drawing.Size(86, 35);
             this.btn_logout.TabIndex = 32;
@@ -208,16 +208,9 @@
             this.tb_result.Location = new System.Drawing.Point(453, 285);
             this.tb_result.Multiline = true;
             this.tb_result.Name = "tb_result";
+            this.tb_result.ReadOnly = true;
             this.tb_result.Size = new System.Drawing.Size(251, 100);
             this.tb_result.TabIndex = 17;
-            // 
-            // cb_course
-            // 
-            this.cb_course.FormattingEnabled = true;
-            this.cb_course.Location = new System.Drawing.Point(748, 313);
-            this.cb_course.Name = "cb_course";
-            this.cb_course.Size = new System.Drawing.Size(121, 20);
-            this.cb_course.TabIndex = 39;
             // 
             // btn_getstudent
             // 
@@ -328,22 +321,11 @@
             this.label6.TabIndex = 54;
             this.label6.Text = "Lesson";
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("PMingLiU", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.label7.Location = new System.Drawing.Point(709, 294);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(86, 16);
-            this.label7.TabIndex = 55;
-            this.label7.Text = "course name";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(875, 474);
-            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cb_lesson);
             this.Controls.Add(this.studentlist);
@@ -352,7 +334,6 @@
             this.Controls.Add(this.cb_hour);
             this.Controls.Add(this.lb_hour);
             this.Controls.Add(this.btn_getstudent);
-            this.Controls.Add(this.cb_course);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cb_studentyear);
             this.Controls.Add(this.cb_courseid);
@@ -391,7 +372,6 @@
         private System.Windows.Forms.ComboBox cb_studentyear;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tb_result;
-        private System.Windows.Forms.ComboBox cb_course;
         private System.Windows.Forms.Button btn_getstudent;
         private System.Windows.Forms.ComboBox cb_hour;
         private System.Windows.Forms.Label lb_hour;
@@ -400,7 +380,6 @@
         private System.Windows.Forms.CheckedListBox studentlist;
         private System.Windows.Forms.ComboBox cb_lesson;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
     }
 }
 
